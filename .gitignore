@@ -1,0 +1,51 @@
+# Environment variables
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+dbt/.user.yml
+
+# Airflow
+airflow/logs/
+airflow/*.pid
+airflow/airflow.db
+airflow/airflow.cfg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Google Cloud credentials
+*.json
+!dbt/profiles.yml.example
+
+# Data files
+*.csv
+*.parquet
+*.db
+
+# Docker volumes
+postgres_data/
+airbyte_db_data/
+airflow_db_data/

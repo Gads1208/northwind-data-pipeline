@@ -1,0 +1,24 @@
+northwind_dw:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: portifolio-482811
+      dataset: northwind_bronze
+      threads: 4
+      timeout_seconds: 300
+      location: US
+      priority: interactive
+      keyfile: /opt/airflow/gcp-key.json
+      
+    prod:
+      type: bigquery
+      method: service-account
+      project: portifolio-482811
+      dataset: northwind_bronze
+      threads: 8
+      timeout_seconds: 300
+      location: US
+      priority: interactive
+      keyfile: /opt/airflow/gcp-key.json

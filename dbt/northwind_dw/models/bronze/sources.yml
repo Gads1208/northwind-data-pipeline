@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: airbyte_raw
+    description: "Raw data ingested by Airbyte from PostgreSQL"
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: northwind_bronze
+    tables:
+      - name: categories
+      - name: customers
+      - name: employees
+      - name: orders
+      - name: order_details
+      - name: products
+      - name: suppliers
+      - name: shippers

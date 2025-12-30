@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: silver_dim_customers
+    description: 'Cleaned and enriched customer dimension'
+    columns:
+      - name: customer_id
+        description: 'Customer business key'
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: 'Customer company name'
+
+  - name: silver_dim_products
+    description: 'Cleaned and enriched product dimension'
+    columns:
+      - name: product_id
+        description: 'Product business key'
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: 'Product name'
+
+  - name: silver_dim_employees
+    description: 'Cleaned and enriched employee dimension'
+    columns:
+      - name: employee_id
+        description: 'Employee business key'
+        tests:
+          - unique
+          - not_null
+      - name: full_name
+        description: 'Employee full name'
+
+  - name: silver_fact_orders
+    description: 'Cleaned orders fact table'
+    columns:
+      - name: order_id
+        description: 'Order ID'
+        tests:
+          - not_null
+      - name: product_id
+        description: 'Product ID'
+        tests:
+          - not_null
+      - name: line_total
+        description: 'Line total amount'

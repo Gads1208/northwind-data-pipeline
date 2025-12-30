@@ -1,0 +1,23 @@
+# Apache Airflow
+apache-airflow==2.8.0
+
+# PostgreSQL
+psycopg2-binary==2.9.9
+
+# Google Cloud
+google-cloud-bigquery==3.14.1
+google-auth==2.25.2
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+
+# dbt
+dbt-core==1.7.4
+dbt-bigquery==1.7.2
+
+# Utilidades
+pandas==2.1.4
+numpy==1.26.2
+pendulum==2.1.2
+
+# Logging e Monitoring
+python-json-logger==2.0.7

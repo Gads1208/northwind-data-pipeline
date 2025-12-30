@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: bronze_categories
+    description: "Raw categories data from source system"
+    columns:
+      - name: category_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: bronze_customers
+    description: "Raw customers data from source system"
+    columns:
+      - name: customer_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: bronze_employees
+    description: "Raw employees data from source system"
+    columns:
+      - name: employee_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: bronze_orders
+    description: "Raw orders data from source system"
+    columns:
+      - name: order_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: bronze_order_details
+    description: "Raw order details data from source system"
+
+  - name: bronze_products
+    description: "Raw products data from source system"
+    columns:
+      - name: product_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: bronze_suppliers
+    description: "Raw suppliers data from source system"
+    columns:
+      - name: supplier_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: bronze_shippers
+    description: "Raw shippers data from source system"
+    columns:
+      - name: shipper_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null

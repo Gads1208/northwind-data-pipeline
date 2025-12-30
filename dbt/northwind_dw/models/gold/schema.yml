@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: gold_sales_by_country
+    description: "Sales metrics aggregated by country"
+    
+  - name: gold_sales_by_category
+    description: "Sales metrics aggregated by product category"
+    
+  - name: gold_employee_performance
+    description: "Employee performance metrics"
+    
+  - name: gold_customer_analytics
+    description: "Customer behavior and value metrics"
+    
+  - name: gold_product_performance
+    description: "Product sales performance metrics"
