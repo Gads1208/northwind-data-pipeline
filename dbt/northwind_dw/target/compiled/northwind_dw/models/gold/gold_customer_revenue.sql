@@ -12,7 +12,7 @@ SELECT
     MIN(o.order_date) AS first_order_date,
     MAX(o.order_date) AS last_order_date,
     CURRENT_TIMESTAMP() AS updated_at
-FROM `portifolio-482811`.`northwind_bronze`.`silver_dim_customers` c
-LEFT JOIN `portifolio-482811`.`northwind_bronze`.`silver_fact_orders` o ON c.customer_id = o.customer_id
+FROM `portifolio-482811`.`northwind_silver`.`silver_dim_customers` c
+LEFT JOIN `portifolio-482811`.`northwind_silver`.`silver_fact_orders` o ON c.customer_id = o.customer_id
 GROUP BY c.customer_id, c.company_name, c.city, c.country
 ORDER BY total_revenue DESC

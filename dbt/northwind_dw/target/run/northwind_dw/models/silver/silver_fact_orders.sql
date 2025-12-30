@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `portifolio-482811`.`northwind_bronze`.`silver_fact_orders`
+    create or replace table `portifolio-482811`.`northwind_silver`.`silver_fact_orders`
       
     
     

@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `portifolio-482811`.`northwind_bronze`.`gold_product_performance`
+    create or replace table `portifolio-482811`.`northwind_gold`.`gold_product_performance`
       
     
     
@@ -24,8 +24,8 @@ SELECT
     SUM(o.line_total) AS total_revenue,
     AVG(o.line_total) AS avg_revenue_per_order,
     CURRENT_TIMESTAMP() AS updated_at
-FROM `portifolio-482811`.`northwind_bronze`.`silver_dim_products` p
-LEFT JOIN `portifolio-482811`.`northwind_bronze`.`silver_fact_orders` o ON p.product_id = o.product_id
+FROM `portifolio-482811`.`northwind_silver`.`silver_dim_products` p
+LEFT JOIN `portifolio-482811`.`northwind_silver`.`silver_fact_orders` o ON p.product_id = o.product_id
 GROUP BY p.product_id, p.product_name, p.category_name, p.supplier_name, p.unit_price, p.discontinued
 ORDER BY total_revenue DESC
     );

@@ -5,7 +5,6 @@ WITH sales_by_category AS (
     SELECT
         p.category_id,
         p.category_name,
-        p.category_description,
         COUNT(DISTINCT od.order_id) AS total_orders,
         COUNT(DISTINCT od.product_id) AS total_products,
         SUM(od.quantity) AS total_units_sold,
@@ -13,14 +12,14 @@ WITH sales_by_category AS (
         AVG(od.unit_price * od.quantity * (1 - od.discount)) AS avg_order_line_value,
         SUM(od.unit_price * od.quantity * od.discount) AS total_discounts
     FROM `portifolio-482811`.`northwind_bronze`.`bronze_order_details` od
-    INNER JOIN `portifolio-482811`.`northwind_bronze`.`silver_dim_products` p ON od.product_id = p.product_id
-    GROUP BY p.category_id, p.category_name, p.category_description
+    INNER JOIN `portifolio-482811`.`northwind_silver`.`silver_dim_products` p ON od.product_id = p.product_id
+    GROUP BY p.category_id, p.category_name
 )
 
 SELECT
     category_id,
     category_name,
-    category_description,
+    category_name AS category_description,
     total_orders,
     total_products,
     total_units_sold,

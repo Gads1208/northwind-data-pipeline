@@ -22,13 +22,16 @@ models:
     bronze:
       +materialized: table
       +tags: ["bronze", "raw"]
+      +schema: northwind_bronze
     
     # Silver layer - cleaned and transformed data
     silver:
       +materialized: table
       +tags: ["silver", "cleaned"]
+      +schema: northwind_silver
     
     # Gold layer - business aggregations and metrics
     gold:
       +materialized: table
       +tags: ["gold", "business"]
+      +schema: northwind_gold

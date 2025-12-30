@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `portifolio-482811`.`northwind_bronze`.`gold_employee_performance`
+    create or replace table `portifolio-482811`.`northwind_gold`.`gold_employee_performance`
       
     
     
@@ -25,8 +25,8 @@ SELECT
     MIN(o.order_date) AS first_sale_date,
     MAX(o.order_date) AS last_sale_date,
     CURRENT_TIMESTAMP() AS updated_at
-FROM `portifolio-482811`.`northwind_bronze`.`silver_dim_employees` e
-LEFT JOIN `portifolio-482811`.`northwind_bronze`.`silver_fact_orders` o ON e.employee_id = o.employee_id
+FROM `portifolio-482811`.`northwind_silver`.`silver_dim_employees` e
+LEFT JOIN `portifolio-482811`.`northwind_silver`.`silver_fact_orders` o ON e.employee_id = o.employee_id
 GROUP BY e.employee_id, e.full_name, e.title, e.city, e.country
 ORDER BY total_sales DESC
     );

@@ -9,15 +9,15 @@ WITH customer_metrics AS (
         c.city,
         c.country,
         COUNT(DISTINCT o.order_id) AS total_orders,
-        SUM(o.order_total) AS total_spent,
-        AVG(o.order_total) AS avg_order_value,
-        SUM(o.total_quantity) AS total_items_purchased,
-        SUM(o.total_discount_amount) AS total_discounts_received,
+        SUM(o.line_total) AS total_spent,
+        AVG(o.line_total) AS avg_order_value,
+        SUM(o.quantity) AS total_items_purchased,
+        SUM(o.line_total * o.discount / (1 - o.discount)) AS total_discounts_received,
         MIN(o.order_date) AS first_order_date,
         MAX(o.order_date) AS last_order_date,
         DATE_DIFF(CURRENT_DATE(), MAX(o.order_date), DAY) AS days_since_last_order
-    FROM `portifolio-482811`.`northwind_bronze`.`silver_dim_customers` c
-    LEFT JOIN `portifolio-482811`.`northwind_bronze`.`silver_fact_orders` o ON c.customer_id = o.customer_id
+    FROM `portifolio-482811`.`northwind_silver`.`silver_dim_customers` c
+    LEFT JOIN `portifolio-482811`.`northwind_silver`.`silver_fact_orders` o ON c.customer_id = o.customer_id
     GROUP BY 
         c.customer_id,
         c.company_name,
