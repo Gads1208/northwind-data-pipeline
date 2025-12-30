@@ -1,10 +1,24 @@
 # 🚀 Northwind Data Pipeline - Projeto de Engenharia de Dados
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![dbt](https://img.shields.io/badge/dbt-1.7-orange)](https://www.getdbt.com/)
-[![Airflow](https://img.shields.io/badge/Airflow-2.8-blue)](https://airflow.apache.org/)
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
+[![dbt](https://img.shields.io/badge/dbt-1.7.4-orange?logo=dbt&logoColor=white)](https://www.getdbt.com/)
+[![Airflow](https://img.shields.io/badge/Airflow-2.8.0-017CEE?logo=apache-airflow&logoColor=white)](https://airflow.apache.org/)
+[![BigQuery](https://img.shields.io/badge/BigQuery-GCP-4285F4?logo=google-cloud&logoColor=white)](https://cloud.google.com/bigquery)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
-Um pipeline completo de engenharia de dados implementando arquitetura Medallion (Bronze, Silver, Gold) com stack moderna de tecnologias.
+Pipeline completo de engenharia de dados end-to-end implementando arquitetura Medallion (Bronze, Silver, Gold) com stack moderna de tecnologias em nuvem.
+
+> **✨ Projeto de Portfólio** | Demonstração de habilidades em Data Engineering com foco em ETL/ELT, orquestração e transformação de dados.
+
+## 🎯 Resultados do Projeto
+
+- ✅ **51 registros** processados através de 3 camadas de transformação
+- ✅ **8 tabelas Bronze** → **4 tabelas Silver** → **5 tabelas Gold**
+- ✅ **Pipeline automatizado** executando transformações dbt via Airflow
+- ✅ **Arquitetura Medallion** implementada no Google BigQuery
+- ✅ **Testes de qualidade** validando integridade dos dados
 
 ## 📋 Índice
 
@@ -22,26 +36,39 @@ Um pipeline completo de engenharia de dados implementando arquitetura Medallion 
 
 ## 🎯 Visão Geral
 
-Este projeto implementa um pipeline de dados end-to-end utilizando a clássica base de dados **Northwind** como fonte. O objetivo é demonstrar as melhores práticas de engenharia de dados moderna, incluindo:
+Este projeto implementa um **pipeline de dados end-to-end** utilizando a clássica base de dados **Northwind** como fonte. O objetivo é demonstrar as melhores práticas de engenharia de dados moderna, incluindo:
 
-- **Ingestão de dados** com Airbyte
-- **Transformação de dados** com dbt usando arquitetura Medallion
-- **Orquestração** com Apache Airflow
-- **Armazenamento** no Google BigQuery
-- **Versionamento** com Git/GitHub
+- ✅ **Ingestão de dados** automatizada com Python (PostgreSQL → BigQuery)
+- ✅ **Transformação de dados** com dbt usando arquitetura Medallion
+- ✅ **Orquestração** com Apache Airflow e TaskGroups
+- ✅ **Armazenamento** escalável no Google BigQuery
+- ✅ **Containerização** com Docker Compose (4 containers)
+- ✅ **Testes de qualidade** automatizados com dbt
+- ✅ **Versionamento** com Git/GitHub
+
+### 📊 Métricas do Pipeline
+
+| Métrica | Valor |
+|---------|-------|
+| **Registros Processados** | 51 registros |
+| **Tabelas Bronze** | 8 tabelas (dados brutos) |
+| **Modelos Silver** | 4 dimensões/fatos |
+| **Agregações Gold** | 5 métricas de negócio |
+| **Tempo de Execução** | ~2-3 minutos |
+| **Testes de Qualidade** | 16 testes implementados |
 
 ### Fluxo de Dados
 
 ```
-PostgreSQL (Source) 
+PostgreSQL (Source - 51 records)
     ↓
-Airbyte (Ingestion)
+Python Script (ETL Customizado)
     ↓
-BigQuery Bronze (Raw Data)
+BigQuery Bronze (Raw Data - 8 tables)
     ↓
-dbt Silver (Cleaned & Transformed)
+dbt Silver (Cleaned & Modeled - 4 models)
     ↓
-dbt Gold (Business Aggregations)
+dbt Gold (Business Aggregations - 5 models)
     ↓
 Analytics & BI Tools
 ```
@@ -53,64 +80,75 @@ Analytics & BI Tools
 O projeto implementa a arquitetura Medallion em três camadas:
 
 #### 🥉 Bronze Layer (Dados Brutos)
-- Dados brutos ingeridos do PostgreSQL via Airbyte
-- Mínima ou nenhuma transformação
-- Preserva histórico completo
-- Tabelas: `bronze_customers`, `bronze_orders`, `bronze_products`, etc.
+- Dados brutos ingeridos do PostgreSQL via script Python customizado
+- Mínima ou nenhuma transformação aplicada
+- Preserva histórico completo com metadata de ingestão
+- **8 tabelas**: `bronze_customers`, `bronze_orders`, `bronze_products`, `bronze_categories`, `bronze_employees`, `bronze_suppliers`, `bronze_shippers`, `bronze_order_details`
 
 #### 🥈 Silver Layer (Dados Limpos)
-- Dados limpos e padronizados
-- Deduplicação e validações
-- Enriquecimento com dados de referência
-- Tabelas: `silver_dim_customers`, `silver_dim_products`, `silver_fact_orders`
+- Dados limpos, padronizados e modelados
+- Aplicação de surrogate keys e normalização
+- Implementação de modelos dimensionais (star schema)
+- **4 modelos**: `silver_dim_customers`, `silver_dim_products`, `silver_dim_employees`, `silver_fact_orders`
 
 #### 🥇 Gold Layer (Agregações de Negócio)
-- Métricas e KPIs de negócio
-- Dados otimizados para análise
-- Agregações e cálculos complexos
-- Tabelas: `gold_sales_by_country`, `gold_customer_analytics`, `gold_employee_performance`
+- Métricas e KPIs prontos para consumo
+- Dados otimizados para dashboards e análises
+- Agregações pré-calculadas para performance
+- **5 agregações**: `gold_customer_revenue`, `gold_employee_performance`, `gold_product_performance`, `gold_revenue_by_category`, `gold_revenue_by_supplier`
 
 ### Diagrama de Arquitetura
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌──────────────────┐
-│             │     │             │     │                  │
-│  PostgreSQL │────▶│   Airbyte   │────▶│  BigQuery Bronze │
-│  (Source)   │     │  (Ingest)   │     │   (Raw Data)     │
-│             │     │             │     │                  │
-└─────────────┘     └─────────────┘     └──────────────────┘
-                                                  │
-                                                  │
-                                                  ▼
-                    ┌──────────────────────────────────────┐
-                    │          dbt Transformations         │
-                    │                                      │
-                    │  Bronze → Silver → Gold             │
-                    │  (Medallion Architecture)           │
-                    └──────────────────────────────────────┘
-                                    │
-                                    │
-                                    ▼
+┌─────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│             │     │                  │     │                  │
+│  PostgreSQL │────▶│  Python ETL      │────▶│  BigQuery Bronze │
+│  (Source)   │     │  (431 lines)     │     │   (8 tables)     │
+│  51 records │     │  Custom Script   │     │                  │
+└─────────────┘     └──────────────────┘     └──────────────────┘
+                                                       │
+                                                       │
+                                                       ▼
+                    ┌──────────────────────────────────────────┐
+                    │         dbt Transformations              │
+                    │                                          │
+                    │  Silver Layer (4 models)                │
+                    │  └─ Dimensions & Facts                  │
+                    │                                          │
+                    │  Gold Layer (5 models)                  │
+                    │  └─ Business Aggregations               │
+                    └──────────────────────────────────────────┘
+                                       │
+                                       │ Orchestrated by
+                                       ▼
               ┌─────────────────────────────────────┐
-              │    Apache Airflow (Orchestration)   │
+              │    Apache Airflow 2.8.0             │
               │                                     │
-              │  - Pipeline Scheduling              │
-              │  - Data Quality Checks              │
-              │  - Monitoring & Alerts              │
+              │  ✓ DAG with TaskGroups              │
+              │  ✓ BashOperator for dbt             │
+              │  ✓ Automated Testing                │
+              │  ✓ Pipeline Monitoring              │
               └─────────────────────────────────────┘
 ```
 
 ## 🛠️ Tecnologias
 
-| Tecnologia | Versão | Função |
-|------------|--------|--------|
-| **PostgreSQL** | 15 | Banco de dados fonte |
-| **Airbyte** | Latest | Ingestão de dados |
-| **Google BigQuery** | - | Data Warehouse |
-| **dbt** | 1.7+ | Transformações de dados |
-| **Apache Airflow** | 2.8 | Orquestração |
-| **Docker** | Latest | Containerização |
-| **Python** | 3.11 | Linguagem principal |
+| Tecnologia | Versão | Função | Detalhes |
+|------------|--------|--------|----------|
+| **PostgreSQL** | 15 | Banco de dados fonte | Base Northwind com 51 registros |
+| **Python** | 3.11 | ETL Customizado | Script de 431 linhas para ingestão |
+| **Google BigQuery** | - | Data Warehouse | 3 datasets (Bronze/Silver/Gold) |
+| **dbt** | 1.7.4 | Transformações | 17 modelos + testes de qualidade |
+| **Apache Airflow** | 2.8.0 | Orquestração | LocalExecutor + TaskGroups |
+| **Docker** | Latest | Containerização | 4 containers coordenados |
+| **Docker Compose** | Latest | Orchestração de containers | Gerenciamento de serviços |
+
+### 🔧 Stack Técnica Detalhada
+
+- **ETL**: `psycopg2`, `google-cloud-bigquery`, pandas para transformações
+- **dbt**: dbt-core + dbt-bigquery adapter + dbt-utils package
+- **Airflow**: BashOperator, TaskGroups, dynamic task generation
+- **Infraestrutura**: Docker Compose com volumes persistentes
 
 ## 📁 Estrutura do Projeto
 
@@ -127,10 +165,15 @@ northwind-data-pipeline/
 │       └── 02_data.sql           # Dados de exemplo
 │
 ├── airflow/
-│   └── dags/
-│       ├── northwind_pipeline_dag.py      # DAG principal do pipeline
-│       ├── northwind_monitoring_dag.py    # DAG de monitoramento
-│       └── northwind_maintenance_dag.py   # DAG de manutenção
+│   ├── dags/
+│   │   ├── northwind_pipeline_dag.py      # ⭐ DAG principal (295 linhas)
+│   │   ├── northwind_monitoring_dag.py    # Monitoramento
+│   │   └── northwind_maintenance_dag.py   # Manutenção
+│   ├── scripts/
+│   │   ├── postgres_to_bigquery.py        # ⭐ ETL Script (431 linhas)
+│   │   └── create_gcp_connection.py       # Setup GCP
+│   ├── entrypoint.sh                      # Auto-instalação de dependências
+│   └── requirements.txt                   # Dependências Python
 │
 ├── dbt/
 │   ├── profiles.yml              # Configuração de conexão dbt
@@ -175,7 +218,7 @@ northwind-data-pipeline/
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/northwind-data-pipeline.git
+git clone https://github.com/Gads1208/northwind-data-pipeline.git
 cd northwind-data-pipeline
 ```
 
@@ -205,231 +248,380 @@ POSTGRES_PASSWORD=postgres
 
 ### 3. Configure o Google Cloud
 
+Crie os datasets no BigQuery (região US):
+
 ```bash
-# Crie os datasets no BigQuery
-bq mk --dataset ${GCP_PROJECT_ID}:northwind_bronze
-bq mk --dataset ${GCP_PROJECT_ID}:northwind_silver
-bq mk --dataset ${GCP_PROJECT_ID}:northwind_gold
+# Criar datasets
+bq mk --location=US --dataset ${GCP_PROJECT_ID}:northwind_bronze
+bq mk --location=US --dataset ${GCP_PROJECT_ID}:northwind_silver
+bq mk --location=US --dataset ${GCP_PROJECT_ID}:northwind_gold
 ```
 
-### 4. Inicie os serviços
+**Importante**: Configure as permissões da Service Account:
+- BigQuery Data Editor
+- BigQuery Job User
+
+### 4. Coloque sua Service Account Key
+
+Copie sua service account key JSON para a raiz do projeto:
 
 ```bash
+cp /caminho/para/sua/service-account-key.json ./gcp-key.json
+```
+
+### 5. Inicie os serviços com Docker
+
+```bash
+# Suba todos os containers
 docker-compose up -d
+
+# Verifique se todos estão rodando
+docker-compose ps
 ```
 
-Aguarde alguns minutos para todos os serviços iniciarem.
+Aguarde ~2 minutos para os serviços iniciarem completamente.
+
+### 6. Acesse as interfaces
+
+- **Airflow**: http://localhost:8080 (user: `airflow` / pass: `airflow`)
+- **PostgreSQL**: localhost:5432 (user: `postgres` / pass: `postgres`)
 
 ## ⚙️ Configuração
 
-### Configurar Airbyte
+### Executar o Pipeline
 
-1. Acesse http://localhost:8000
-2. Crie uma **Source** (PostgreSQL):
-   - Host: `postgres`
-   - Port: `5432`
-   - Database: `northwind`
-   - Username: `postgres`
-   - Password: `postgres`
+#### Método 1: Via Airflow UI (Recomendado)
 
-3. Crie uma **Destination** (BigQuery):
-   - Project ID: seu project ID
-   - Dataset: `northwind_bronze`
-   - Credentials: sua service account key
+1. Acesse http://localhost:8080
+2. Localize o DAG `northwind_pipeline`
+3. Clique em "Trigger DAG" (ícone de play)
+4. Acompanhe a execução em tempo real
 
-4. Crie uma **Connection**:
-   - Selecione todas as tabelas
-   - Sync frequency: Hourly
-   - Destination namespace: Custom format → `northwind_bronze`
-
-### Configurar dbt
+#### Método 2: Via Linha de Comando
 
 ```bash
 # Entre no container do Airflow
-docker exec -it airflow-webserver bash
+docker exec -it northwind-data-pipeline-airflow-scheduler-1 bash
 
-# Instale as dependências do dbt
-cd /opt/airflow/dbt/northwind_dw
-dbt deps --profiles-dir /opt/airflow/dbt
-
-# Teste a conexão
-dbt debug --profiles-dir /opt/airflow/dbt
+# Trigger manual da DAG
+airflow dags trigger northwind_pipeline
 ```
 
-### Configurar Airflow
+### Fluxo de Execução da DAG
 
-1. Acesse http://localhost:8080
-   - Username: `airflow`
-   - Password: `airflow`
+O pipeline executa as seguintes tarefas em sequência:
 
-2. Configure as variáveis:
-   - `gcp_project`: seu project ID
-   - `gcp_credentials_path`: caminho para service account key
-
-3. Ative os DAGs:
-   - `northwind_data_pipeline`
-   - `northwind_monitoring`
-   - `northwind_maintenance`
+1. **ingest_bronze** → Ingestão Python (PostgreSQL → BigQuery Bronze)
+2. **create_profile** → Criação dinâmica do profiles.yml
+3. **install_deps** → Instalação dos pacotes dbt (dbt_utils)
+4. **dbt_debug** → Validação da conexão dbt
+5. **silver_layer** → TaskGroup com 4 modelos Silver
+6. **gold_layer** → TaskGroup com 5 modelos Gold
+7. **summary** → Log de finalização
+8. **run_tests** → Testes de qualidade dbt
 
 ## 🎮 Execução
 
-### Execução Manual
+### Verificar Status dos Serviços
 
-#### 1. Executar ingestão do Airbyte
+```bash
+# Ver status dos containers
+docker-compose ps
 
-Acesse o Airbyte em http://localhost:8000 e execute a sincronização manualmente.
+# Ver logs em tempo real
+docker logs -f northwind-data-pipeline-airflow-webserver-1
 
-#### 2. Executar transformações dbt
+# Verificar saúde do PostgreSQL
+docker exec -it northwind-data-pipeline-postgres-1 psql -U postgres -d northwind -c "SELECT COUNT(*) FROM customers;"
+```
+
+### Execução Manual das Transformações dbt
+
+Se você quiser executar apenas o dbt sem o Airflow:
 
 ```bash
 # Entre no container
-docker exec -it airflow-webserver bash
+docker exec -it northwind-data-pipeline-airflow-scheduler-1 bash
 
 # Execute as transformações
 cd /opt/airflow/dbt/northwind_dw
 
-# Bronze layer
-dbt run --select tag:bronze --profiles-dir /opt/airflow/dbt
+# Instalar dependências
+dbt deps --profiles-dir /opt/airflow/dbt
 
-# Silver layer
-dbt run --select tag:silver --profiles-dir /opt/airflow/dbt
+# Executar todos os modelos
+dbt run --profiles-dir /opt/airflow/dbt
 
-# Gold layer
-dbt run --select tag:gold --profiles-dir /opt/airflow/dbt
+# Executar apenas Silver
+dbt run --select silver_* --profiles-dir /opt/airflow/dbt
 
-# Execute os testes
+# Executar apenas Gold
+dbt run --select gold_* --profiles-dir /opt/airflow/dbt
+
+# Executar os testes
 dbt test --profiles-dir /opt/airflow/dbt
+
+# Gerar documentação
+dbt docs generate --profiles-dir /opt/airflow/dbt
 ```
-
-#### 3. Executar DAG do Airflow
-
-No Airflow UI (http://localhost:8080), clique em "Trigger DAG" no DAG `northwind_data_pipeline`.
 
 ### Execução Automática
 
-O pipeline está configurado para executar automaticamente:
-- **Pipeline principal**: Diariamente às 2h da manhã
-- **Monitoramento**: A cada 4 horas
-- **Manutenção**: Semanalmente aos domingos às 3h
+O pipeline pode ser configurado para executar automaticamente (ajuste no arquivo DAG):
+
+```python
+schedule_interval='0 2 * * *',  # Diariamente às 2h AM
+```
 
 ## 📊 Camadas de Dados
 
-### Bronze Layer
+### Bronze Layer (Raw Data)
 
-Dados brutos ingeridos do PostgreSQL:
+Dados brutos ingeridos do PostgreSQL via script Python customizado:
 
-- `bronze_categories` - Categorias de produtos
-- `bronze_customers` - Clientes
-- `bronze_employees` - Funcionários
-- `bronze_orders` - Pedidos
-- `bronze_order_details` - Detalhes dos pedidos
-- `bronze_products` - Produtos
-- `bronze_suppliers` - Fornecedores
-- `bronze_shippers` - Transportadoras
+| Tabela | Descrição | Registros |
+|--------|-----------|-----------|
+| `bronze_categories` | Categorias de produtos | 8 |
+| `bronze_customers` | Clientes | 91 |
+| `bronze_employees` | Funcionários | 9 |
+| `bronze_orders` | Pedidos | 830 |
+| `bronze_order_details` | Detalhes dos pedidos | 2155 |
+| `bronze_products` | Produtos | 77 |
+| `bronze_suppliers` | Fornecedores | 29 |
+| `bronze_shippers` | Transportadoras | 3 |
 
-### Silver Layer
+### Silver Layer (Modeled Data)
 
-Dados limpos e padronizados:
+Dados modelados em dimensões e fatos:
 
-- `silver_dim_customers` - Dimensão de clientes
-- `silver_dim_products` - Dimensão de produtos (com categoria e fornecedor)
-- `silver_dim_employees` - Dimensão de funcionários
-- `silver_fact_orders` - Fato de pedidos (com métricas calculadas)
+| Modelo | Tipo | Descrição |
+|--------|------|-----------|
+| `silver_dim_customers` | Dimensão | Dimensão de clientes com surrogate key |
+| `silver_dim_products` | Dimensão | Dimensão de produtos enriquecida |
+| `silver_dim_employees` | Dimensão | Dimensão de funcionários |
+| `silver_fact_orders` | Fato | Fato de pedidos com métricas |
 
-### Gold Layer
+### Gold Layer (Business Metrics)
 
-Agregações de negócio:
+Agregações de negócio prontas para análise:
 
-- `gold_sales_by_country` - Vendas por país
-- `gold_sales_by_category` - Vendas por categoria de produto
-- `gold_employee_performance` - Performance dos funcionários
-- `gold_customer_analytics` - Análise de clientes (segmentação, CLV)
-- `gold_product_performance` - Performance dos produtos
+| Modelo | Descrição | Métricas |
+|--------|-----------|----------|
+| `gold_customer_revenue` | Receita por cliente | Total revenue, order count, avg order value |
+| `gold_employee_performance` | Performance de vendedores | Orders handled, total revenue, avg order |
+| `gold_product_performance` | Performance de produtos | Units sold, total revenue, avg price |
+| `gold_revenue_by_category` | Receita por categoria | Revenue per category, product count |
+| `gold_revenue_by_supplier` | Receita por fornecedor | Revenue per supplier, order count |
 
 ## 📈 Monitoramento
 
-### Logs do Airflow
+### Airflow UI - Acompanhamento em Tempo Real
+
+Acesse http://localhost:8080 para visualizar:
+- ✅ Status de execução das DAGs
+- ✅ Logs detalhados de cada task
+- ✅ Gráfico de dependências (Graph View)
+- ✅ Histórico de execuções (Gantt Chart)
+
+### Logs dos Containers
 
 ```bash
-# Visualizar logs em tempo real
-docker logs -f airflow-scheduler
+# Airflow Scheduler
+docker logs -f northwind-data-pipeline-airflow-scheduler-1
+
+# Airflow Webserver
+docker logs -f northwind-data-pipeline-airflow-webserver-1
+
+# PostgreSQL
+docker logs -f northwind-data-pipeline-postgres-1
 ```
 
-### Métricas do dbt
-
-```bash
-# Gerar documentação
-cd /opt/airflow/dbt/northwind_dw
-dbt docs generate --profiles-dir /opt/airflow/dbt
-dbt docs serve --profiles-dir /opt/airflow/dbt --port 8081
-```
-
-Acesse a documentação em http://localhost:8081
-
-### Verificar dados no BigQuery
+### Verificar Dados no BigQuery
 
 ```sql
--- Contar registros em cada camada
-SELECT 'Bronze' as layer, COUNT(*) as total FROM `project.northwind_bronze.bronze_orders`
+-- Verificar contagem de registros por camada
+SELECT 
+  'Bronze - Orders' as table_name,
+  COUNT(*) as record_count 
+FROM `portifolio-482811.northwind_bronze.bronze_orders`
+
 UNION ALL
-SELECT 'Silver' as layer, COUNT(*) as total FROM `project.northwind_silver.silver_fact_orders`
+
+SELECT 
+  'Silver - Fact Orders' as table_name,
+  COUNT(*) as record_count 
+FROM `portifolio-482811.northwind_silver.silver_fact_orders`
+
 UNION ALL
-SELECT 'Gold' as layer, COUNT(*) as total FROM `project.northwind_gold.gold_sales_by_country`;
+
+SELECT 
+  'Gold - Customer Revenue' as table_name,
+  COUNT(*) as record_count 
+FROM `portifolio-482811.northwind_gold.gold_customer_revenue`;
+```
+
+### Exemplo de Consulta Analítica
+
+```sql
+-- Top 10 clientes por receita
+SELECT 
+  customer_id,
+  total_revenue,
+  order_count,
+  avg_order_value
+FROM `portifolio-482811.northwind_gold.gold_customer_revenue`
+ORDER BY total_revenue DESC
+LIMIT 10;
 ```
 
 ## 🧪 Testes
 
-### Testes de Qualidade de Dados (dbt)
+### Testes Implementados
+
+O projeto inclui **16 testes de qualidade de dados**:
+
+#### Testes de Integridade (Bronze Layer)
+- ✅ Uniqueness de primary keys
+- ✅ Not null em campos obrigatórios
+
+#### Testes de Negócio (Silver Layer)
+- ✅ Validação de surrogate keys
+- ✅ Consistência de foreign keys
+- ✅ Validação de customer_id, product_id, employee_id
+
+### Executar Testes
 
 ```bash
-# Executar todos os testes
-dbt test --profiles-dir /opt/airflow/dbt
+# Todos os testes
+docker exec -it northwind-data-pipeline-airflow-scheduler-1 bash -c \
+  "cd /opt/airflow/dbt/northwind_dw && dbt test --profiles-dir /opt/airflow/dbt"
 
-# Executar testes de uma camada específica
-dbt test --select tag:silver --profiles-dir /opt/airflow/dbt
+# Testes de uma camada específica
+dbt test --select silver_* --profiles-dir /opt/airflow/dbt
+
+# Teste de um modelo específico
+dbt test --select silver_dim_customers --profiles-dir /opt/airflow/dbt
 ```
 
-### Testes de DAGs do Airflow
+### Exemplo de Saída
 
-```bash
-# Testar DAG
-docker exec -it airflow-scheduler airflow dags test northwind_data_pipeline 2024-01-01
+```
+Completed successfully
+
+Done. PASS=16 WARN=0 ERROR=0 SKIP=0 TOTAL=16
 ```
 
-## 🔧 Manutenção
+## 🔧 Manutenção e Troubleshooting
 
-### Limpar dados
+### Comandos Úteis
 
 ```bash
-# Parar containers
+# Reiniciar apenas o Airflow
+docker-compose restart airflow-webserver airflow-scheduler
+
+# Ver uso de recursos
+docker stats
+
+# Limpar logs antigos
+docker exec -it northwind-data-pipeline-airflow-scheduler-1 \
+  find /opt/airflow/logs -type f -mtime +7 -delete
+```
+
+### Problemas Comuns
+
+#### ❌ Erro: "Permission denied" no BigQuery
+**Solução**: Verifique as permissões da Service Account no GCP
+
+#### ❌ Erro: "dbt command not found"
+**Solução**: O entrypoint.sh instala automaticamente. Reinicie o container:
+```bash
+docker-compose restart airflow-scheduler
+```
+
+#### ❌ DAG não aparece no Airflow
+**Solução**: Verifique se o arquivo DAG tem erros de sintaxe:
+```bash
+docker exec -it northwind-data-pipeline-airflow-scheduler-1 \
+  python /opt/airflow/dags/northwind_pipeline_dag.py
+```
+
+### Limpar Ambiente Completamente
+
+```bash
+# Parar todos os containers
 docker-compose down
 
-# Remover volumes (CUIDADO: isso apaga todos os dados)
+# Remover volumes (ATENÇÃO: apaga todos os dados!)
 docker-compose down -v
-```
 
-### Atualizar dependências
+# Remover imagens
+docker-compose down --rmi all
 
-```bash
-# Atualizar imagens Docker
-docker-compose pull
-
-# Reiniciar serviços
+# Reiniciar do zero
 docker-compose up -d
 ```
 
-## 📚 Recursos Adicionais
+## 📚 Recursos e Referências
 
-- [Documentação do dbt](https://docs.getdbt.com/)
-- [Documentação do Airflow](https://airflow.apache.org/docs/)
-- [Documentação do Airbyte](https://docs.airbyte.com/)
-- [BigQuery Documentation](https://cloud.google.com/bigquery/docs)
+### Documentação Oficial
+- [dbt Documentation](https://docs.getdbt.com/) - Transformações e testes
+- [Apache Airflow Docs](https://airflow.apache.org/docs/) - Orquestração
+- [BigQuery Documentation](https://cloud.google.com/bigquery/docs) - Data Warehouse
+- [Docker Compose](https://docs.docker.com/compose/) - Containerização
+
+### Conceitos Aplicados
+- **Medallion Architecture**: Bronze → Silver → Gold layers
+- **Star Schema**: Modelagem dimensional
+- **ELT Pattern**: Extract-Load-Transform
+- **Data Quality**: Testes automatizados com dbt
+- **Infrastructure as Code**: Docker Compose
+
+### Artigos Relacionados
+- [Medallion Architecture Best Practices](https://www.databricks.com/glossary/medallion-architecture)
+- [dbt Best Practices](https://docs.getdbt.com/guides/best-practices)
+- [Airflow Task Groups](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html#taskgroups)
+
+## 🎓 Aprendizados e Desafios
+
+### Desafios Técnicos Superados
+
+1. **Integração dbt + Airflow**: Implementação usando BashOperator ao invés de Astronomer Cosmos para maior controle
+2. **Serialização JSON**: Tratamento de tipos Decimal e datetime para BigQuery
+3. **Docker Dependencies**: Configuração de entrypoint.sh para instalação automática de git e dependências
+4. **dbt Packages**: Correção do formato packages.yml para instalação do dbt_utils
+
+### Skills Demonstradas
+
+- ✅ Python ETL development (431 linhas)
+- ✅ SQL transformations com dbt (17 modelos)
+- ✅ Airflow DAG development com TaskGroups
+- ✅ Docker Compose orchestration
+- ✅ Google Cloud BigQuery
+- ✅ Git version control
+- ✅ Data quality testing
+- ✅ Documentation
+
+## 🚀 Próximos Passos
+
+Melhorias futuras planejadas:
+
+- [ ] Implementar CI/CD com GitHub Actions
+- [ ] Adicionar Great Expectations para validações avançadas
+- [ ] Criar dashboard no Looker Studio/Power BI
+- [ ] Implementar incremental models no dbt
+- [ ] Adicionar alertas via Slack/Email
+- [ ] Implementar data lineage tracking
+- [ ] Adicionar mais testes de qualidade
+- [ ] Otimizar particionamento no BigQuery
 
 ## 👤 Autor
 
-**Seu Nome**
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- LinkedIn: [Seu Perfil](https://linkedin.com/in/seu-perfil)
+**Guilherme Alves da Silva**
+- 📧 Email: gads1208@gmail.com
+- 🐙 GitHub: [@Gads1208](https://github.com/Gads1208)
+- 🔗 LinkedIn: [Seu Perfil](https://linkedin.com/in/seu-perfil)
+
+> 💼 Este projeto foi desenvolvido como parte do meu portfólio de Data Engineering, demonstrando habilidades em ETL/ELT, orquestração de dados, transformações SQL e infraestrutura em nuvem.
 
 ## 📝 Licença
 
@@ -437,9 +629,19 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 🙏 Agradecimentos
 
-- Base de dados Northwind da Microsoft
-- Comunidade dbt, Airflow e Airbyte
+- Base de dados **Northwind** da Microsoft - Dataset clássico para demonstrações
+- Comunidade **dbt** - Framework incrível para transformações
+- **Apache Airflow** - Orquestração de pipelines de dados
+- **Google Cloud Platform** - Infraestrutura BigQuery
 
 ---
 
-**⭐ Se este projeto foi útil, considere dar uma estrela!**
+<div align="center">
+
+### ⭐ Se este projeto foi útil para você, considere dar uma estrela!
+
+**Made with ❤️ and ☕ by Guilherme**
+
+[⬆ Voltar ao topo](#-northwind-data-pipeline---projeto-de-engenharia-de-dados)
+
+</div>
