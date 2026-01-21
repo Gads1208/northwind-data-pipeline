@@ -56,7 +56,7 @@ services:
       - ./airflow/scripts:/opt/airflow/scripts
       - ./airflow/requirements.txt:/requirements.txt
       - ./dbt:/opt/airflow/dbt
-      - ./gcp-key.json:/opt/airflow/gcp-key.json:ro
+      - ./config/gcp-key.json:/opt/airflo./config/gcp-key.json:ro
       - airflow_logs:/opt/airflow/logs
     depends_on:
       airflow-db:
@@ -96,7 +96,7 @@ services:
       - ./airflow/scripts:/opt/airflow/scripts
       - ./airflow/requirements.txt:/requirements.txt
       - ./dbt:/opt/airflow/dbt
-      - ./gcp-key.json:/opt/airflow/gcp-key.json:ro
+      - ./config/gcp-key.json:/opt/airflo./config/gcp-key.json:ro
       - airflow_logs:/opt/airflow/logs
     depends_on:
       - airflow-db

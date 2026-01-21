@@ -49,3 +49,7 @@ Thumbs.db
 postgres_data/
 airbyte_db_data/
 airflow_db_data/
+
+# Config files with credentials
+config/gcp-key.json
+config/*.json

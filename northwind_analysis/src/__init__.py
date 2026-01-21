@@ -1,0 +1,3 @@
+"""
+Northwind Analysis Package
+"""

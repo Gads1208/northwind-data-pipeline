@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+
+# Output
+output/graficos/*.png
+output/graficos/*.html
+output/relatorios/*.csv
+output/relatorios/*.json
+output/relatorios/*.txt
+*.log
+analysis.log
+
+# Scripts temporários
+create_*.py
+
+# Environment
+.env.local
