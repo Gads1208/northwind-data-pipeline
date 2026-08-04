@@ -1,131 +1,112 @@
-# Docker Compose para Northwind Data Pipeline
-# Nota: Airbyte requer instalação separada (veja docs/AIRBYTE_SETUP.md)
-
 services:
-  # PostgreSQL - Banco de origem com dados Northwind
   postgres:
-    image: postgres:15
+    image: postgres:15-alpine
     container_name: northwind-postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: northwind
+      POSTGRES_USER: northwind
+      POSTGRES_PASSWORD: northwind123
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres/init:/docker-entrypoint-initdb.d
+      - ./infra/docker/postgres/init:/docker-entrypoint-initdb.d
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
+      test: ["CMD-SHELL", "pg_isready -U northwind -d northwind"]
+      interval: 5s
       timeout: 5s
       retries: 5
-    networks:
-      - data-pipeline
 
-  # Apache Airflow - Orquestração
-  airflow-webserver:
-    image: apache/airflow:2.8.0-python3.11
-    container_name: airflow-webserver
-    entrypoint: /entrypoint.sh
-    command: airflow webserver
-    environment:
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow
-      AIRFLOW__CORE__FERNET_KEY: ''
-      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
-      AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
-      _AIRFLOW_DB_UPGRADE: 'true'
-      _AIRFLOW_WWW_USER_CREATE: 'true'
-      _AIRFLOW_WWW_USER_USERNAME: airflow
-      _AIRFLOW_WWW_USER_PASSWORD: airflow
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: northwind
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      GCP_PROJECT_ID: ${GCP_PROJECT_ID:-your-project-id}
-      BIGQUERY_DATASET: northwind_bronze
-      GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/gcp-key.json
+  redis:
+    image: redis:7-alpine
+    container_name: northwind-redis
     ports:
-      - "8080:8080"
-    volumes:
-      - ./airflow/entrypoint.sh:/entrypoint.sh
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/scripts:/opt/airflow/scripts
-      - ./airflow/requirements.txt:/requirements.txt
-      - ./dbt:/opt/airflow/dbt
-      - ./config/gcp-key.json:/opt/airflo./config/gcp-key.json:ro
-      - airflow_logs:/opt/airflow/logs
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mcp-server:
+    build:
+      context: ./apps/mcp-server
+      dockerfile: Dockerfile
+    container_name: northwind-mcp-server
+    environment:
+      DATABASE_URL: postgresql://northwind:northwind123@postgres:5432/northwind
+      PORT: 8001
+    ports:
+      - "8001:8001"
     depends_on:
-      airflow-db:
-        condition: service_started
       postgres:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    networks:
-      - data-pipeline
 
-  airflow-scheduler:
-    image: apache/airflow:2.8.0-python3.11
-    container_name: airflow-scheduler
-    entrypoint: /entrypoint.sh
-    command: airflow scheduler
+  ai-orchestrator:
+    build:
+      context: ./apps/ai-orchestrator
+      dockerfile: Dockerfile
+    container_name: northwind-ai-orchestrator
     environment:
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db/airflow
-      AIRFLOW__CORE__FERNET_KEY: ''
-      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: northwind
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      GCP_PROJECT_ID: ${GCP_PROJECT_ID:-your-project-id}
-      BIGQUERY_DATASET: northwind_bronze
-      GOOGLE_APPLICATION_CREDENTIALS: /opt/airflow/gcp-key.json
-    volumes:
-      - ./airflow/entrypoint.sh:/entrypoint.sh
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/scripts:/opt/airflow/scripts
-      - ./airflow/requirements.txt:/requirements.txt
-      - ./dbt:/opt/airflow/dbt
-      - ./config/gcp-key.json:/opt/airflo./config/gcp-key.json:ro
-      - airflow_logs:/opt/airflow/logs
+      MCP_SERVER_URL: http://mcp-server:8001
+      PORT: 8002
+    ports:
+      - "8002:8002"
     depends_on:
-      - airflow-db
-      - airflow-webserver
-    networks:
-      - data-pipeline
+      - mcp-server
 
-  airflow-db:
-    image: postgres:13
-    container_name: airflow-db
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    container_name: northwind-backend
     environment:
-      POSTGRES_USER: airflow
-      POSTGRES_PASSWORD: airflow
-      POSTGRES_DB: airflow
+      DATABASE_URL: postgresql://northwind:northwind123@postgres:5432/northwind
+      MCP_SERVER_URL: http://mcp-server:8001
+      AI_ORCHESTRATOR_URL: http://ai-orchestrator:8002
+      REDIS_URL: redis://redis:6379/0
+      PORT: 8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mcp-server:
+        condition: service_started
+      ai-orchestrator:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: northwind-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    container_name: northwind-gateway
+    ports:
+      - "80:80"
     volumes:
-      - airflow_db_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U airflow"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - data-pipeline
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - backend
+      - mcp-server
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: northwind-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./infra/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
 
 volumes:
   postgres_data:
-  airflow_db_data:
-  airflow_logs:
-
-networks:
-  data-pipeline:
-    driver: bridge
