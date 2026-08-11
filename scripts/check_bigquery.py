@@ -8,8 +8,10 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 from google.api_core import exceptions
 
-PROJECT_ID = "portifolio-482811"
-KEY_PATH = "/opt/airflow/gcp-key.json"
+PROJECT_ID = os.getenv("GCP_PROJECT_ID", "portifolio-482811")
+KEY_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "gcp-key.json")
+if not os.path.exists(KEY_PATH) and os.path.exists("/opt/airflow/gcp-key.json"):
+    KEY_PATH = "/opt/airflow/gcp-key.json"
 
 def check_bigquery_setup():
     """Verifica configuração do BigQuery"""

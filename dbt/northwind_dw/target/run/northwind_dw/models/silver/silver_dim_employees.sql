@@ -7,6 +7,7 @@
     
     
 
+    
     OPTIONS()
     as (
       -- Silver layer: Cleaned and transformed employee dimension

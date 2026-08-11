@@ -7,6 +7,7 @@
     
     
 
+    
     OPTIONS()
     as (
       -- Silver layer: Order facts with denormalized dimensions

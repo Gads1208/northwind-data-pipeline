@@ -7,6 +7,7 @@
     
     
 
+    
     OPTIONS()
     as (
       -- Gold layer: Customer analytics and segmentation

@@ -7,6 +7,7 @@
     
     
 
+    
     OPTIONS()
     as (
       -- Gold layer: Sales metrics by product category

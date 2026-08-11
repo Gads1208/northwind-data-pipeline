@@ -66,8 +66,15 @@ services:
       AI_ORCHESTRATOR_URL: http://ai-orchestrator:8002
       REDIS_URL: redis://redis:6379/0
       PORT: 8000
+      GCP_PROJECT_ID: portifolio-482811
+      GOOGLE_APPLICATION_CREDENTIALS: /app/gcp-key.json
     ports:
       - "8000:8000"
+    volumes:
+      - ./gcp-key.json:/app/gcp-key.json:ro
+      - ./dbt:/app/dbt
+      - ./scripts:/app/scripts
+      - ./airflow:/app/airflow
     depends_on:
       postgres:
         condition: service_healthy

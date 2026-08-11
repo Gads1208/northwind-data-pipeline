@@ -10,7 +10,7 @@ northwind_dw:
       timeout_seconds: 300
       location: US
       priority: interactive
-      keyfile: /opt/airflow/gcp-key.json
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS', '/app/gcp-key.json') }}"
       
     prod:
       type: bigquery
@@ -21,4 +21,4 @@ northwind_dw:
       timeout_seconds: 300
       location: US
       priority: interactive
-      keyfile: /opt/airflow/gcp-key.json
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS', '/app/gcp-key.json') }}"

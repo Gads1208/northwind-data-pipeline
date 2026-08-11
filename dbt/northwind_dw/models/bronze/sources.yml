@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: airbyte_raw
     description: "Raw data ingested by Airbyte from PostgreSQL"
-    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    database: "{{ env_var('GCP_PROJECT_ID', 'portifolio-482811') }}"
     schema: northwind_bronze
     tables:
       - name: categories

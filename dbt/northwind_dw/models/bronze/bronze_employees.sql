@@ -5,4 +5,4 @@
 ) }}
 
 SELECT *
-FROM `portifolio-482811.northwind_bronze.bronze_employees`
+FROM {{ source('airbyte_raw', 'employees') }}

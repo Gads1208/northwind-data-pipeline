@@ -90,7 +90,7 @@ echo ""
 
 # Aguardar Postgres estar pronto
 echo "⏳ Aguardando PostgreSQL inicializar..."
-until docker exec northwind-postgres pg_isready -U postgres > /dev/null 2>&1; do
+until docker exec northwind-postgres pg_isready -U northwind > /dev/null 2>&1; do
     sleep 2
 done
 echo -e "${GREEN}✅ PostgreSQL pronto${NC}"
@@ -98,10 +98,10 @@ echo -e "${GREEN}✅ PostgreSQL pronto${NC}"
 # Verificar dados no Postgres
 echo ""
 echo "🔍 Verificando dados no PostgreSQL..."
-CUSTOMER_COUNT=$(docker exec northwind-postgres psql -U postgres -d northwind -t -c "SELECT COUNT(*) FROM customers;" | xargs)
-echo "   Clientes encontrados: $CUSTOMER_COUNT"
+CUSTOMER_COUNT=$(docker exec northwind-postgres psql -U northwind -d northwind -t -c "SELECT COUNT(*) FROM customers;" 2>/dev/null | xargs)
+echo "   Clientes encontrados: ${CUSTOMER_COUNT:-0}"
 
-if [ "$CUSTOMER_COUNT" -gt 0 ]; then
+if [ "${CUSTOMER_COUNT:-0}" -gt 0 ] 2>/dev/null; then
     echo -e "${GREEN}✅ Dados carregados com sucesso no PostgreSQL${NC}"
 else
     echo -e "${RED}❌ Nenhum dado encontrado no PostgreSQL${NC}"

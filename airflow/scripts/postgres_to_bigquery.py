@@ -44,8 +44,8 @@ class PostgresToBigQueryLoader:
             'host': os.getenv('POSTGRES_HOST', 'postgres'),
             'port': int(os.getenv('POSTGRES_PORT', 5432)),
             'database': os.getenv('POSTGRES_DB', 'northwind'),
-            'user': os.getenv('POSTGRES_USER', 'postgres'),
-            'password': os.getenv('POSTGRES_PASSWORD', 'postgres')
+            'user': os.getenv('POSTGRES_USER', 'northwind'),
+            'password': os.getenv('POSTGRES_PASSWORD', 'northwind123')
         }
         
         self.bigquery_project_id = bigquery_project_id or os.getenv('GCP_PROJECT_ID')
@@ -263,7 +263,7 @@ class PostgresToBigQueryLoader:
             schema: Schema da tabela
         """
         dataset_ref = self.bq_client.dataset(self.bigquery_dataset)
-        table_ref = dataset_ref.table(f"bronze_{table_name}")
+        table_ref = dataset_ref.table(table_name)
         
         try:
             # Tenta obter a tabela existente
@@ -288,7 +288,7 @@ class PostgresToBigQueryLoader:
             return
         
         dataset_ref = self.bq_client.dataset(self.bigquery_dataset)
-        table_ref = dataset_ref.table(f"bronze_{table_name}")
+        table_ref = dataset_ref.table(table_name)
         
         # Configuração do job de carga
         job_config = bigquery.LoadJobConfig(

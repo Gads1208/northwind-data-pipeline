@@ -3,4 +3,4 @@
 
 
 SELECT *
-FROM `portifolio-482811.northwind_bronze.bronze_employees`
+FROM `portifolio-482811`.`northwind_bronze`.`employees`

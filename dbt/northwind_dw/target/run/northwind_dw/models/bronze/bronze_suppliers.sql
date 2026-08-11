@@ -7,5 +7,5 @@
 
 
 SELECT *
-FROM `portifolio-482811.northwind_bronze.bronze_suppliers`;
+FROM `portifolio-482811`.`northwind_bronze`.`suppliers`;
 
