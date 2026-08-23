@@ -15,9 +15,12 @@ env/
 
 # dbt
 dbt/target/
+dbt/*/target/
+target/
 dbt/dbt_packages/
 dbt/logs/
 dbt/.user.yml
+
 
 # Airflow
 airflow/logs/
@@ -37,8 +40,12 @@ airflow/airflow.cfg
 Thumbs.db
 
 # Google Cloud credentials
-*.json
-!dbt/profiles.yml.example
+gcp-key.json
+*gcp-key*.json
+*service-account*.json
+credentials*.json
+!apps/frontend/package*.json
+!apps/frontend/tsconfig*.json
 
 # Data files
 *.csv
