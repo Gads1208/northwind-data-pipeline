@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from typing import Optional, Any, Dict
 
 from tools.db_tools import get_database_schema, execute_safe_sql
-from tools.analytics_tools import get_kpis, get_sales_analytics, explain_business_rules
+from tools.analytics_tools import get_kpis, get_sales_analytics, explain_business_rules, get_context_analytics
 from tools.vis_tools import recommend_visualization
 
 app = FastAPI(
@@ -65,6 +65,16 @@ def list_tools():
                 }
             },
             {
+                "name": "get_context_analytics",
+                "description": "Extracts specific KPI cards and preview table data for any given dashboard context tab.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "context": {"type": "string", "description": "Context page identifier (customers, orders, products, employees, etc.)"}
+                    }
+                }
+            },
+            {
                 "name": "explain_business_rules",
                 "description": "Returns formal business logic formulas and calculation rules for Northwind dataset.",
                 "inputSchema": {"type": "object", "properties": {}}
@@ -103,6 +113,9 @@ def call_tool(req: ToolCallRequest):
     elif tool_name == "get_sales_analytics":
         groupby = args.get("groupby", "category")
         return get_sales_analytics(groupby)
+    elif tool_name == "get_context_analytics":
+        context = args.get("context", "customers")
+        return get_context_analytics(context)
     elif tool_name == "explain_business_rules":
         return explain_business_rules()
     elif tool_name == "recommend_visualization":
@@ -111,6 +124,7 @@ def call_tool(req: ToolCallRequest):
         return recommend_visualization(data, override)
     else:
         raise HTTPException(status_code=404, detail=f"Tool '{tool_name}' not found.")
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8001))

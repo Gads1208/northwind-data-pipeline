@@ -93,9 +93,9 @@ make check-health
 
 **Comandos para verificar:**
 ```bash
-docker exec northwind-postgres pg_isready -U postgres
-docker exec northwind-postgres psql -U postgres -d northwind -c "\dt"
-docker exec northwind-postgres psql -U postgres -d northwind -c "SELECT COUNT(*) FROM customers;"
+docker exec northwind-postgres pg_isready -U northwind
+docker exec northwind-postgres psql -U northwind -d northwind -c "\dt"
+docker exec northwind-postgres psql -U northwind -d northwind -c "SELECT COUNT(*) FROM customers;"
 ```
 
 **Resultado esperado:**

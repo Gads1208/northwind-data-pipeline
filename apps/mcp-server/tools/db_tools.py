@@ -84,6 +84,8 @@ def validate_safe_sql(sql_query: str) -> tuple[bool, str]:
         
     return True, "Valid SELECT query."
 
+from decimal import Decimal
+
 def execute_safe_sql(sql_query: str, max_rows: int = 500) -> dict:
     """Executes a validated read-only SQL query safely against PostgreSQL."""
     is_valid, msg = validate_safe_sql(sql_query)
@@ -104,6 +106,8 @@ def execute_safe_sql(sql_query: str, max_rows: int = 500) -> dict:
                 for k, v in row.items():
                     if hasattr(v, 'isoformat'):
                         row_dict[k] = v.isoformat()
+                    elif isinstance(v, Decimal):
+                        row_dict[k] = float(v)
                     elif isinstance(v, (int, float, str, bool, type(None))):
                         row_dict[k] = v
                     else:
@@ -116,6 +120,7 @@ def execute_safe_sql(sql_query: str, max_rows: int = 500) -> dict:
                 "data": sanitized,
                 "query": sql_query
             }
+
     except Exception as e:
         return {"success": False, "error": str(e), "data": []}
     finally:

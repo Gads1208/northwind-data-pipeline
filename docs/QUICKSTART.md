@@ -1,182 +1,150 @@
-## ✅ STATUS DO PROJETO
+# 🚀 Northwind AI Platform & Data Pipeline - Quick Start Guide
 
-**Containers Docker**: ✅ Rodando (4 containers)
-- ✅ PostgreSQL com dados Northwind (5 clientes, 5 pedidos)
-- ✅ Airflow Webserver (http://localhost:8080)
-- ✅ Airflow Scheduler
-- ✅ Airflow Database
-
-**Nota sobre Ingestão**: Este projeto usa **scripts Python customizados no Airflow** para extrair dados do PostgreSQL e carregar no BigQuery, eliminando a necessidade do Airbyte. Veja [airflow/scripts/postgres_to_bigquery.py](airflow/scripts/postgres_to_bigquery.py) para detalhes.
+Guia rápido e direto para executar, validar e operar todos os serviços da plataforma **Northwind AI Platform & Data Pipeline**.
 
 ---
 
-## 🚀 Quick Start (Versão Simplificada)
+## ✅ Status dos Serviços da Plataforma
 
-### 1. Verifique os containers
+A aplicação é orquestrada via **Docker Compose** e composta por 8 microserviços contêinerizados:
+
+| Serviço | Container | Porta / URL | Descrição |
+|---|---|---|---|
+| **API Gateway** | `northwind-gateway` | [http://localhost](http://localhost) | Proxy reverso Nginx roteando Frontend e APIs |
+| **Frontend BI Dashboard** | `northwind-frontend` | [http://localhost:3000](http://localhost:3000) ou `:80` | Interface interativa React + TypeScript + Tailwind |
+| **Backend API** | `northwind-backend` | [http://localhost:8000/docs](http://localhost:8000/docs) | FastAPI REST API, Runner dbt e Ingestão BigQuery |
+| **MCP Server** | `northwind-mcp-server` | [http://localhost:8001/mcp/tools](http://localhost:8001/mcp/tools) | Servidor Model Context Protocol (SQL seguro e tools) |
+| **AI Orchestrator** | `northwind-ai-orchestrator` | [http://localhost:8002/docs](http://localhost:8002/docs) | Grafo Multi-Agente (SQL, Analyst, Vis, Insight, Doc) |
+| **PostgreSQL DB** | `northwind-postgres` | `localhost:5432` | Banco Northwind relacional de origem |
+| **Redis Cache** | `northwind-redis` | `localhost:6379` | Cache em memória e sessões |
+| **Prometheus** | `northwind-prometheus` | [http://localhost:9090](http://localhost:9090) | Coleta de métricas e observabilidade |
+
+---
+
+## ⚡ Como Executar o Projeto Passo a Passo
+
+### 1. Iniciar os Containers Docker
+
+Para iniciar toda a stack em segundo plano:
 
 ```bash
-docker-compose ps
+docker compose up -d
 ```
 
-### 2. Acesse os serviços
-
-- **Airflow UI**: http://localhost:8080
-  - Username: `airflow`
-  - Password: `airflow`
-
-- **PostgreSQL**: `localhost:5432`
-  - Database: `northwind`
-  - Username: `postgres`
-  - Password: `postgres`
-
-### 3. Verifique os dados no Postgres
+Para verificar o status e a saúde de todos os containers:
 
 ```bash
-docker exec -it northwind-postgres psql -U postgres -d northwind
+docker compose ps
 ```
+
+---
+
+### 2. Verificar os Dados no PostgreSQL
+
+O banco PostgreSQL é inicializado automaticamente com os esquemas e dados da base Northwind.
+
+Conecte-se ao container usando o usuário e banco `northwind`:
+
+```bash
+docker exec -it northwind-postgres psql -U northwind -d northwind
+```
+
+Comandos SQL úteis para conferir os dados:
 
 ```sql
-\dt                              -- Listar tabelas
-SELECT COUNT(*) FROM customers;  -- Ver dados
-SELECT * FROM orders LIMIT 5;    -- Ver pedidos
-\q                               -- Sair
+\dt                                          -- Listar todas as tabelas
+SELECT COUNT(*) FROM customers;              -- Contar clientes (23 registros)
+SELECT COUNT(*) FROM orders;                 -- Contar pedidos (14 registros)
+SELECT COUNT(*) FROM products;               -- Contar produtos (12 registros)
+SELECT 'orders' AS tbl, COUNT(*) FROM orders;
+\q                                           -- Sair do psql
 ```
 
-### 4. Configurar Google Cloud Platform
+> **Credenciais do PostgreSQL**:
+> - **Host**: `localhost` (ou `postgres` dentro da rede Docker)
+> - **Porta**: `5432`
+> - **Database**: `northwind`
+> - **Usuário**: `northwind`
+> - **Senha**: `northwind123`
 
-Antes de executar o pipeline completo, você precisa:
+---
 
-1. **Criar projeto no GCP** e habilitar BigQuery API
-2. **Criar Service Account** e baixar a chave JSON
-3. **Salvar a chave** como `gcp-key.json` na raiz do projeto
-4. **Configurar variável de ambiente**:
+### 3. Executar o Pipeline de Dados (PostgreSQL ➔ BigQuery ➔ dbt)
+
+O pipeline de dados é executado diretamente através do container `northwind-backend`, que possui o cliente BigQuery e o dbt configurados.
+
+#### Passo 3.1: Verificar Diagnóstico do BigQuery
+```bash
+docker exec northwind-backend python scripts/check_bigquery.py
+```
+
+#### Passo 3.2: Ingestão de Dados (PostgreSQL ➔ BigQuery Bronze)
+Executa a extração incremental/full das tabelas do Postgres e carrega no dataset `northwind_bronze`:
+```bash
+docker exec northwind-backend python airflow/scripts/postgres_to_bigquery.py
+```
+
+#### Passo 3.3: Transformações dbt (Bronze ➔ Silver ➔ Gold)
+Executa a modelagem dimensional (Star Schema / Medallion Architecture) no BigQuery:
+```bash
+docker exec northwind-backend dbt run --project-dir /app/dbt/northwind_dw --profiles-dir /app/dbt
+```
+
+#### Passo 3.4: Testes de Qualidade de Dados dbt
+Executa os testes de schema, unicidade (`unique`) e nulidade (`not_null`):
+```bash
+docker exec northwind-backend dbt test --project-dir /app/dbt/northwind_dw --profiles-dir /app/dbt
+```
+
+---
+
+### 4. Acessar as Interfaces e APIs
+
+- 📊 **Dashboard BI Interativo**: [http://localhost](http://localhost) (ou [http://localhost:3000](http://localhost:3000))
+  - Navegue pelas 14 páginas de métricas (Home, Clientes, Pedidos, Vendas, Produtos, etc.)
+  - Use o **Chatbot IA Contextual** integrado em cada tela para fazer perguntas sobre os dados
+- 📖 **Documentação Swagger (Backend API)**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- 🔌 **Ferramentas do Servidor MCP**: [http://localhost:8001/mcp/tools](http://localhost:8001/mcp/tools)
+- 🤖 **Documentação Multi-Agente AI**: [http://localhost:8002/docs](http://localhost:8002/docs)
+- 📈 **Métricas do Prometheus**: [http://localhost:9090](http://localhost:9090)
+
+---
+
+### 5. Executar os Testes Automatizados
+
+Para rodar a suite de testes unitários (validação de segurança SQL contra injeções/drops e recomendação de gráficos MCP):
 
 ```bash
-# Editar arquivo .env
-echo "GCP_PROJECT_ID=seu-projeto-id" > .env
+python3 -m unittest discover -s tests -p "test_*.py"
 ```
 
-5. **Criar datasets no BigQuery**:
+---
 
-```sql
-CREATE SCHEMA northwind_bronze;
-CREATE SCHEMA northwind_silver;
-CREATE SCHEMA northwind_gold;
-```
-
-### 5. Reiniciar containers com as novas configurações
+## 🛠️ Comandos de Gestão
 
 ```bash
-docker-compose down
-docker-compose up -d
-```
+# Ver logs de todos os serviços em tempo real
+docker compose logs -f
 
-### 6. Executar o pipeline completo no Airflow
+# Ver logs de um serviço específico (ex: backend, mcp-server, ai-orchestrator)
+docker compose logs -f backend
 
-1. Acesse http://localhost:8080
-2. Encontre o DAG `northwind_data_pipeline`
-3. Clique em "Trigger DAG"
+# Reiniciar todos os serviços
+docker compose restart
 
-O DAG irá:
-- ✅ Extrair dados do PostgreSQL
-- ✅ Carregar no BigQuery (camada Bronze)
-- ✅ Executar transformações dbt (Silver → Gold)
-- ✅ Gerar documentação
+# Parar e remover todos os containers
+docker compose down
 
-### 7. Ou execute manualmente passo a passo
-
-```bash
-# Entrar no container do Airflow
-docker exec -it airflow-webserver bash
-
-# Testar o script de ingestão
-cd /opt/airflow/scripts
-python postgres_to_bigquery.py
-
-# Navegar para o projeto dbt
-cd /opt/airflow/dbt/northwind_dw
-
-# Executar transformações
-dbt run --profiles-dir /opt/airflow/dbt
-
-# Executar testes
-dbt test --profiles-dir /opt/airflow/dbt
+# Parar e resetar volumes de dados
+docker compose down -v
 ```
 
 ---
 
-## 📝 Configuração Completa
+## 📚 Documentações Complementares
 
-Para configuração detalhada, veja:
-- [docs/SETUP.md](docs/SETUP.md) - Guia completo de instalação
-- [docs/AIRBYTE_SETUP.md](docs/AIRBYTE_SETUP.md) - Opções para ingestão de dados
-- [docs/CHECKLIST.md](docs/CHECKLIST.md) - Checklist de implementação
-
----
-
-## 🛠️ Comandos Úteis
-
-```bash
-# Ver logs
-docker-compose logs -f
-
-# Reiniciar serviços
-docker-compose restart
-
-# Parar tudo
-docker-compose down
-
-# Parar e remover volumes (limpa dados)
-docker-compose down -v
-
-# Ver uso de recursos
-docker stats
-```
-
----
-
-## 📊 Estrutura do Pipeline
-
-```
-PostgreSQL (Northwind DB)
-    ↓
-Python Script (Airflow)
-    ↓
-BigQuery Bronze Layer
-    ↓
-dbt Transformations (Silver → Gold)
-    ↓
-Analytics Ready!
-```
-
-**Destaques da Implementação:**
-- ✅ **Ingestão customizada** com Python (sem dependências externas)
-- ✅ **Schema mapping automático** PostgreSQL → BigQuery
-- ✅ **Metadados de rastreamento** (`_airbyte_extracted_at`, `_airbyte_loaded_at`)
-- ✅ **Tratamento de erros** e logging detalhado
-- ✅ **Execução paralela** de tabelas (quando aplicável)
-
----
-
-## 🎯 Para Demonstração em Portfólio
-
-Este projeto demonstra:
-
-✅ **Engenharia de Dados** - Pipeline completo end-to-end
-✅ **Python** - Scripts customizados para ETL (500+ linhas)
-✅ **Arquitetura de Dados** - Medallion (Bronze/Silver/Gold)
-✅ **Modelagem** - Star Schema com dbt
-✅ **Orquestração** - Apache Airflow com DAGs complexos
-✅ **Cloud** - Google BigQuery
-✅ **DevOps** - Docker, Docker Compose, IaC
-✅ **Documentação** - Completa e profissional
-
-**Diferencial**: Ao usar scripts Python customizados em vez de ferramentas prontas, você demonstra:
-- Domínio de Python e bibliotecas (psycopg2, google-cloud-bigquery)
-- Capacidade de criar soluções sob medida
-- Conhecimento profundo de ETL e integração de sistemas
-- Habilidade de trabalhar sem depender apenas de ferramentas comerciais
-
----
-
-**Próximos passos**: Veja [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) para continuar!
+- [docs/ARCHITECTURE.md](ARCHITECTURE.md) - Arquitetura de microsserviços e fluxo de dados
+- [docs/MCP_SPECIFICATION.md](MCP_SPECIFICATION.md) - Ferramentas e protocolos do MCP Server
+- [docs/MULTI_AGENT_WORKFLOW.md](MULTI_AGENT_WORKFLOW.md) - Grafos e orquestração dos Agentes IA
+- [docs/DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) - Guia de implantação em produção
+- [docs/DATA_DICTIONARY.md](DATA_DICTIONARY.md) - Dicionário de dados Northwind

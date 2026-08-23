@@ -349,7 +349,7 @@ Verifique permissões da Service Account:
 docker ps | grep postgres
 
 # Teste conexão
-docker exec -it northwind-postgres psql -U postgres -d northwind -c "SELECT 1"
+docker exec -it northwind-postgres psql -U northwind -d northwind -c "SELECT 1"
 ```
 
 ### Tabelas Vazias no BigQuery

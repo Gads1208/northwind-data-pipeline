@@ -8446,3 +8446,1738 @@ having count(*) > 1
 [0m01:55:59.016658 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74234f4edbd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74234f55a550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x742350ca2d50>]}
 [0m01:55:59.017291 [debug] [MainThread]: Flushing usage events
 [0m01:55:59.594839 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:55:38.436189 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6efa259210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6efa1aa110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6efa2586d0>]}
+
+
+============================== 16:55:38.440278 | 24e84705-0a76-4cb6-a57e-491cc3c0f8c9 ==============================
+[0m16:55:38.440278 [info ] [MainThread]: Running with dbt=1.12.0
+[0m16:55:38.441272 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'log_path': '/app/dbt/northwind_dw/logs', 'warn_error': 'None', 'printer_width': '80', 'cache_selected_only': 'False', 'partial_parse': 'True', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'maximum_seed_size_mib': '1', 'send_anonymous_usage_stats': 'True', 'no_print': 'None', 'static_parser': 'True', 'invocation_command': 'dbt debug --project-dir /app/dbt/northwind_dw --profiles-dir /app/dbt', 'empty': 'None', 'log_format': 'default', 'target_path': 'None', 'use_colors': 'True', 'version_check': 'True', 'debug': 'False', 'hints_enabled': 'True', 'use_experimental_parser': 'False', 'log_cache_events': 'False', 'quiet': 'False', 'profiles_dir': '/app/dbt', 'fail_fast': 'False'}
+[0m16:55:38.467080 [info ] [MainThread]: dbt version: 1.12.0
+[0m16:55:38.467789 [info ] [MainThread]: python version: 3.11.15
+[0m16:55:38.468425 [info ] [MainThread]: python path: /usr/local/bin/python3.11
+[0m16:55:38.469276 [info ] [MainThread]: os info: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41
+[0m16:55:39.596844 [info ] [MainThread]: Using profiles dir at /app/dbt
+[0m16:55:39.597704 [info ] [MainThread]: Using profiles.yml file at /app/dbt/profiles.yml
+[0m16:55:39.598503 [info ] [MainThread]: Using dbt_project.yml file at /app/dbt/northwind_dw/dbt_project.yml
+[0m16:55:39.599448 [info ] [MainThread]: adapter type: bigquery
+[0m16:55:39.600885 [info ] [MainThread]: adapter version: 1.12.0
+[0m16:55:39.839645 [info ] [MainThread]: Configuration:
+[0m16:55:39.840312 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m16:55:39.841015 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m16:55:39.841880 [info ] [MainThread]: Required dependencies:
+[0m16:55:39.842747 [debug] [MainThread]: Executing "git --help"
+[0m16:55:39.844780 [info ] [MainThread]:  - git [[31mERROR[0m]
+
+[0m16:55:39.845387 [info ] [MainThread]: Connection:
+[0m16:55:39.846101 [info ] [MainThread]:   method: service-account
+[0m16:55:39.846706 [info ] [MainThread]:   database: portifolio-482811
+[0m16:55:39.847487 [info ] [MainThread]:   execution_project: portifolio-482811
+[0m16:55:39.848141 [info ] [MainThread]:   schema: northwind_bronze
+[0m16:55:39.848730 [info ] [MainThread]:   location: US
+[0m16:55:39.849607 [info ] [MainThread]:   priority: interactive
+[0m16:55:39.850494 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m16:55:39.851221 [info ] [MainThread]:   reservation: None
+[0m16:55:39.851872 [info ] [MainThread]:   impersonate_service_account: None
+[0m16:55:39.852583 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m16:55:39.853295 [info ] [MainThread]:   job_retries: 1
+[0m16:55:39.853967 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m16:55:39.854567 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m16:55:39.855220 [info ] [MainThread]:   job_link_info_level_log: False
+[0m16:55:39.855803 [info ] [MainThread]:   timeout_seconds: 300
+[0m16:55:39.856388 [info ] [MainThread]:   client_id: None
+[0m16:55:39.856970 [info ] [MainThread]:   token_uri: None
+[0m16:55:39.857565 [info ] [MainThread]:   compute_region: None
+[0m16:55:39.858320 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m16:55:39.858998 [info ] [MainThread]:   gcs_bucket: None
+[0m16:55:39.859783 [info ] [MainThread]:   dataproc_batch: None
+[0m16:55:39.860808 [info ] [MainThread]: Registered adapter: bigquery=1.12.0
+[0m16:55:40.282785 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m16:55:40.283600 [debug] [MainThread]: On debug: select 1 as id
+[0m16:55:40.284207 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:55:41.512840 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:bc6b63d9-8a8a-4599-9ece-0a3c5cd69a5b&page=queryresults
+[0m16:55:41.818044 [debug] [MainThread]: SQL status: OK in 0.304 seconds
+[0m16:55:42.192345 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m16:55:42.193060 [info ] [MainThread]: [31m1 check failed:[0m
+[0m16:55:42.193754 [info ] [MainThread]: Error from git --help: Could not find command, ensure it is in the user's PATH: "git"
+
+[0m16:55:42.195014 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 3.8751144, "process_in_blocks": "3360", "process_kernel_time": 0.836274, "process_mem_max_rss": "236476", "process_out_blocks": "48", "process_user_time": 4.39936}
+[0m16:55:42.195667 [debug] [MainThread]: Command `dbt debug` failed at 16:55:42.195489 after 3.88 seconds
+[0m16:55:42.196141 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m16:55:42.196644 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6efee10710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6efb8b9150>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e6ed8c946d0>]}
+[0m16:55:42.197195 [debug] [MainThread]: Flushing usage events
+[0m16:55:43.008561 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:55:56.874645 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18b0bb090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18b0babd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18b0b8cd0>]}
+
+
+============================== 16:55:56.878122 | f6993027-9530-415b-b472-f65b58fcc9f4 ==============================
+[0m16:55:56.878122 [info ] [MainThread]: Running with dbt=1.12.0
+[0m16:55:56.878940 [debug] [MainThread]: running dbt with arguments {'indirect_selection': 'eager', 'empty': 'False', 'version_check': 'True', 'hints_enabled': 'True', 'write_json': 'True', 'log_cache_events': 'False', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'static_parser': 'True', 'log_format': 'default', 'invocation_command': 'dbt run --project-dir /app/dbt/northwind_dw --profiles-dir /app/dbt', 'no_print': 'None', 'log_path': '/app/dbt/northwind_dw/logs', 'use_colors': 'True', 'printer_width': '80', 'debug': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'fail_fast': 'False', 'profiles_dir': '/app/dbt', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])'}
+[0m16:55:58.092194 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a165bd8bd0>]}
+[0m16:55:58.183718 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18e3aec10>]}
+[0m16:55:58.184825 [info ] [MainThread]: Registered adapter: bigquery=1.12.0
+[0m16:55:58.591497 [debug] [MainThread]: checksum: d4f4ef13da6c3aad9ab454ee546b59192bf62b3fd0a217783ca98ed59e21247c, vars: {}, profile: northwind_dw, target: dev, version: 1.12.0
+[0m16:55:58.888899 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:55:58.889488 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m16:55:58.889868 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:55:58.904273 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18afd5190>]}
+[0m16:55:59.165520 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt/northwind_dw/target/manifest.json
+[0m16:55:59.171553 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt/northwind_dw/target/semantic_manifest.json
+[0m16:55:59.202933 [debug] [MainThread]: Wrote artifact OsiDocument to /app/dbt/northwind_dw/target/osi_document.json
+[0m16:55:59.227778 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1658f7dd0>]}
+[0m16:55:59.228511 [info ] [MainThread]: Found 15 models, 22 data tests, 8 sources, 676 macros
+[0m16:55:59.229047 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1658777d0>]}
+[0m16:55:59.232465 [info ] [MainThread]: 
+[0m16:55:59.233055 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:55:59.233608 [info ] [MainThread]: 
+[0m16:55:59.234809 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m16:55:59.243128 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_portifolio-482811'
+[0m16:55:59.244151 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_portifolio-482811'
+[0m16:55:59.244994 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:55:59.245583 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_portifolio-482811'
+[0m16:55:59.246214 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:55:59.315576 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:56:00.422620 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_portifolio-482811, now list_portifolio-482811_gold)
+[0m16:56:00.426710 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_portifolio-482811, now list_portifolio-482811_northwind_silver)
+[0m16:56:00.428867 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:56:00.431976 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_portifolio-482811, now list_portifolio-482811_northwind_bronze)
+[0m16:56:00.433582 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:56:00.506071 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m16:56:01.719404 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1654406d0>]}
+[0m16:56:01.720250 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:56:01.797181 [debug] [Thread-7 (]: Began running node model.northwind_dw.bronze_categories
+[0m16:56:01.798757 [debug] [Thread-8 (]: Began running node model.northwind_dw.bronze_customers
+[0m16:56:01.801406 [debug] [Thread-9 (]: Began running node model.northwind_dw.bronze_employees
+[0m16:56:01.802257 [debug] [Thread-10 ]: Began running node model.northwind_dw.bronze_order_details
+[0m16:56:01.799849 [info ] [Thread-7 (]: 1 of 15 START sql view model northwind_bronze.bronze_categories ................ [RUN]
+[0m16:56:01.802928 [info ] [Thread-8 (]: 2 of 15 START sql view model northwind_bronze.bronze_customers ................. [RUN]
+[0m16:56:01.804389 [info ] [Thread-9 (]: 3 of 15 START sql view model northwind_bronze.bronze_employees ................. [RUN]
+[0m16:56:01.805690 [info ] [Thread-10 ]: 4 of 15 START sql view model northwind_bronze.bronze_order_details ............. [RUN]
+[0m16:56:01.806918 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly list_portifolio-482811_northwind_bronze, now model.northwind_dw.bronze_categories)
+[0m16:56:01.807772 [debug] [Thread-8 (]: Re-using an available connection from the pool (formerly list_portifolio-482811_gold, now model.northwind_dw.bronze_customers)
+[0m16:56:01.808473 [debug] [Thread-9 (]: Re-using an available connection from the pool (formerly list_portifolio-482811_northwind_silver, now model.northwind_dw.bronze_employees)
+[0m16:56:01.809393 [debug] [Thread-10 ]: Acquiring new bigquery connection 'model.northwind_dw.bronze_order_details'
+[0m16:56:01.810123 [debug] [Thread-7 (]: Began compiling node model.northwind_dw.bronze_categories
+[0m16:56:01.810735 [debug] [Thread-8 (]: Began compiling node model.northwind_dw.bronze_customers
+[0m16:56:01.811388 [debug] [Thread-9 (]: Began compiling node model.northwind_dw.bronze_employees
+[0m16:56:01.812333 [debug] [Thread-10 ]: Began compiling node model.northwind_dw.bronze_order_details
+[0m16:56:01.824866 [debug] [Thread-7 (]: Writing injected SQL for node "model.northwind_dw.bronze_categories"
+[0m16:56:01.827907 [debug] [Thread-8 (]: Writing injected SQL for node "model.northwind_dw.bronze_customers"
+[0m16:56:01.830252 [debug] [Thread-9 (]: Writing injected SQL for node "model.northwind_dw.bronze_employees"
+[0m16:56:01.832615 [debug] [Thread-10 ]: Writing injected SQL for node "model.northwind_dw.bronze_order_details"
+[0m16:56:01.834315 [debug] [Thread-7 (]: Began executing node model.northwind_dw.bronze_categories
+[0m16:56:01.835524 [debug] [Thread-8 (]: Began executing node model.northwind_dw.bronze_customers
+[0m16:56:01.836062 [debug] [Thread-9 (]: Began executing node model.northwind_dw.bronze_employees
+[0m16:56:01.841914 [debug] [Thread-10 ]: Began executing node model.northwind_dw.bronze_order_details
+[0m16:56:01.894295 [debug] [Thread-8 (]: Writing runtime sql for node "model.northwind_dw.bronze_customers"
+[0m16:56:01.896800 [debug] [Thread-7 (]: Writing runtime sql for node "model.northwind_dw.bronze_categories"
+[0m16:56:01.899681 [debug] [Thread-9 (]: Writing runtime sql for node "model.northwind_dw.bronze_employees"
+[0m16:56:01.902270 [debug] [Thread-10 ]: Writing runtime sql for node "model.northwind_dw.bronze_order_details"
+[0m16:56:01.904313 [debug] [Thread-8 (]: On model.northwind_dw.bronze_customers: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_customers"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_customers`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`customers`;
+
+
+[0m16:56:01.905926 [debug] [Thread-8 (]: Opening a new connection, currently in state closed
+[0m16:56:01.906904 [debug] [Thread-9 (]: On model.northwind_dw.bronze_employees: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_employees"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_employees`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`employees`;
+
+
+[0m16:56:01.907930 [debug] [Thread-10 ]: On model.northwind_dw.bronze_order_details: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_order_details"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_order_details`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`order_details`;
+
+
+[0m16:56:01.908807 [debug] [Thread-7 (]: On model.northwind_dw.bronze_categories: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_categories"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_categories`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`categories`;
+
+
+[0m16:56:01.909443 [debug] [Thread-9 (]: Opening a new connection, currently in state closed
+[0m16:56:01.981469 [debug] [Thread-10 ]: Opening a new connection, currently in state init
+[0m16:56:01.982191 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:03.155418 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:c1c52662-5c22-40c6-bfb9-27bb02b91077&page=queryresults
+[0m16:56:03.194795 [debug] [Thread-9 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:941254a8-5cfe-41d0-a5ba-f8a38a0e34b2&page=queryresults
+[0m16:56:03.228775 [debug] [Thread-10 ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:29757206-3dd4-4f3d-b18b-6a45a7c1af62&page=queryresults
+[0m16:56:03.260821 [debug] [Thread-8 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:2ccddf14-a302-4de0-941c-7367c4533a79&page=queryresults
+[0m16:56:03.742769 [debug] [Thread-9 (]: SQL status: OK in 0.547 seconds
+[0m16:56:03.781005 [debug] [Thread-8 (]: SQL status: OK in 0.519 seconds
+[0m16:56:03.854513 [debug] [Thread-10 ]: SQL status: OK in 0.625 seconds
+[0m16:56:03.858533 [debug] [Thread-9 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1641c9590>]}
+[0m16:56:03.860771 [debug] [Thread-8 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1642e8e50>]}
+[0m16:56:03.862958 [debug] [Thread-10 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a165907950>]}
+[0m16:56:03.864052 [info ] [Thread-9 (]: 3 of 15 OK created sql view model northwind_bronze.bronze_employees ............ [[32mCREATE VIEW (0 processed)[0m in 2.04s]
+[0m16:56:03.865435 [info ] [Thread-8 (]: 2 of 15 OK created sql view model northwind_bronze.bronze_customers ............ [[32mCREATE VIEW (0 processed)[0m in 2.05s]
+[0m16:56:03.866541 [info ] [Thread-10 ]: 4 of 15 OK created sql view model northwind_bronze.bronze_order_details ........ [[32mCREATE VIEW (0 processed)[0m in 2.05s]
+[0m16:56:03.867712 [debug] [Thread-9 (]: Finished running node model.northwind_dw.bronze_employees
+[0m16:56:03.868634 [debug] [Thread-8 (]: Finished running node model.northwind_dw.bronze_customers
+[0m16:56:03.869591 [debug] [Thread-10 ]: Finished running node model.northwind_dw.bronze_order_details
+[0m16:56:03.870325 [debug] [Thread-9 (]: Began running node model.northwind_dw.bronze_orders
+[0m16:56:03.871721 [debug] [Thread-8 (]: Began running node model.northwind_dw.bronze_products
+[0m16:56:03.873104 [debug] [Thread-10 ]: Began running node model.northwind_dw.bronze_shippers
+[0m16:56:03.874372 [info ] [Thread-9 (]: 5 of 15 START sql view model northwind_bronze.bronze_orders .................... [RUN]
+[0m16:56:03.875506 [info ] [Thread-8 (]: 6 of 15 START sql view model northwind_bronze.bronze_products .................. [RUN]
+[0m16:56:03.876541 [info ] [Thread-10 ]: 7 of 15 START sql view model northwind_bronze.bronze_shippers .................. [RUN]
+[0m16:56:03.877411 [debug] [Thread-9 (]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_employees, now model.northwind_dw.bronze_orders)
+[0m16:56:03.878113 [debug] [Thread-8 (]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_customers, now model.northwind_dw.bronze_products)
+[0m16:56:03.878750 [debug] [Thread-10 ]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_order_details, now model.northwind_dw.bronze_shippers)
+[0m16:56:03.879452 [debug] [Thread-9 (]: Began compiling node model.northwind_dw.bronze_orders
+[0m16:56:03.880032 [debug] [Thread-8 (]: Began compiling node model.northwind_dw.bronze_products
+[0m16:56:03.880671 [debug] [Thread-10 ]: Began compiling node model.northwind_dw.bronze_shippers
+[0m16:56:03.883776 [debug] [Thread-9 (]: Writing injected SQL for node "model.northwind_dw.bronze_orders"
+[0m16:56:03.886309 [debug] [Thread-8 (]: Writing injected SQL for node "model.northwind_dw.bronze_products"
+[0m16:56:03.889264 [debug] [Thread-10 ]: Writing injected SQL for node "model.northwind_dw.bronze_shippers"
+[0m16:56:03.891220 [debug] [Thread-9 (]: Began executing node model.northwind_dw.bronze_orders
+[0m16:56:03.891778 [debug] [Thread-8 (]: Began executing node model.northwind_dw.bronze_products
+[0m16:56:03.892322 [debug] [Thread-10 ]: Began executing node model.northwind_dw.bronze_shippers
+[0m16:56:03.895059 [debug] [Thread-9 (]: Writing runtime sql for node "model.northwind_dw.bronze_orders"
+[0m16:56:03.897523 [debug] [Thread-8 (]: Writing runtime sql for node "model.northwind_dw.bronze_products"
+[0m16:56:03.899951 [debug] [Thread-10 ]: Writing runtime sql for node "model.northwind_dw.bronze_shippers"
+[0m16:56:03.901418 [debug] [Thread-8 (]: On model.northwind_dw.bronze_products: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_products"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_products`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`products`;
+
+
+[0m16:56:03.902015 [debug] [Thread-9 (]: On model.northwind_dw.bronze_orders: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_orders"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_orders`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`orders`;
+
+
+[0m16:56:03.902612 [debug] [Thread-10 ]: On model.northwind_dw.bronze_shippers: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_shippers"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_shippers`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`shippers`;
+
+
+[0m16:56:03.903248 [debug] [Thread-8 (]: Opening a new connection, currently in state closed
+[0m16:56:03.903872 [debug] [Thread-9 (]: Opening a new connection, currently in state closed
+[0m16:56:03.904499 [debug] [Thread-10 ]: Opening a new connection, currently in state closed
+[0m16:56:03.991060 [debug] [Thread-7 (]: SQL status: OK in 0.835 seconds
+[0m16:56:04.133648 [debug] [Thread-7 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1658dea90>]}
+[0m16:56:04.135717 [info ] [Thread-7 (]: 1 of 15 OK created sql view model northwind_bronze.bronze_categories ........... [[32mCREATE VIEW (0 processed)[0m in 2.33s]
+[0m16:56:04.138156 [debug] [Thread-7 (]: Finished running node model.northwind_dw.bronze_categories
+[0m16:56:04.139531 [debug] [Thread-7 (]: Began running node model.northwind_dw.bronze_suppliers
+[0m16:56:04.141179 [info ] [Thread-7 (]: 8 of 15 START sql view model northwind_bronze.bronze_suppliers ................. [RUN]
+[0m16:56:04.144288 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_categories, now model.northwind_dw.bronze_suppliers)
+[0m16:56:04.146137 [debug] [Thread-7 (]: Began compiling node model.northwind_dw.bronze_suppliers
+[0m16:56:04.150230 [debug] [Thread-7 (]: Writing injected SQL for node "model.northwind_dw.bronze_suppliers"
+[0m16:56:04.151311 [debug] [Thread-7 (]: Began executing node model.northwind_dw.bronze_suppliers
+[0m16:56:04.154381 [debug] [Thread-7 (]: Writing runtime sql for node "model.northwind_dw.bronze_suppliers"
+[0m16:56:04.155355 [debug] [Thread-7 (]: On model.northwind_dw.bronze_suppliers: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.bronze_suppliers"} */
+
+
+  create or replace view `portifolio-482811`.`northwind_bronze`.`bronze_suppliers`
+  OPTIONS()
+  as -- Bronze layer: Raw data from PostgreSQL ingestion
+
+
+
+SELECT *
+FROM `portifolio-482811`.`northwind_bronze`.`suppliers`;
+
+
+[0m16:56:04.156256 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:05.041314 [debug] [Thread-9 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:65e04719-e96e-4ddb-94f8-13e4751d3893&page=queryresults
+[0m16:56:05.049713 [debug] [Thread-8 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:91f149f3-98d2-4138-83e8-0acfd8ba4d18&page=queryresults
+[0m16:56:05.091897 [debug] [Thread-10 ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:9ed63747-3e41-4859-8b00-b14077cb21f9&page=queryresults
+[0m16:56:05.097837 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:525827f9-c4f0-40c1-9937-ffb4ee68e2c7&page=queryresults
+[0m16:56:05.630484 [debug] [Thread-8 (]: SQL status: OK in 0.580 seconds
+[0m16:56:05.636977 [debug] [Thread-8 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a16414b890>]}
+[0m16:56:05.637983 [info ] [Thread-8 (]: 6 of 15 OK created sql view model northwind_bronze.bronze_products ............. [[32mCREATE VIEW (0 processed)[0m in 1.76s]
+[0m16:56:05.639192 [debug] [Thread-8 (]: Finished running node model.northwind_dw.bronze_products
+[0m16:56:05.640017 [debug] [Thread-8 (]: Began running node model.northwind_dw.silver_dim_employees
+[0m16:56:05.641325 [info ] [Thread-8 (]: 9 of 15 START sql table model northwind_silver.silver_dim_employees ............ [RUN]
+[0m16:56:05.642353 [debug] [Thread-8 (]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_products, now model.northwind_dw.silver_dim_employees)
+[0m16:56:05.643084 [debug] [Thread-8 (]: Began compiling node model.northwind_dw.silver_dim_employees
+[0m16:56:05.646280 [debug] [Thread-8 (]: Writing injected SQL for node "model.northwind_dw.silver_dim_employees"
+[0m16:56:05.647989 [debug] [Thread-8 (]: Began executing node model.northwind_dw.silver_dim_employees
+[0m16:56:05.669790 [debug] [Thread-8 (]: Opening a new connection, currently in state closed
+[0m16:56:05.672232 [debug] [Thread-9 (]: SQL status: OK in 0.630 seconds
+[0m16:56:05.673570 [debug] [Thread-10 ]: SQL status: OK in 0.581 seconds
+[0m16:56:05.757139 [debug] [Thread-9 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a164158d90>]}
+[0m16:56:05.763292 [debug] [Thread-7 (]: SQL status: OK in 0.664 seconds
+[0m16:56:05.765300 [debug] [Thread-10 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a15c790bd0>]}
+[0m16:56:05.767479 [info ] [Thread-9 (]: 5 of 15 OK created sql view model northwind_bronze.bronze_orders ............... [[32mCREATE VIEW (0 processed)[0m in 1.88s]
+[0m16:56:05.775857 [debug] [Thread-7 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a164159b10>]}
+[0m16:56:05.777271 [info ] [Thread-10 ]: 7 of 15 OK created sql view model northwind_bronze.bronze_shippers ............. [[32mCREATE VIEW (0 processed)[0m in 1.89s]
+[0m16:56:05.778697 [debug] [Thread-9 (]: Finished running node model.northwind_dw.bronze_orders
+[0m16:56:05.779787 [info ] [Thread-7 (]: 8 of 15 OK created sql view model northwind_bronze.bronze_suppliers ............ [[32mCREATE VIEW (0 processed)[0m in 1.63s]
+[0m16:56:05.780863 [debug] [Thread-10 ]: Finished running node model.northwind_dw.bronze_shippers
+[0m16:56:05.781549 [debug] [Thread-9 (]: Began running node model.northwind_dw.silver_dim_customers
+[0m16:56:05.782769 [debug] [Thread-7 (]: Finished running node model.northwind_dw.bronze_suppliers
+[0m16:56:05.783618 [debug] [Thread-10 ]: Began running node model.northwind_dw.silver_fact_orders
+[0m16:56:05.784512 [info ] [Thread-9 (]: 10 of 15 START sql table model northwind_silver.silver_dim_customers ........... [RUN]
+[0m16:56:05.786044 [debug] [Thread-7 (]: Began running node model.northwind_dw.silver_dim_products
+[0m16:56:05.787374 [info ] [Thread-10 ]: 11 of 15 START sql table model northwind_silver.silver_fact_orders ............. [RUN]
+[0m16:56:05.788572 [debug] [Thread-9 (]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_orders, now model.northwind_dw.silver_dim_customers)
+[0m16:56:05.789764 [info ] [Thread-7 (]: 12 of 15 START sql table model northwind_silver.silver_dim_products ............ [RUN]
+[0m16:56:05.791439 [debug] [Thread-10 ]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_shippers, now model.northwind_dw.silver_fact_orders)
+[0m16:56:05.792380 [debug] [Thread-9 (]: Began compiling node model.northwind_dw.silver_dim_customers
+[0m16:56:05.793519 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly model.northwind_dw.bronze_suppliers, now model.northwind_dw.silver_dim_products)
+[0m16:56:05.794389 [debug] [Thread-10 ]: Began compiling node model.northwind_dw.silver_fact_orders
+[0m16:56:05.799383 [debug] [Thread-9 (]: Writing injected SQL for node "model.northwind_dw.silver_dim_customers"
+[0m16:56:05.800224 [debug] [Thread-7 (]: Began compiling node model.northwind_dw.silver_dim_products
+[0m16:56:05.803425 [debug] [Thread-10 ]: Writing injected SQL for node "model.northwind_dw.silver_fact_orders"
+[0m16:56:05.810164 [debug] [Thread-9 (]: Began executing node model.northwind_dw.silver_dim_customers
+[0m16:56:05.813978 [debug] [Thread-9 (]: Opening a new connection, currently in state closed
+[0m16:56:05.820772 [debug] [Thread-7 (]: Writing injected SQL for node "model.northwind_dw.silver_dim_products"
+[0m16:56:05.822588 [debug] [Thread-10 ]: Began executing node model.northwind_dw.silver_fact_orders
+[0m16:56:05.910755 [debug] [Thread-10 ]: Opening a new connection, currently in state closed
+[0m16:56:05.994005 [debug] [Thread-7 (]: Began executing node model.northwind_dw.silver_dim_products
+[0m16:56:05.999065 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:06.677472 [debug] [Thread-8 (]: Writing runtime sql for node "model.northwind_dw.silver_dim_employees"
+[0m16:56:06.678761 [debug] [Thread-8 (]: On model.northwind_dw.silver_dim_employees: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.silver_dim_employees"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`northwind_silver`.`silver_dim_employees`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Silver layer: Cleaned and transformed employee dimension
+
+
+SELECT
+    employee_id,
+    TRIM(CONCAT(first_name, ' ', last_name)) AS full_name,
+    TRIM(first_name) AS first_name,
+    TRIM(last_name) AS last_name,
+    TRIM(title) AS title,
+    TRIM(title_of_courtesy) AS title_of_courtesy,
+    birth_date,
+    hire_date,
+    TRIM(address) AS address,
+    TRIM(city) AS city,
+    TRIM(region) AS region,
+    TRIM(postal_code) AS postal_code,
+    TRIM(country) AS country,
+    TRIM(home_phone) AS home_phone,
+    TRIM(extension) AS extension,
+    reports_to,
+    CURRENT_TIMESTAMP() AS dw_created_at
+FROM `portifolio-482811`.`northwind_bronze`.`bronze_employees`
+WHERE employee_id IS NOT NULL
+    );
+  
+[0m16:56:06.711690 [debug] [Thread-10 ]: Writing runtime sql for node "model.northwind_dw.silver_fact_orders"
+[0m16:56:06.713399 [debug] [Thread-9 (]: Writing runtime sql for node "model.northwind_dw.silver_dim_customers"
+[0m16:56:06.714739 [debug] [Thread-9 (]: On model.northwind_dw.silver_dim_customers: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.silver_dim_customers"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`northwind_silver`.`silver_dim_customers`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Silver layer: Cleaned and transformed customer dimension
+
+
+WITH cleaned_customers AS (
+    SELECT
+        customer_id,
+        TRIM(company_name) AS company_name,
+        TRIM(contact_name) AS contact_name,
+        TRIM(contact_title) AS contact_title,
+        TRIM(address) AS address,
+        TRIM(city) AS city,
+        TRIM(region) AS region,
+        TRIM(postal_code) AS postal_code,
+        TRIM(country) AS country,
+        TRIM(phone) AS phone,
+        TRIM(fax) AS fax
+    FROM `portifolio-482811`.`northwind_bronze`.`bronze_customers`
+    WHERE customer_id IS NOT NULL
+)
+
+SELECT
+    customer_id,
+    company_name,
+    contact_name,
+    COALESCE(contact_title, 'Unknown') AS contact_title,
+    COALESCE(address, 'Unknown') AS address,
+    COALESCE(city, 'Unknown') AS city,
+    COALESCE(region, 'Unknown') AS region,
+    COALESCE(postal_code, 'Unknown') AS postal_code,
+    COALESCE(country, 'Unknown') AS country,
+    phone,
+    fax,
+    CURRENT_TIMESTAMP() AS dw_created_at
+FROM cleaned_customers
+    );
+  
+[0m16:56:06.715548 [debug] [Thread-10 ]: On model.northwind_dw.silver_fact_orders: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.silver_fact_orders"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`northwind_silver`.`silver_fact_orders`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Silver layer: Order facts with denormalized dimensions
+
+
+SELECT
+    o.order_id,
+    o.customer_id,
+    o.employee_id,
+    o.order_date,
+    o.required_date,
+    o.shipped_date,
+    o.ship_via AS shipper_id,
+    od.product_id,
+    CAST(od.unit_price AS NUMERIC) AS unit_price,
+    CAST(od.quantity AS INT64) AS quantity,
+    CAST(od.discount AS NUMERIC) AS discount,
+    CAST(od.unit_price AS NUMERIC) * CAST(od.quantity AS INT64) * (1 - CAST(od.discount AS NUMERIC)) AS line_total,
+    CURRENT_TIMESTAMP() AS dw_created_at
+FROM `portifolio-482811`.`northwind_bronze`.`bronze_orders` o
+INNER JOIN `portifolio-482811`.`northwind_bronze`.`bronze_order_details` od ON o.order_id = od.order_id
+WHERE o.order_id IS NOT NULL
+    );
+  
+[0m16:56:06.763696 [debug] [Thread-7 (]: Writing runtime sql for node "model.northwind_dw.silver_dim_products"
+[0m16:56:06.764824 [debug] [Thread-7 (]: On model.northwind_dw.silver_dim_products: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.silver_dim_products"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`northwind_silver`.`silver_dim_products`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Silver layer: Cleaned and transformed product dimension
+
+
+SELECT
+    p.product_id,
+    TRIM(p.product_name) AS product_name,
+    p.supplier_id,
+    TRIM(s.company_name) AS supplier_name,
+    p.category_id,
+    TRIM(c.category_name) AS category_name,
+    TRIM(p.quantity_per_unit) AS quantity_per_unit,
+    CAST(p.unit_price AS NUMERIC) AS unit_price,
+    CAST(p.units_in_stock AS INT64) AS units_in_stock,
+    CAST(p.units_on_order AS INT64) AS units_on_order,
+    CAST(p.reorder_level AS INT64) AS reorder_level,
+    CAST(p.discontinued AS BOOL) AS discontinued,
+    CURRENT_TIMESTAMP() AS dw_created_at
+FROM `portifolio-482811`.`northwind_bronze`.`bronze_products` p
+LEFT JOIN `portifolio-482811`.`northwind_bronze`.`bronze_suppliers` s ON p.supplier_id = s.supplier_id
+LEFT JOIN `portifolio-482811`.`northwind_bronze`.`bronze_categories` c ON p.category_id = c.category_id
+WHERE p.product_id IS NOT NULL
+    );
+  
+[0m16:56:07.345093 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:26194e2d-b797-42f2-87ea-7466b2ed26ec&page=queryresults
+[0m16:56:07.423348 [debug] [Thread-9 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:1c3f7233-b108-4a18-9a84-973ecc3fa69b&page=queryresults
+[0m16:56:07.434441 [debug] [Thread-10 ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:8dfe125a-34e5-4651-82a2-29dd8c53115e&page=queryresults
+[0m16:56:07.610629 [debug] [Thread-8 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:4e6dc3b4-8444-4c20-bcae-382788c665ca&page=queryresults
+[0m16:56:08.902356 [debug] [Thread-7 (]: SQL status: OK in 1.556 seconds
+[0m16:56:09.016208 [debug] [Thread-10 ]: SQL status: OK in 1.581 seconds
+[0m16:56:09.170193 [debug] [Thread-7 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a15c70b010>]}
+[0m16:56:09.171347 [info ] [Thread-7 (]: 12 of 15 OK created sql table model northwind_silver.silver_dim_products ....... [[32mCREATE TABLE (12.0 rows, 1.5 KiB processed)[0m in 3.38s]
+[0m16:56:09.172589 [debug] [Thread-7 (]: Finished running node model.northwind_dw.silver_dim_products
+[0m16:56:09.173621 [debug] [Thread-7 (]: Began running node model.northwind_dw.gold_sales_by_category
+[0m16:56:09.174558 [info ] [Thread-7 (]: 13 of 15 START sql table model gold.gold_sales_by_category ..................... [RUN]
+[0m16:56:09.175921 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly model.northwind_dw.silver_dim_products, now model.northwind_dw.gold_sales_by_category)
+[0m16:56:09.176973 [debug] [Thread-7 (]: Began compiling node model.northwind_dw.gold_sales_by_category
+[0m16:56:09.183415 [debug] [Thread-7 (]: Writing injected SQL for node "model.northwind_dw.gold_sales_by_category"
+[0m16:56:09.184565 [debug] [Thread-7 (]: Began executing node model.northwind_dw.gold_sales_by_category
+[0m16:56:09.186966 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:09.280513 [debug] [Thread-8 (]: SQL status: OK in 1.669 seconds
+[0m16:56:09.281576 [debug] [Thread-9 (]: SQL status: OK in 1.857 seconds
+[0m16:56:09.323914 [debug] [Thread-10 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a1641c9e50>]}
+[0m16:56:09.326006 [info ] [Thread-10 ]: 11 of 15 OK created sql table model northwind_silver.silver_fact_orders ........ [[32mCREATE TABLE (22.0 rows, 1.6 KiB processed)[0m in 3.53s]
+[0m16:56:09.327986 [debug] [Thread-10 ]: Finished running node model.northwind_dw.silver_fact_orders
+[0m16:56:09.590286 [debug] [Thread-9 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a164158950>]}
+[0m16:56:09.597413 [debug] [Thread-8 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a15c71e8d0>]}
+[0m16:56:09.595146 [info ] [Thread-9 (]: 10 of 15 OK created sql table model northwind_silver.silver_dim_customers ...... [[32mCREATE TABLE (23.0 rows, 2.7 KiB processed)[0m in 3.80s]
+[0m16:56:09.598707 [info ] [Thread-8 (]: 9 of 15 OK created sql table model northwind_silver.silver_dim_employees ....... [[32mCREATE TABLE (6.0 rows, 774.0 Bytes processed)[0m in 3.95s]
+[0m16:56:09.600355 [debug] [Thread-9 (]: Finished running node model.northwind_dw.silver_dim_customers
+[0m16:56:09.601579 [debug] [Thread-8 (]: Finished running node model.northwind_dw.silver_dim_employees
+[0m16:56:09.603561 [debug] [Thread-10 ]: Began running node model.northwind_dw.gold_customer_analytics
+[0m16:56:09.604732 [debug] [Thread-8 (]: Began running node model.northwind_dw.gold_sales_by_country
+[0m16:56:09.606664 [info ] [Thread-10 ]: 14 of 15 START sql table model gold.gold_customer_analytics .................... [RUN]
+[0m16:56:09.612181 [info ] [Thread-8 (]: 15 of 15 START sql table model gold.gold_sales_by_country ...................... [RUN]
+[0m16:56:09.613832 [debug] [Thread-10 ]: Re-using an available connection from the pool (formerly model.northwind_dw.silver_fact_orders, now model.northwind_dw.gold_customer_analytics)
+[0m16:56:09.614825 [debug] [Thread-8 (]: Re-using an available connection from the pool (formerly model.northwind_dw.silver_dim_employees, now model.northwind_dw.gold_sales_by_country)
+[0m16:56:09.615523 [debug] [Thread-10 ]: Began compiling node model.northwind_dw.gold_customer_analytics
+[0m16:56:09.616241 [debug] [Thread-8 (]: Began compiling node model.northwind_dw.gold_sales_by_country
+[0m16:56:09.620789 [debug] [Thread-10 ]: Writing injected SQL for node "model.northwind_dw.gold_customer_analytics"
+[0m16:56:09.627363 [debug] [Thread-8 (]: Writing injected SQL for node "model.northwind_dw.gold_sales_by_country"
+[0m16:56:09.628922 [debug] [Thread-10 ]: Began executing node model.northwind_dw.gold_customer_analytics
+[0m16:56:09.629400 [debug] [Thread-8 (]: Began executing node model.northwind_dw.gold_sales_by_country
+[0m16:56:09.631283 [debug] [Thread-10 ]: Opening a new connection, currently in state closed
+[0m16:56:09.632875 [debug] [Thread-8 (]: Opening a new connection, currently in state closed
+[0m16:56:09.940729 [debug] [Thread-7 (]: Writing runtime sql for node "model.northwind_dw.gold_sales_by_category"
+[0m16:56:09.942259 [debug] [Thread-7 (]: On model.northwind_dw.gold_sales_by_category: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.gold_sales_by_category"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`gold`.`gold_sales_by_category`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Gold layer: Sales metrics by product category
+
+
+WITH sales_by_category AS (
+    SELECT
+        p.category_id,
+        p.category_name,
+        COUNT(DISTINCT od.order_id) AS total_orders,
+        COUNT(DISTINCT od.product_id) AS total_products,
+        SUM(od.quantity) AS total_units_sold,
+        SUM(od.unit_price * od.quantity * (1 - od.discount)) AS total_revenue,
+        AVG(od.unit_price * od.quantity * (1 - od.discount)) AS avg_order_line_value,
+        SUM(od.unit_price * od.quantity * od.discount) AS total_discounts
+    FROM `portifolio-482811`.`northwind_bronze`.`bronze_order_details` od
+    INNER JOIN `portifolio-482811`.`northwind_silver`.`silver_dim_products` p ON od.product_id = p.product_id
+    GROUP BY p.category_id, p.category_name
+)
+
+SELECT
+    category_id,
+    category_name,
+    total_orders,
+    total_products,
+    total_units_sold,
+    ROUND(total_revenue, 2) AS total_revenue,
+    ROUND(avg_order_line_value, 2) AS avg_order_line_value,
+    ROUND(total_discounts, 2) AS total_discounts,
+    ROUND(total_revenue / total_orders, 2) AS revenue_per_order,
+    CURRENT_TIMESTAMP() AS updated_at
+FROM sales_by_category
+ORDER BY total_revenue DESC
+    );
+  
+[0m16:56:10.440385 [debug] [Thread-8 (]: Writing runtime sql for node "model.northwind_dw.gold_sales_by_country"
+[0m16:56:10.441837 [debug] [Thread-8 (]: On model.northwind_dw.gold_sales_by_country: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.gold_sales_by_country"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`gold`.`gold_sales_by_country`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Gold layer: Sales metrics by country
+
+
+WITH sales_by_country AS (
+    SELECT
+        c.country,
+        COUNT(DISTINCT o.order_id) AS total_orders,
+        COUNT(DISTINCT c.customer_id) AS total_customers,
+        SUM(o.line_total) AS total_revenue,
+        AVG(o.line_total) AS avg_order_value,
+        SUM(o.quantity) AS total_units_sold,
+        SUM(o.unit_price * o.quantity * o.discount) AS total_discounts,
+        MIN(o.order_date) AS first_order_date,
+        MAX(o.order_date) AS last_order_date
+    FROM `portifolio-482811`.`northwind_silver`.`silver_fact_orders` o
+    INNER JOIN `portifolio-482811`.`northwind_silver`.`silver_dim_customers` c ON o.customer_id = c.customer_id
+    WHERE o.order_date IS NOT NULL
+    GROUP BY c.country
+)
+
+SELECT
+    country,
+    total_orders,
+    total_customers,
+    ROUND(total_revenue, 2) AS total_revenue,
+    ROUND(avg_order_value, 2) AS avg_order_value,
+    total_units_sold,
+    ROUND(total_discounts, 2) AS total_discounts,
+    ROUND(total_revenue / total_customers, 2) AS revenue_per_customer,
+    first_order_date,
+    last_order_date,
+    CURRENT_TIMESTAMP() AS updated_at
+FROM sales_by_country
+ORDER BY total_revenue DESC
+    );
+  
+[0m16:56:10.793138 [debug] [Thread-10 ]: Writing runtime sql for node "model.northwind_dw.gold_customer_analytics"
+[0m16:56:10.794253 [debug] [Thread-10 ]: On model.northwind_dw.gold_customer_analytics: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "model.northwind_dw.gold_customer_analytics"} */
+
+  
+    
+
+    create or replace table `portifolio-482811`.`gold`.`gold_customer_analytics`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Gold layer: Customer analytics and segmentation
+
+
+WITH customer_metrics AS (
+    SELECT
+        c.customer_id,
+        c.company_name,
+        c.contact_name,
+        c.city,
+        c.country,
+        COUNT(DISTINCT o.order_id) AS total_orders,
+        SUM(o.line_total) AS total_spent,
+        AVG(o.line_total) AS avg_order_value,
+        SUM(o.quantity) AS total_items_purchased,
+        SUM(o.unit_price * o.quantity * o.discount) AS total_discounts_received,
+        MIN(o.order_date) AS first_order_date,
+        MAX(o.order_date) AS last_order_date,
+        DATE_DIFF(CURRENT_DATE(), MAX(o.order_date), DAY) AS days_since_last_order
+    FROM `portifolio-482811`.`northwind_silver`.`silver_dim_customers` c
+    LEFT JOIN `portifolio-482811`.`northwind_silver`.`silver_fact_orders` o ON c.customer_id = o.customer_id
+    GROUP BY 
+        c.customer_id,
+        c.company_name,
+        c.contact_name,
+        c.city,
+        c.country
+)
+
+SELECT
+    customer_id,
+    company_name,
+    contact_name,
+    city,
+    country,
+    total_orders,
+    ROUND(total_spent, 2) AS total_spent,
+    ROUND(avg_order_value, 2) AS avg_order_value,
+    total_items_purchased,
+    ROUND(total_discounts_received, 2) AS total_discounts_received,
+    first_order_date,
+    last_order_date,
+    days_since_last_order,
+    -- Customer segmentation
+    CASE 
+        WHEN total_orders >= 10 THEN 'VIP'
+        WHEN total_orders >= 5 THEN 'Frequent'
+        WHEN total_orders >= 2 THEN 'Regular'
+        ELSE 'New'
+    END AS customer_segment,
+    CASE 
+        WHEN days_since_last_order <= 30 THEN 'Active'
+        WHEN days_since_last_order <= 90 THEN 'At Risk'
+        ELSE 'Inactive'
+    END AS activity_status,
+    CURRENT_TIMESTAMP() AS updated_at
+FROM customer_metrics
+ORDER BY total_spent DESC
+    );
+  
+[0m16:56:10.874143 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:96e34a36-2224-4744-bc76-8279adb94653&page=queryresults
+[0m16:56:11.095203 [debug] [Thread-8 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:0c7fddd5-48ff-45b0-90d6-0d79152b131a&page=queryresults
+[0m16:56:11.268640 [debug] [Thread-10 ]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:e7d3a38c-7cd4-447d-bcee-58e826c06b43&page=queryresults
+[0m16:56:12.498049 [debug] [Thread-7 (]: SQL status: OK in 1.623 seconds
+[0m16:56:12.783898 [debug] [Thread-7 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a165443190>]}
+[0m16:56:12.785090 [info ] [Thread-7 (]: 13 of 15 OK created sql table model gold.gold_sales_by_category ................ [[32mCREATE TABLE (6.0 rows, 1.2 KiB processed)[0m in 3.61s]
+[0m16:56:12.786305 [debug] [Thread-7 (]: Finished running node model.northwind_dw.gold_sales_by_category
+[0m16:56:12.884760 [debug] [Thread-8 (]: SQL status: OK in 1.789 seconds
+[0m16:56:13.096817 [debug] [Thread-10 ]: SQL status: OK in 1.827 seconds
+[0m16:56:13.193167 [debug] [Thread-8 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a16415b150>]}
+[0m16:56:13.195211 [info ] [Thread-8 (]: 15 of 15 OK created sql table model gold.gold_sales_by_country ................. [[32mCREATE TABLE (8.0 rows, 2.0 KiB processed)[0m in 3.58s]
+[0m16:56:13.196961 [debug] [Thread-8 (]: Finished running node model.northwind_dw.gold_sales_by_country
+[0m16:56:13.391074 [debug] [Thread-10 ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f6993027-9530-415b-b472-f65b58fcc9f4', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a165c6dd10>]}
+[0m16:56:13.392212 [info ] [Thread-10 ]: 14 of 15 OK created sql table model gold.gold_customer_analytics ............... [[32mCREATE TABLE (23.0 rows, 3.1 KiB processed)[0m in 3.78s]
+[0m16:56:13.393547 [debug] [Thread-10 ]: Finished running node model.northwind_dw.gold_customer_analytics
+[0m16:56:13.397215 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:56:13.468894 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:56:13.469415 [debug] [MainThread]: Connection 'model.northwind_dw.silver_dim_customers' was properly closed.
+[0m16:56:13.469789 [debug] [MainThread]: Connection 'model.northwind_dw.gold_sales_by_country' was properly closed.
+[0m16:56:13.470158 [debug] [MainThread]: Connection 'model.northwind_dw.gold_sales_by_category' was properly closed.
+[0m16:56:13.470524 [debug] [MainThread]: Connection 'model.northwind_dw.gold_customer_analytics' was properly closed.
+[0m16:56:13.471084 [info ] [MainThread]: 
+[0m16:56:13.471574 [info ] [MainThread]: Finished running 7 table models, 8 view models in 0 hours 0 minutes and 14.24 seconds (14.24s).
+[0m16:56:13.475746 [debug] [MainThread]: Command end result
+[0m16:56:13.567169 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt/northwind_dw/target/manifest.json
+[0m16:56:13.570636 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt/northwind_dw/target/semantic_manifest.json
+[0m16:56:13.573731 [debug] [MainThread]: Wrote artifact OsiDocument to /app/dbt/northwind_dw/target/osi_document.json
+[0m16:56:13.584839 [debug] [MainThread]: Wrote artifact RunExecutionResult to /app/dbt/northwind_dw/target/run_results.json
+[0m16:56:13.585335 [info ] [MainThread]: 
+[0m16:56:13.585889 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m16:56:13.586606 [info ] [MainThread]: 
+[0m16:56:13.587295 [info ] [MainThread]: Done. PASS=15 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=15
+[0m16:56:13.588375 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 16.815111, "process_in_blocks": "4616", "process_kernel_time": 1.1577, "process_mem_max_rss": "263672", "process_out_blocks": "4280", "process_user_time": 8.516505}
+[0m16:56:13.588945 [debug] [MainThread]: Command `dbt run` succeeded at 16:56:13.588810 after 16.82 seconds
+[0m16:56:13.589432 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18fc94750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a18b09d250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x76a165df7c10>]}
+[0m16:56:13.589891 [debug] [MainThread]: Flushing usage events
+[0m16:56:14.252437 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m16:56:24.925695 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f1c38810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f1c38510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f1c39390>]}
+
+
+============================== 16:56:24.929275 | ad9fc822-746e-46d0-8fb5-15a73ebc81f5 ==============================
+[0m16:56:24.929275 [info ] [MainThread]: Running with dbt=1.12.0
+[0m16:56:24.930208 [debug] [MainThread]: running dbt with arguments {'invocation_command': 'dbt test --project-dir /app/dbt/northwind_dw --profiles-dir /app/dbt', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'fail_fast': 'False', 'use_colors': 'True', 'log_path': '/app/dbt/northwind_dw/logs', 'warn_error': 'None', 'debug': 'False', 'printer_width': '80', 'profiles_dir': '/app/dbt', 'target_path': 'None', 'log_cache_events': 'False', 'log_format': 'default', 'quiet': 'False', 'indirect_selection': 'eager', 'hints_enabled': 'True', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'empty': 'None', 'maximum_seed_size_mib': '1', 'partial_parse': 'True', 'version_check': 'True', 'write_json': 'True'}
+[0m16:56:26.261536 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ad9fc822-746e-46d0-8fb5-15a73ebc81f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865d0a9c310>]}
+[0m16:56:26.358431 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ad9fc822-746e-46d0-8fb5-15a73ebc81f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f4f12d90>]}
+[0m16:56:26.359612 [info ] [MainThread]: Registered adapter: bigquery=1.12.0
+[0m16:56:26.751345 [debug] [MainThread]: checksum: d4f4ef13da6c3aad9ab454ee546b59192bf62b3fd0a217783ca98ed59e21247c, vars: {}, profile: northwind_dw, target: dev, version: 1.12.0
+[0m16:56:26.983006 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m16:56:26.983571 [debug] [MainThread]: Nothing changed, skipping partial parsing.
+[0m16:56:26.983937 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m16:56:26.999576 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ad9fc822-746e-46d0-8fb5-15a73ebc81f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865d02a8850>]}
+[0m16:56:27.268203 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt/northwind_dw/target/manifest.json
+[0m16:56:27.271648 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt/northwind_dw/target/semantic_manifest.json
+[0m16:56:27.288453 [debug] [MainThread]: Wrote artifact OsiDocument to /app/dbt/northwind_dw/target/osi_document.json
+[0m16:56:27.418184 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ad9fc822-746e-46d0-8fb5-15a73ebc81f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f4a93ad0>]}
+[0m16:56:27.418974 [info ] [MainThread]: Found 15 models, 22 data tests, 8 sources, 676 macros
+[0m16:56:27.419549 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ad9fc822-746e-46d0-8fb5-15a73ebc81f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865d0535f50>]}
+[0m16:56:27.427437 [info ] [MainThread]: 
+[0m16:56:27.428413 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m16:56:27.429152 [info ] [MainThread]: 
+[0m16:56:27.430536 [debug] [MainThread]: Acquiring new bigquery connection 'master'
+[0m16:56:27.444172 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_portifolio-482811_northwind_silver'
+[0m16:56:27.445785 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_portifolio-482811_gold'
+[0m16:56:27.447362 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:56:27.448397 [debug] [ThreadPool]: Acquiring new bigquery connection 'list_portifolio-482811_northwind_bronze'
+[0m16:56:27.449320 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:56:27.450415 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m16:56:28.636482 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ad9fc822-746e-46d0-8fb5-15a73ebc81f5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f4f13910>]}
+[0m16:56:28.637273 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m16:56:28.735707 [debug] [Thread-4 (]: Began running node test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8
+[0m16:56:28.737102 [debug] [Thread-5 (]: Began running node test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e
+[0m16:56:28.738597 [debug] [Thread-6 (]: Began running node test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7
+[0m16:56:28.739137 [debug] [Thread-7 (]: Began running node test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3
+[0m16:56:28.739692 [info ] [Thread-4 (]: 1 of 22 START test not_null_bronze_categories_category_id ...................... [RUN]
+[0m16:56:28.740522 [info ] [Thread-5 (]: 2 of 22 START test not_null_bronze_customers_customer_id ....................... [RUN]
+[0m16:56:28.741628 [info ] [Thread-6 (]: 3 of 22 START test not_null_bronze_employees_employee_id ....................... [RUN]
+[0m16:56:28.742410 [info ] [Thread-7 (]: 4 of 22 START test not_null_bronze_orders_order_id ............................. [RUN]
+[0m16:56:28.743591 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly list_portifolio-482811_northwind_bronze, now test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8)
+[0m16:56:28.744211 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly list_portifolio-482811_northwind_silver, now test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e)
+[0m16:56:28.744827 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly list_portifolio-482811_gold, now test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7)
+[0m16:56:28.745662 [debug] [Thread-7 (]: Acquiring new bigquery connection 'test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3'
+[0m16:56:28.746254 [debug] [Thread-4 (]: Began compiling node test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8
+[0m16:56:28.747022 [debug] [Thread-5 (]: Began compiling node test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e
+[0m16:56:28.747949 [debug] [Thread-6 (]: Began compiling node test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7
+[0m16:56:28.748817 [debug] [Thread-7 (]: Began compiling node test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3
+[0m16:56:28.787009 [debug] [Thread-4 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8"
+[0m16:56:28.788728 [debug] [Thread-5 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e"
+[0m16:56:28.811656 [debug] [Thread-7 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3"
+[0m16:56:28.818030 [debug] [Thread-6 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7"
+[0m16:56:28.819966 [debug] [Thread-4 (]: Began executing node test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8
+[0m16:56:28.820977 [debug] [Thread-5 (]: Began executing node test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e
+[0m16:56:28.821992 [debug] [Thread-7 (]: Began executing node test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3
+[0m16:56:28.865985 [debug] [Thread-4 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8"
+[0m16:56:28.868074 [debug] [Thread-5 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e"
+[0m16:56:28.868640 [debug] [Thread-6 (]: Began executing node test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7
+[0m16:56:28.871154 [debug] [Thread-7 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3"
+[0m16:56:28.875138 [debug] [Thread-6 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7"
+[0m16:56:28.876085 [debug] [Thread-5 (]: On test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select customer_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_customers`
+where customer_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:28.876802 [debug] [Thread-4 (]: On test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select category_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_categories`
+where category_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:28.878724 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m16:56:28.879781 [debug] [Thread-7 (]: On test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select order_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_orders`
+where order_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:28.880950 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:56:28.881801 [debug] [Thread-6 (]: On test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select employee_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_employees`
+where employee_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:28.882795 [debug] [Thread-7 (]: Opening a new connection, currently in state init
+[0m16:56:29.017518 [debug] [Thread-6 (]: Opening a new connection, currently in state closed
+[0m16:56:30.319889 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:24c5621b-df70-4f13-bd14-0334315d2121&page=queryresults
+[0m16:56:30.442092 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:462755b2-9cd3-42e2-86a7-3bef52e6776b&page=queryresults
+[0m16:56:30.445746 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:ca530cbb-3115-4955-9d07-48a671e95e72&page=queryresults
+[0m16:56:30.470606 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:a3b195f4-8b7f-4083-b757-3df001826b12&page=queryresults
+[0m16:56:30.603887 [debug] [Thread-5 (]: SQL status: OK in 0.283 seconds
+[0m16:56:30.697963 [debug] [Thread-6 (]: SQL status: OK in 0.226 seconds
+[0m16:56:30.703265 [debug] [Thread-7 (]: SQL status: OK in 0.259 seconds
+[0m16:56:30.740714 [debug] [Thread-4 (]: SQL status: OK in 0.294 seconds
+[0m16:56:31.254691 [info ] [Thread-6 (]: 3 of 22 PASS not_null_bronze_employees_employee_id ............................. [[32mPASS[0m in 2.51s]
+[0m16:56:31.260970 [debug] [Thread-6 (]: Finished running node test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7
+[0m16:56:31.259840 [info ] [Thread-5 (]: 2 of 22 PASS not_null_bronze_customers_customer_id ............................. [[32mPASS[0m in 2.51s]
+[0m16:56:31.262025 [debug] [Thread-6 (]: Began running node test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33
+[0m16:56:31.263495 [debug] [Thread-5 (]: Finished running node test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e
+[0m16:56:31.264390 [info ] [Thread-6 (]: 5 of 22 START test not_null_bronze_products_product_id ......................... [RUN]
+[0m16:56:31.265974 [debug] [Thread-5 (]: Began running node test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a
+[0m16:56:31.267114 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_employees_employee_id.9a322d5ce7, now test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33)
+[0m16:56:31.267780 [info ] [Thread-5 (]: 6 of 22 START test not_null_bronze_shippers_shipper_id ......................... [RUN]
+[0m16:56:31.268738 [debug] [Thread-6 (]: Began compiling node test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33
+[0m16:56:31.269656 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_customers_customer_id.254c74eb6e, now test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a)
+[0m16:56:31.282527 [debug] [Thread-6 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33"
+[0m16:56:31.283694 [debug] [Thread-5 (]: Began compiling node test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a
+[0m16:56:31.297251 [debug] [Thread-5 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a"
+[0m16:56:31.299251 [debug] [Thread-6 (]: Began executing node test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33
+[0m16:56:31.302155 [debug] [Thread-6 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33"
+[0m16:56:31.303152 [debug] [Thread-5 (]: Began executing node test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a
+[0m16:56:31.305721 [debug] [Thread-5 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a"
+[0m16:56:31.306401 [debug] [Thread-6 (]: On test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_products`
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:31.307468 [debug] [Thread-6 (]: Opening a new connection, currently in state closed
+[0m16:56:31.405003 [debug] [Thread-5 (]: On test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select shipper_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_shippers`
+where shipper_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:31.406924 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m16:56:31.500284 [info ] [Thread-7 (]: 4 of 22 PASS not_null_bronze_orders_order_id ................................... [[32mPASS[0m in 2.75s]
+[0m16:56:31.509510 [info ] [Thread-4 (]: 1 of 22 PASS not_null_bronze_categories_category_id ............................ [[32mPASS[0m in 2.76s]
+[0m16:56:31.512057 [debug] [Thread-7 (]: Finished running node test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3
+[0m16:56:31.513761 [debug] [Thread-4 (]: Finished running node test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8
+[0m16:56:31.515459 [debug] [Thread-7 (]: Began running node test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50
+[0m16:56:31.517338 [debug] [Thread-4 (]: Began running node test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef
+[0m16:56:31.519478 [info ] [Thread-7 (]: 7 of 22 START test not_null_bronze_suppliers_supplier_id ....................... [RUN]
+[0m16:56:31.521008 [info ] [Thread-4 (]: 8 of 22 START test not_null_silver_dim_customers_customer_id ................... [RUN]
+[0m16:56:31.522329 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_orders_order_id.24f68d0dd3, now test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50)
+[0m16:56:31.523434 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_categories_category_id.a831d0caf8, now test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef)
+[0m16:56:31.524451 [debug] [Thread-7 (]: Began compiling node test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50
+[0m16:56:31.525266 [debug] [Thread-4 (]: Began compiling node test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef
+[0m16:56:31.538379 [debug] [Thread-7 (]: Writing injected SQL for node "test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50"
+[0m16:56:31.547088 [debug] [Thread-4 (]: Writing injected SQL for node "test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef"
+[0m16:56:31.548987 [debug] [Thread-7 (]: Began executing node test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50
+[0m16:56:31.549659 [debug] [Thread-4 (]: Began executing node test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef
+[0m16:56:31.552014 [debug] [Thread-7 (]: Writing runtime sql for node "test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50"
+[0m16:56:31.554289 [debug] [Thread-4 (]: Writing runtime sql for node "test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef"
+[0m16:56:31.555711 [debug] [Thread-4 (]: On test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select customer_id
+from `portifolio-482811`.`northwind_silver`.`silver_dim_customers`
+where customer_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:31.556474 [debug] [Thread-7 (]: On test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select supplier_id
+from `portifolio-482811`.`northwind_bronze`.`bronze_suppliers`
+where supplier_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:31.557103 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:56:31.557818 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:32.654991 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:178c6aeb-762e-40a7-b722-20b21e2cf742&page=queryresults
+[0m16:56:32.660876 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:fa5da93d-3aff-42c0-a559-5dd5bea2b9bd&page=queryresults
+[0m16:56:32.913960 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:325f7b6c-a335-49ac-aa27-d6d8028ed66a&page=queryresults
+[0m16:56:32.984051 [debug] [Thread-7 (]: SQL status: OK in 0.322 seconds
+[0m16:56:33.001524 [debug] [Thread-4 (]: SQL status: OK in 0.345 seconds
+[0m16:56:33.090964 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:3fad68da-e9dc-4ff6-b73b-14b0b7e31bf2&page=queryresults
+[0m16:56:33.230851 [debug] [Thread-6 (]: SQL status: OK in 0.316 seconds
+[0m16:56:33.389816 [debug] [Thread-5 (]: SQL status: OK in 0.298 seconds
+[0m16:56:33.516193 [info ] [Thread-4 (]: 8 of 22 PASS not_null_silver_dim_customers_customer_id ......................... [[32mPASS[0m in 1.99s]
+[0m16:56:33.517596 [debug] [Thread-4 (]: Finished running node test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef
+[0m16:56:33.518268 [debug] [Thread-4 (]: Began running node test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d
+[0m16:56:33.519053 [info ] [Thread-4 (]: 9 of 22 START test not_null_silver_dim_employees_employee_id ................... [RUN]
+[0m16:56:33.519858 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_silver_dim_customers_customer_id.2c5ab665ef, now test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d)
+[0m16:56:33.520616 [debug] [Thread-4 (]: Began compiling node test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d
+[0m16:56:33.530582 [debug] [Thread-4 (]: Writing injected SQL for node "test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d"
+[0m16:56:33.538812 [info ] [Thread-7 (]: 7 of 22 PASS not_null_bronze_suppliers_supplier_id ............................. [[32mPASS[0m in 2.02s]
+[0m16:56:33.540227 [debug] [Thread-4 (]: Began executing node test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d
+[0m16:56:33.541204 [debug] [Thread-7 (]: Finished running node test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50
+[0m16:56:33.543673 [debug] [Thread-4 (]: Writing runtime sql for node "test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d"
+[0m16:56:33.544659 [debug] [Thread-7 (]: Began running node test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122
+[0m16:56:33.545973 [info ] [Thread-7 (]: 10 of 22 START test not_null_silver_dim_products_product_id .................... [RUN]
+[0m16:56:33.547712 [debug] [Thread-4 (]: On test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select employee_id
+from `portifolio-482811`.`northwind_silver`.`silver_dim_employees`
+where employee_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:33.548702 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_suppliers_supplier_id.af94a66b50, now test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122)
+[0m16:56:33.549867 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:56:33.550600 [debug] [Thread-7 (]: Began compiling node test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122
+[0m16:56:33.642117 [debug] [Thread-7 (]: Writing injected SQL for node "test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122"
+[0m16:56:33.644497 [debug] [Thread-7 (]: Began executing node test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122
+[0m16:56:33.649136 [debug] [Thread-7 (]: Writing runtime sql for node "test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122"
+[0m16:56:33.650992 [debug] [Thread-7 (]: On test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from `portifolio-482811`.`northwind_silver`.`silver_dim_products`
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:33.651826 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:33.753652 [info ] [Thread-6 (]: 5 of 22 PASS not_null_bronze_products_product_id ............................... [[32mPASS[0m in 2.49s]
+[0m16:56:33.754907 [debug] [Thread-6 (]: Finished running node test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33
+[0m16:56:33.755551 [debug] [Thread-6 (]: Began running node test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed
+[0m16:56:33.756194 [info ] [Thread-6 (]: 11 of 22 START test not_null_silver_fact_orders_order_id ....................... [RUN]
+[0m16:56:33.756841 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_products_product_id.0e447b9d33, now test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed)
+[0m16:56:33.757330 [debug] [Thread-6 (]: Began compiling node test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed
+[0m16:56:33.767750 [debug] [Thread-6 (]: Writing injected SQL for node "test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed"
+[0m16:56:33.768833 [debug] [Thread-6 (]: Began executing node test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed
+[0m16:56:33.771106 [debug] [Thread-6 (]: Writing runtime sql for node "test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed"
+[0m16:56:33.771984 [debug] [Thread-6 (]: On test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select order_id
+from `portifolio-482811`.`northwind_silver`.`silver_fact_orders`
+where order_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:33.772616 [debug] [Thread-6 (]: Opening a new connection, currently in state closed
+[0m16:56:34.117738 [info ] [Thread-5 (]: 6 of 22 PASS not_null_bronze_shippers_shipper_id ............................... [[32mPASS[0m in 2.85s]
+[0m16:56:34.119357 [debug] [Thread-5 (]: Finished running node test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a
+[0m16:56:34.120521 [debug] [Thread-5 (]: Began running node test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac
+[0m16:56:34.121288 [info ] [Thread-5 (]: 12 of 22 START test not_null_silver_fact_orders_product_id ..................... [RUN]
+[0m16:56:34.122147 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_bronze_shippers_shipper_id.12dd4ad53a, now test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac)
+[0m16:56:34.122763 [debug] [Thread-5 (]: Began compiling node test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac
+[0m16:56:34.132986 [debug] [Thread-5 (]: Writing injected SQL for node "test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac"
+[0m16:56:34.134991 [debug] [Thread-5 (]: Began executing node test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac
+[0m16:56:34.137662 [debug] [Thread-5 (]: Writing runtime sql for node "test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac"
+[0m16:56:34.138513 [debug] [Thread-5 (]: On test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+
+
+select product_id
+from `portifolio-482811`.`northwind_silver`.`silver_fact_orders`
+where product_id is null
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:34.139134 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m16:56:34.651105 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:242e9c09-4bec-445e-adf5-5d807db7fa41&page=queryresults
+[0m16:56:34.806528 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:cadcaa41-0e1b-4e52-b51c-458b99457296&page=queryresults
+[0m16:56:34.835649 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:9fd3043a-17ac-4e09-b308-087932ad8c7c&page=queryresults
+[0m16:56:35.051511 [debug] [Thread-6 (]: SQL status: OK in 0.244 seconds
+[0m16:56:35.106861 [debug] [Thread-4 (]: SQL status: OK in 0.270 seconds
+[0m16:56:35.193156 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:ad9646ef-5512-4ed1-ac11-8ca2d4a63395&page=queryresults
+[0m16:56:35.373602 [debug] [Thread-7 (]: SQL status: OK in 0.721 seconds
+[0m16:56:35.408577 [debug] [Thread-5 (]: SQL status: OK in 0.214 seconds
+[0m16:56:35.545812 [info ] [Thread-6 (]: 11 of 22 PASS not_null_silver_fact_orders_order_id ............................. [[32mPASS[0m in 1.79s]
+[0m16:56:35.547043 [debug] [Thread-6 (]: Finished running node test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed
+[0m16:56:35.547729 [debug] [Thread-6 (]: Began running node test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1
+[0m16:56:35.548483 [info ] [Thread-6 (]: 13 of 22 START test unique_bronze_categories_category_id ....................... [RUN]
+[0m16:56:35.549501 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_silver_fact_orders_order_id.e48bb6feed, now test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1)
+[0m16:56:35.550343 [debug] [Thread-6 (]: Began compiling node test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1
+[0m16:56:35.563231 [debug] [Thread-6 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1"
+[0m16:56:35.564364 [debug] [Thread-6 (]: Began executing node test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1
+[0m16:56:35.566773 [debug] [Thread-6 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1"
+[0m16:56:35.567698 [debug] [Thread-6 (]: On test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select category_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_categories`
+  where category_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:35.568322 [debug] [Thread-6 (]: Opening a new connection, currently in state closed
+[0m16:56:35.652089 [info ] [Thread-4 (]: 9 of 22 PASS not_null_silver_dim_employees_employee_id ......................... [[32mPASS[0m in 2.13s]
+[0m16:56:35.654556 [debug] [Thread-4 (]: Finished running node test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d
+[0m16:56:35.655246 [debug] [Thread-4 (]: Began running node test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe
+[0m16:56:35.656046 [info ] [Thread-4 (]: 14 of 22 START test unique_bronze_customers_customer_id ........................ [RUN]
+[0m16:56:35.656940 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_silver_dim_employees_employee_id.1f3014084d, now test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe)
+[0m16:56:35.657562 [debug] [Thread-4 (]: Began compiling node test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe
+[0m16:56:35.677308 [debug] [Thread-4 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe"
+[0m16:56:35.681888 [debug] [Thread-4 (]: Began executing node test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe
+[0m16:56:35.686642 [debug] [Thread-4 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe"
+[0m16:56:35.688532 [debug] [Thread-4 (]: On test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select customer_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_customers`
+  where customer_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:35.689887 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:56:35.936379 [info ] [Thread-5 (]: 12 of 22 PASS not_null_silver_fact_orders_product_id ........................... [[32mPASS[0m in 1.81s]
+[0m16:56:35.938809 [debug] [Thread-5 (]: Finished running node test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac
+[0m16:56:35.939638 [debug] [Thread-5 (]: Began running node test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec
+[0m16:56:35.941608 [info ] [Thread-5 (]: 15 of 22 START test unique_bronze_employees_employee_id ........................ [RUN]
+[0m16:56:35.945679 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_silver_fact_orders_product_id.c60b4af2ac, now test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec)
+[0m16:56:35.947198 [debug] [Thread-5 (]: Began compiling node test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec
+[0m16:56:35.971006 [debug] [Thread-5 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec"
+[0m16:56:35.975513 [info ] [Thread-7 (]: 10 of 22 PASS not_null_silver_dim_products_product_id .......................... [[32mPASS[0m in 2.43s]
+[0m16:56:35.977321 [debug] [Thread-7 (]: Finished running node test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122
+[0m16:56:35.978163 [debug] [Thread-7 (]: Began running node test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13
+[0m16:56:35.980122 [debug] [Thread-5 (]: Began executing node test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec
+[0m16:56:35.979290 [info ] [Thread-7 (]: 16 of 22 START test unique_bronze_orders_order_id .............................. [RUN]
+[0m16:56:35.984963 [debug] [Thread-5 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec"
+[0m16:56:35.986499 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly test.northwind_dw.not_null_silver_dim_products_product_id.223ad1b122, now test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13)
+[0m16:56:35.987761 [debug] [Thread-7 (]: Began compiling node test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13
+[0m16:56:35.998098 [debug] [Thread-7 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13"
+[0m16:56:35.999275 [debug] [Thread-5 (]: On test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select employee_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_employees`
+  where employee_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:36.001284 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m16:56:36.003368 [debug] [Thread-7 (]: Began executing node test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13
+[0m16:56:36.008234 [debug] [Thread-7 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13"
+[0m16:56:36.089275 [debug] [Thread-7 (]: On test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select order_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_orders`
+  where order_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:36.091755 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:36.891091 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:27bc4320-6833-4157-91d5-f3aeae1cc87a&page=queryresults
+[0m16:56:36.897002 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:ffec6dcc-c3fc-4ff9-b93e-8c4db14d730b&page=queryresults
+[0m16:56:37.143593 [debug] [Thread-4 (]: SQL status: OK in 0.246 seconds
+[0m16:56:37.192511 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:c95bd9ce-fca9-4755-8f6e-4d7d976d6beb&page=queryresults
+[0m16:56:37.212346 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:3121d598-e216-4a28-8e59-71f4e8577caa&page=queryresults
+[0m16:56:37.216816 [debug] [Thread-6 (]: SQL status: OK in 0.325 seconds
+[0m16:56:37.437926 [debug] [Thread-5 (]: SQL status: OK in 0.225 seconds
+[0m16:56:37.537175 [debug] [Thread-7 (]: SQL status: OK in 0.344 seconds
+[0m16:56:37.682959 [info ] [Thread-4 (]: 14 of 22 PASS unique_bronze_customers_customer_id .............................. [[32mPASS[0m in 2.03s]
+[0m16:56:37.684707 [debug] [Thread-4 (]: Finished running node test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe
+[0m16:56:37.685565 [debug] [Thread-4 (]: Began running node test.northwind_dw.unique_bronze_products_product_id.c17035ba1c
+[0m16:56:37.686396 [info ] [Thread-4 (]: 17 of 22 START test unique_bronze_products_product_id .......................... [RUN]
+[0m16:56:37.687120 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.northwind_dw.unique_bronze_customers_customer_id.f8660c11fe, now test.northwind_dw.unique_bronze_products_product_id.c17035ba1c)
+[0m16:56:37.687694 [debug] [Thread-4 (]: Began compiling node test.northwind_dw.unique_bronze_products_product_id.c17035ba1c
+[0m16:56:37.699280 [debug] [Thread-4 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_products_product_id.c17035ba1c"
+[0m16:56:37.701233 [debug] [Thread-4 (]: Began executing node test.northwind_dw.unique_bronze_products_product_id.c17035ba1c
+[0m16:56:37.706214 [debug] [Thread-4 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_products_product_id.c17035ba1c"
+[0m16:56:37.707964 [debug] [Thread-4 (]: On test.northwind_dw.unique_bronze_products_product_id.c17035ba1c: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_products_product_id.c17035ba1c"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select product_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_products`
+  where product_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:37.709120 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:56:37.828229 [info ] [Thread-6 (]: 13 of 22 PASS unique_bronze_categories_category_id ............................. [[32mPASS[0m in 2.28s]
+[0m16:56:37.831306 [debug] [Thread-6 (]: Finished running node test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1
+[0m16:56:37.832862 [debug] [Thread-6 (]: Began running node test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069
+[0m16:56:37.834382 [info ] [Thread-6 (]: 18 of 22 START test unique_bronze_shippers_shipper_id .......................... [RUN]
+[0m16:56:37.836541 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly test.northwind_dw.unique_bronze_categories_category_id.73fe8c9fc1, now test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069)
+[0m16:56:37.837623 [debug] [Thread-6 (]: Began compiling node test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069
+[0m16:56:37.853658 [debug] [Thread-6 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069"
+[0m16:56:37.855267 [debug] [Thread-6 (]: Began executing node test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069
+[0m16:56:37.860004 [debug] [Thread-6 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069"
+[0m16:56:37.862830 [debug] [Thread-6 (]: On test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select shipper_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_shippers`
+  where shipper_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:37.864195 [debug] [Thread-6 (]: Opening a new connection, currently in state closed
+[0m16:56:38.111522 [info ] [Thread-7 (]: 16 of 22 PASS unique_bronze_orders_order_id .................................... [[32mPASS[0m in 2.12s]
+[0m16:56:38.113005 [debug] [Thread-7 (]: Finished running node test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13
+[0m16:56:38.113773 [debug] [Thread-7 (]: Began running node test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab
+[0m16:56:38.114488 [info ] [Thread-7 (]: 19 of 22 START test unique_bronze_suppliers_supplier_id ........................ [RUN]
+[0m16:56:38.115309 [debug] [Thread-7 (]: Re-using an available connection from the pool (formerly test.northwind_dw.unique_bronze_orders_order_id.eec6e86d13, now test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab)
+[0m16:56:38.116097 [debug] [Thread-7 (]: Began compiling node test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab
+[0m16:56:38.127561 [debug] [Thread-7 (]: Writing injected SQL for node "test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab"
+[0m16:56:38.129238 [debug] [Thread-7 (]: Began executing node test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab
+[0m16:56:38.131630 [debug] [Thread-7 (]: Writing runtime sql for node "test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab"
+[0m16:56:38.132489 [debug] [Thread-7 (]: On test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select supplier_id as unique_field
+  from `portifolio-482811`.`northwind_bronze`.`bronze_suppliers`
+  where supplier_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:38.133175 [debug] [Thread-7 (]: Opening a new connection, currently in state closed
+[0m16:56:38.216555 [info ] [Thread-5 (]: 15 of 22 PASS unique_bronze_employees_employee_id .............................. [[32mPASS[0m in 2.27s]
+[0m16:56:38.220189 [debug] [Thread-5 (]: Finished running node test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec
+[0m16:56:38.222410 [debug] [Thread-5 (]: Began running node test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6
+[0m16:56:38.223699 [info ] [Thread-5 (]: 20 of 22 START test unique_silver_dim_customers_customer_id .................... [RUN]
+[0m16:56:38.225202 [debug] [Thread-5 (]: Re-using an available connection from the pool (formerly test.northwind_dw.unique_bronze_employees_employee_id.7c9377f0ec, now test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6)
+[0m16:56:38.226364 [debug] [Thread-5 (]: Began compiling node test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6
+[0m16:56:38.236971 [debug] [Thread-5 (]: Writing injected SQL for node "test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6"
+[0m16:56:38.238652 [debug] [Thread-5 (]: Began executing node test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6
+[0m16:56:38.241131 [debug] [Thread-5 (]: Writing runtime sql for node "test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6"
+[0m16:56:38.242311 [debug] [Thread-5 (]: On test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select customer_id as unique_field
+  from `portifolio-482811`.`northwind_silver`.`silver_dim_customers`
+  where customer_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:38.242948 [debug] [Thread-5 (]: Opening a new connection, currently in state closed
+[0m16:56:38.983991 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:9670bbec-fc90-4e53-95e5-f79a468d35d7&page=queryresults
+[0m16:56:39.076336 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:64febf8a-a843-4acd-af94-65ffd3d0f384&page=queryresults
+[0m16:56:39.252000 [debug] [Thread-5 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:3494210a-61ce-49b0-b9d0-f44e2802bddd&page=queryresults
+[0m16:56:39.265240 [debug] [Thread-6 (]: SQL status: OK in 0.280 seconds
+[0m16:56:39.287486 [debug] [Thread-7 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:99902c94-f1e6-4252-98bc-07d7900cc21e&page=queryresults
+[0m16:56:39.299518 [debug] [Thread-4 (]: SQL status: OK in 0.222 seconds
+[0m16:56:39.493752 [debug] [Thread-5 (]: SQL status: OK in 0.241 seconds
+[0m16:56:39.534239 [debug] [Thread-7 (]: SQL status: OK in 0.246 seconds
+[0m16:56:39.855076 [info ] [Thread-6 (]: 18 of 22 PASS unique_bronze_shippers_shipper_id ................................ [[32mPASS[0m in 2.02s]
+[0m16:56:39.856648 [debug] [Thread-6 (]: Finished running node test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069
+[0m16:56:39.857880 [debug] [Thread-6 (]: Began running node test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51
+[0m16:56:39.858883 [info ] [Thread-6 (]: 21 of 22 START test unique_silver_dim_employees_employee_id .................... [RUN]
+[0m16:56:39.859913 [debug] [Thread-6 (]: Re-using an available connection from the pool (formerly test.northwind_dw.unique_bronze_shippers_shipper_id.16aac97069, now test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51)
+[0m16:56:39.862567 [debug] [Thread-6 (]: Began compiling node test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51
+[0m16:56:39.866992 [info ] [Thread-4 (]: 17 of 22 PASS unique_bronze_products_product_id ................................ [[32mPASS[0m in 2.18s]
+[0m16:56:39.877519 [debug] [Thread-6 (]: Writing injected SQL for node "test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51"
+[0m16:56:39.878637 [debug] [Thread-4 (]: Finished running node test.northwind_dw.unique_bronze_products_product_id.c17035ba1c
+[0m16:56:39.879504 [debug] [Thread-4 (]: Began running node test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850
+[0m16:56:39.880326 [info ] [Thread-4 (]: 22 of 22 START test unique_silver_dim_products_product_id ...................... [RUN]
+[0m16:56:39.881146 [debug] [Thread-6 (]: Began executing node test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51
+[0m16:56:39.881873 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.northwind_dw.unique_bronze_products_product_id.c17035ba1c, now test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850)
+[0m16:56:39.884212 [debug] [Thread-6 (]: Writing runtime sql for node "test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51"
+[0m16:56:39.884830 [debug] [Thread-4 (]: Began compiling node test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850
+[0m16:56:39.893610 [debug] [Thread-4 (]: Writing injected SQL for node "test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850"
+[0m16:56:39.894563 [debug] [Thread-6 (]: On test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select employee_id as unique_field
+  from `portifolio-482811`.`northwind_silver`.`silver_dim_employees`
+  where employee_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:39.895231 [debug] [Thread-6 (]: Opening a new connection, currently in state closed
+[0m16:56:39.978056 [debug] [Thread-4 (]: Began executing node test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850
+[0m16:56:39.980313 [debug] [Thread-4 (]: Writing runtime sql for node "test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850"
+[0m16:56:39.982362 [debug] [Thread-4 (]: On test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850: /* {"app": "dbt", "dbt_version": "1.12.0", "profile_name": "northwind_dw", "target_name": "dev", "node_id": "test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850"} */
+
+    
+    select
+      count(*) as failures,
+      count(*) != 0 as should_warn,
+      count(*) != 0 as should_error
+    from (
+      
+    
+  
+    
+    
+
+with dbt_test__target as (
+
+  select product_id as unique_field
+  from `portifolio-482811`.`northwind_silver`.`silver_dim_products`
+  where product_id is not null
+
+)
+
+select
+    unique_field,
+    count(*) as n_records
+
+from dbt_test__target
+group by unique_field
+having count(*) > 1
+
+
+
+  
+  
+      
+    ) dbt_internal_test
+[0m16:56:39.983419 [debug] [Thread-4 (]: Opening a new connection, currently in state closed
+[0m16:56:40.136707 [info ] [Thread-7 (]: 19 of 22 PASS unique_bronze_suppliers_supplier_id .............................. [[32mPASS[0m in 2.02s]
+[0m16:56:40.138606 [debug] [Thread-7 (]: Finished running node test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab
+[0m16:56:40.549928 [info ] [Thread-5 (]: 20 of 22 PASS unique_silver_dim_customers_customer_id .......................... [[32mPASS[0m in 2.32s]
+[0m16:56:40.551286 [debug] [Thread-5 (]: Finished running node test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6
+[0m16:56:41.006743 [debug] [Thread-4 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:8382db5e-88d9-4668-bac7-ceaf95feec2f&page=queryresults
+[0m16:56:41.231257 [debug] [Thread-4 (]: SQL status: OK in 0.223 seconds
+[0m16:56:41.306622 [debug] [Thread-6 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=portifolio-482811&j=bq:US:9ba878e5-2f7f-4521-a0e3-5ccbfc9527e8&page=queryresults
+[0m16:56:41.536965 [debug] [Thread-6 (]: SQL status: OK in 0.229 seconds
+[0m16:56:41.731206 [info ] [Thread-4 (]: 22 of 22 PASS unique_silver_dim_products_product_id ............................ [[32mPASS[0m in 1.85s]
+[0m16:56:41.732535 [debug] [Thread-4 (]: Finished running node test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850
+[0m16:56:42.029211 [info ] [Thread-6 (]: 21 of 22 PASS unique_silver_dim_employees_employee_id .......................... [[32mPASS[0m in 2.17s]
+[0m16:56:42.030592 [debug] [Thread-6 (]: Finished running node test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51
+[0m16:56:42.033611 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m16:56:42.103251 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m16:56:42.104751 [debug] [MainThread]: Connection 'test.northwind_dw.unique_silver_dim_customers_customer_id.1db70683c6' was properly closed.
+[0m16:56:42.105744 [debug] [MainThread]: Connection 'test.northwind_dw.unique_silver_dim_employees_employee_id.dc831d0e51' was properly closed.
+[0m16:56:42.106252 [debug] [MainThread]: Connection 'test.northwind_dw.unique_silver_dim_products_product_id.1cca5c8850' was properly closed.
+[0m16:56:42.106667 [debug] [MainThread]: Connection 'test.northwind_dw.unique_bronze_suppliers_supplier_id.5dde350bab' was properly closed.
+[0m16:56:42.107179 [info ] [MainThread]: 
+[0m16:56:42.107751 [info ] [MainThread]: Finished running 22 data tests in 0 hours 0 minutes and 14.68 seconds (14.68s).
+[0m16:56:42.113768 [debug] [MainThread]: Command end result
+[0m16:56:42.201299 [debug] [MainThread]: Wrote artifact WritableManifest to /app/dbt/northwind_dw/target/manifest.json
+[0m16:56:42.204896 [debug] [MainThread]: Wrote artifact SemanticManifest to /app/dbt/northwind_dw/target/semantic_manifest.json
+[0m16:56:42.207992 [debug] [MainThread]: Wrote artifact OsiDocument to /app/dbt/northwind_dw/target/osi_document.json
+[0m16:56:42.220446 [debug] [MainThread]: Wrote artifact RunExecutionResult to /app/dbt/northwind_dw/target/run_results.json
+[0m16:56:42.220996 [info ] [MainThread]: 
+[0m16:56:42.221584 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m16:56:42.222214 [info ] [MainThread]: 
+[0m16:56:42.222900 [info ] [MainThread]: Done. PASS=22 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=22
+[0m16:56:42.224139 [debug] [MainThread]: Resource report: {"command_name": "test", "command_success": true, "command_wall_clock_time": 17.40715, "process_in_blocks": "1232", "process_kernel_time": 1.219506, "process_mem_max_rss": "267672", "process_out_blocks": "4296", "process_user_time": 9.632102}
+[0m16:56:42.224745 [debug] [MainThread]: Command `dbt test` succeeded at 16:56:42.224606 after 17.41 seconds
+[0m16:56:42.225298 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f1b1de90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f67f0710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7865f1c2fd10>]}
+[0m16:56:42.225896 [debug] [MainThread]: Flushing usage events
+[0m16:56:42.849882 [debug] [MainThread]: An error was encountered while trying to flush usage events

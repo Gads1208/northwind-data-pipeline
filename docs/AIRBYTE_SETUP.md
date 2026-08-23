@@ -178,7 +178,7 @@ bq query --use_legacy_sql=false \
 
 **Solução**: Verifique tabelas no Postgres
 ```bash
-docker exec -it northwind-postgres psql -U postgres -d northwind -c "\dt"
+docker exec -it northwind-postgres psql -U northwind -d northwind -c "\dt"
 ```
 
 ## Recursos

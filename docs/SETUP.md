@@ -228,7 +228,7 @@ docker-compose ps
 
 ```bash
 # PostgreSQL
-docker exec -it northwind-postgres psql -U postgres -d northwind -c "SELECT COUNT(*) FROM customers;"
+docker exec -it northwind-postgres psql -U northwind -d northwind -c "SELECT COUNT(*) FROM customers;"
 
 # Airflow
 curl http://localhost:8080/health
@@ -370,7 +370,7 @@ Credenciais:
 ### 1. Verificar PostgreSQL
 
 ```bash
-docker exec -it northwind-postgres psql -U postgres -d northwind
+docker exec -it northwind-postgres psql -U northwind -d northwind
 ```
 
 ```sql

@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../a
 
 from tools.db_tools import validate_safe_sql
 from tools.vis_tools import recommend_visualization
+from tools.analytics_tools import get_context_analytics
 
 class TestMCPSafetyAndTools(unittest.TestCase):
 
@@ -43,6 +44,19 @@ class TestMCPSafetyAndTools(unittest.TestCase):
         data = [{"item": f"Item {i}", "val": i * 10} for i in range(12)]
         res = recommend_visualization(data)
         self.assertEqual(res["recommended_chart"], "bar")
+
+    def test_get_context_analytics_customers(self):
+        res = get_context_analytics("customers")
+        self.assertTrue(res["success"])
+        self.assertEqual(len(res["kpis"]), 4)
+        self.assertIn("Total de Clientes", [k["title"] for k in res["kpis"]])
+
+    def test_get_context_analytics_orders(self):
+        res = get_context_analytics("orders")
+        self.assertTrue(res["success"])
+        self.assertEqual(len(res["kpis"]), 4)
+        self.assertIn("Total de Pedidos", [k["title"] for k in res["kpis"]])
+
 
 if __name__ == "__main__":
     unittest.main()

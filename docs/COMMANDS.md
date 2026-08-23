@@ -67,12 +67,11 @@ docker-compose logs -f [nome-do-container]
 # Airflow
 make shell-airflow
 # ou
-docker exec -it airflow-webserver bash
+# Entrar em um container específico
+docker exec -it northwind-backend bash
 
 # PostgreSQL
-make shell-postgres
-# ou
-docker exec -it northwind-postgres psql -U postgres -d northwind
+docker exec -it northwind-postgres psql -U northwind -d northwind
 
 # Qualquer container
 docker exec -it [nome-do-container] bash
@@ -86,10 +85,10 @@ docker exec -it [nome-do-container] bash
 
 ```bash
 # Via container
-docker exec -it northwind-postgres psql -U postgres -d northwind
+docker exec -it northwind-postgres psql -U northwind -d northwind
 
 # Via cliente local (se tiver psql instalado)
-psql -h localhost -p 5432 -U postgres -d northwind
+psql -h localhost -p 5432 -U northwind -d northwind
 ```
 
 ### Comandos SQL Úteis
@@ -116,14 +115,11 @@ SELECT * FROM customers LIMIT 5;
 
 ```bash
 # Criar backup
-make backup-postgres
-# ou
-docker exec northwind-postgres pg_dump -U postgres northwind > backup.sql
+docker exec northwind-postgres pg_dump -U northwind northwind > backup.sql
 
 # Restaurar backup
-make restore-postgres FILE=backup.sql
-# ou
-docker exec -i northwind-postgres psql -U postgres northwind < backup.sql
+docker exec -i northwind-postgres psql -U northwind northwind < backup.sql
+
 ```
 
 ---
