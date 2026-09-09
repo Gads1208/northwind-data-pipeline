@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Engineering & AI Solutions | Portfólio Profissional</title>
+  <meta name="description" content="Portfólio de Engenharia de Dados & Inteligência Artificial. Especialista em Arquitetura Medallion, dbt, Airflow, Model Context Protocol (MCP) e Agentes de IA Autônomos.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Canvas de Estrelas Espaciais (Parallax & Twinkle) -->
+  <canvas id="starfieldCanvas"></canvas>
+
+  <!-- Nebulosas Cósmicas de Fundo -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span class="logo-text">GUILHERME<span class="text-accent">.</span><span class="text-sub">DATA&amp;AI</span></span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#hero" class="nav-link active">Início</a>
+        <a href="#flagship" class="nav-link">Projeto Destaque</a>
+        <a href="#architecture" class="nav-link">Arquitetura</a>
+        <a href="#simulator" class="nav-link">Simulador de Agentes</a>
+        <a href="#skills" class="nav-link">Stack &amp; Habilidades</a>
+        <a href="#about" class="nav-link">Sobre Mim</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Link Direto para o Render -->
+        <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="live-render-badge" title="Acessar painel em produção no Render">
+          <span class="status-dot"></span>
+          <span class="live-render-text">Painel no Render</span>
+          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-outline btn-sm">Contato</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span class="tag-icon">⚡</span>
+            <span>GUILHERME ANTUNES DA SILVA &bull; BELO HORIZONTE, MG</span>
+          </div>
+
+          <h1 class="hero-title">
+            Especialista &amp; Líder Técnico em <span class="gradient-text">Engenharia de Dados &amp; IA Generativa</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Sólida bagagem em governança, arquitetura moderna 
+            <strong>(Lakehouse / Medallion com Databricks, dbt e Airflow)</strong>, orquestração de <strong>Agentes de IA</strong> com segurança e suporte à tomada de decisão do nível operacional ao <strong>C-level</strong>.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow">
+              <span>🚀 Acessar Painel no Render</span>
+              <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="#flagship" class="btn btn-secondary">
+              <span>Explorar Arquitetura</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <a href="https://github.com/Gads1208/northwind-data-pipeline" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <!-- Live Metrics Grid -->
+          <div class="metrics-strip">
+            <div class="metric-card">
+              <div class="metric-number">14</div>
+              <div class="metric-label">Páginas de BI Interativo</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-number">5</div>
+              <div class="metric-label">Agentes de IA Orquestrados</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-number">16+</div>
+              <div class="metric-label">Testes de Dados (dbt)</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-number">100%</div>
+              <div class="metric-label">Docker Microserviços</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flagship Project Section -->
+    <section class="section flagship-section" id="flagship">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">FLAGSHIP CASE STUDY</span>
+          <h2 class="section-title">Northwind AI Enterprise Platform</h2>
+          <p class="section-subtitle">
+            Uma solução corporativa unindo Engenharia de Dados robusta, orquestração de IA autônoma segura e Dashboard executivo estilo Power BI.
+          </p>
+        </div>
+
+        <!-- Interactive Showcase Card -->
+        <div class="showcase-card">
+          <!-- Showcase Tabs Navigation -->
+          <div class="showcase-tabs">
+            <button class="showcase-tab-btn active" data-tab="tab-overview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>Visão Geral &amp; Valor</span>
+            </button>
+            <button class="showcase-tab-btn" data-tab="tab-architecture">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+              <span>Arquitetura Medallion &amp; MCP</span>
+            </button>
+            <button class="showcase-tab-btn" data-tab="tab-simulator">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <span>Simulador Multi-Agente</span>
+            </button>
+            <button class="showcase-tab-btn" data-tab="tab-challenges">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>Desafios Técnicos &amp; Métricas</span>
+            </button>
+          </div>
+
+          <!-- Tab 1: Overview -->
+          <div class="tab-content active" id="tab-overview">
+            <div class="overview-grid">
+              <div class="overview-info">
+                <h3 class="card-headline">O Desafio de Negócio</h3>
+                <p class="card-description">
+                  A base de dados transacional clássica <strong>Northwind</strong> (pedidos, clientes, fornecedores e produtos) precisava ser modernizada para viabilizar análises corporativas de alta performance, onde tomadores de decisão pudessem consultar métricas de negócio tanto visualmente quanto via linguagem natural com agentes de IA.
+                </p>
+
+                <h3 class="card-headline mt-4">A Solução Desenvolvida</h3>
+                <p class="card-description">
+                  Construção de uma plataforma de dados distribuída ponta a ponta:
+                </p>
+                <ul class="feature-list">
+                  <li>
+                    <span class="feature-check">✓</span>
+                    <span><strong>Data Pipeline Medallion:</strong> Ingestão estruturada de PostgreSQL, enriquecimento via dbt (Bronze, Silver Star Schema, Gold Agregações) orquestrado com Airflow.</span>
+                  </li>
+                  <li>
+                    <span class="feature-check">✓</span>
+                    <span><strong>Segurança Rigorosa (AST Sanitizer):</strong> Tradução de linguagem natural para SQL com proteção contra queries destrutivas (DROP, DELETE, ALTER, INSERT) através de árvore sintática abstrata (AST).</span>
+                  </li>
+                  <li>
+                    <span class="feature-check">✓</span>
+                    <span><strong>Model Context Protocol (MCP):</strong> Servidor oficial padronizado para expor esquemas, metadados e ferramentas analíticas para LLMs.</span>
+                  </li>
+                  <li>
+                    <span class="feature-check">✓</span>
+                    <span><strong>Dashboard BI React 18:</strong> Interface estilo Power BI com 14 visualizações analíticas, suporte Dark/Light mode e Chatbot contextual.</span>
+                  </li>
+                </ul>
+
+                <div class="project-tags-cloud">
+                  <span class="badge-tag">Python 3.11</span>
+                  <span class="badge-tag">FastAPI</span>
+                  <span class="badge-tag">dbt 1.7</span>
+                  <span class="badge-tag">Apache Airflow</span>
+                  <span class="badge-tag">MCP Protocol</span>
+                  <span class="badge-tag">React 18 + Vite</span>
+                  <span class="badge-tag">PostgreSQL 15</span>
+                  <span class="badge-tag">Docker Compose</span>
+                </div>
+              </div>
+
+              <div class="overview-visual">
+                <div class="mockup-frame">
+                  <div class="mockup-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="mockup-title">Northwind Analytics Platform • Executive Dashboard</span>
+                  </div>
+                  <div class="mockup-body">
+                    <div class="dashboard-preview-card">
+                      <div class="dash-mini-header">
+                        <span class="dash-badge">FATURAMENTO YOY</span>
+                        <span class="dash-status">▲ +18.4%</span>
+                      </div>
+                      <div class="dash-value">$1,354,458.59</div>
+                      <!-- SVG Mini Chart -->
+                      <svg class="mini-chart-svg" viewBox="0 0 300 80">
+                        <defs>
+                          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#6366F1" stop-opacity="0.4"/>
+                            <stop offset="100%" stop-color="#6366F1" stop-opacity="0.0"/>
+                          </linearGradient>
+                        </defs>
+                        <path d="M0,70 Q40,65 80,45 T160,35 T240,15 T300,5 L300,80 L0,80 Z" fill="url(#chartGrad)"/>
+                        <path d="M0,70 Q40,65 80,45 T160,35 T240,15 T300,5" fill="none" stroke="#06B6D4" stroke-width="3"/>
+                      </svg>
+                    </div>
+
+                    <div class="mini-kpis-row">
+                      <div class="mini-kpi">
+                        <span class="mini-kpi-label">Pedidos Concluídos</span>
+                        <span class="mini-kpi-num">830</span>
+                      </div>
+                      <div class="mini-kpi">
+                        <span class="mini-kpi-label">Ticket Médio</span>
+                        <span class="mini-kpi-num">$1,631.87</span>
+                      </div>
+                      <div class="mini-kpi">
+                        <span class="mini-kpi-label">Tempo Médio Entrega</span>
+                        <span class="mini-kpi-num">8.4 dias</span>
+                      </div>
+                    </div>
+
+                    <div class="mockup-terminal-snippet">
+                      <span class="terminal-prefix">ai-orchestrator $</span>
+                      <span class="terminal-cmd">Executing SQL Agent -> AST validation [SAFE SELECT] -> MCP Tool Call -> OK</span>
+                    </div>
+
+                    <!-- Live Deploy Link Banner -->
+                    <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="mockup-live-banner">
+                      <div class="live-banner-info">
+                        <span class="status-dot"></span>
+                        <span>Deploy Ativo: <strong>northwind-data-pipeline.onrender.com</strong></span>
+                      </div>
+                      <span class="live-banner-action">
+                        <span>Acessar Painel</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Architecture -->
+          <div class="tab-content" id="tab-architecture">
+            <div class="arch-section-intro">
+              <h3 class="card-headline">Pipeline End-to-End: Da Ingestão aos Agentes de IA</h3>
+              <p class="card-description">
+                Clique em qualquer nó da arquitetura abaixo para inspecionar os detalhes técnicos de implementação, modelos dbt e garantias de segurança.
+              </p>
+            </div>
+
+            <!-- Clickable Interactive Architecture Pipeline -->
+            <div class="arch-pipeline-container" id="architecture">
+              <div class="pipeline-node active" data-node="bronze">
+                <div class="node-icon">🥉</div>
+                <div class="node-title">Bronze Layer</div>
+                <div class="node-tech">PostgreSQL &bull; Raw Data</div>
+              </div>
+
+              <div class="pipeline-arrow">➔</div>
+
+              <div class="pipeline-node" data-node="silver">
+                <div class="node-icon">🥈</div>
+                <div class="node-title">Silver Layer</div>
+                <div class="node-tech">dbt Star Schema &bull; 4 Modelos</div>
+              </div>
+
+              <div class="pipeline-arrow">➔</div>
+
+              <div class="pipeline-node" data-node="gold">
+                <div class="node-icon">🥇</div>
+                <div class="node-title">Gold Layer</div>
+                <div class="node-tech">dbt Business Marts &bull; KPIs</div>
+              </div>
+
+              <div class="pipeline-arrow">➔</div>
+
+              <div class="pipeline-node" data-node="mcp">
+                <div class="node-icon">🔌</div>
+                <div class="node-title">MCP Protocol</div>
+                <div class="node-tech">Model Context Protocol</div>
+              </div>
+
+              <div class="pipeline-arrow">➔</div>
+
+              <div class="pipeline-node" data-node="agents">
+                <div class="node-icon">🤖</div>
+                <div class="node-title">Multi-Agentes &amp; AST</div>
+                <div class="node-tech">5 Agentes Especializados</div>
+              </div>
+
+              <div class="pipeline-arrow">➔</div>
+
+              <div class="pipeline-node" data-node="bi">
+                <div class="node-icon">📊</div>
+                <div class="node-title">BI Dashboard</div>
+                <div class="node-tech">React 18 &bull; 14 Telas</div>
+              </div>
+            </div>
+
+            <!-- Architecture Details Drawer -->
+            <div class="arch-details-box" id="archDetailsBox">
+              <div class="details-header">
+                <h4 id="archDetailTitle" class="text-accent">🥉 Camada Bronze (Raw Ingestion)</h4>
+                <span id="archDetailBadge" class="badge-tech">Ingestão Concluída</span>
+              </div>
+              <p id="archDetailDesc" class="details-text">
+                8 tabelas brutas extraídas da base Northwind (Orders, OrderDetails, Customers, Products, Employees, Categories, Suppliers, Shippers). Preservação de integridade histórica e carimbos de data/hora para auditoria de dados.
+              </p>
+              <div class="details-specs" id="archDetailSpecs">
+                <div class="spec-item">
+                  <span class="spec-label">Fonte de Dados:</span>
+                  <span class="spec-val">PostgreSQL 15 (Docker)</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Registros Extraídos:</span>
+                  <span class="spec-val">Totalidade da base Northwind</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">Orquestrador:</span>
+                  <span class="spec-val">Apache Airflow 2.8 via Docker</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: Multi-Agent Simulator -->
+          <div class="tab-content" id="tab-simulator">
+            <div class="simulator-intro">
+              <h3 class="card-headline">Simulador de Execução dos Agentes em Tempo Real</h3>
+              <p class="card-description">
+                Selecione um cenário de pergunta abaixo para ver como o orquestrador aciona os 5 agentes, valida a segurança contra SQL Injection via AST e entrega a resposta analítica.
+              </p>
+            </div>
+
+            <!-- Scenario Picker Buttons -->
+            <div class="scenario-buttons">
+              <button class="btn-scenario active" data-scenario="top_customers">
+                <span class="scenario-badge">Query Analítica</span>
+                <span class="scenario-title">Top 5 Clientes por Faturamento</span>
+              </button>
+              <button class="btn-scenario" data-scenario="security_attack">
+                <span class="scenario-badge badge-warning">Teste de Segurança</span>
+                <span class="scenario-title">Tentativa de Injeção: "DROP TABLE Orders"</span>
+              </button>
+              <button class="btn-scenario" data-scenario="shipping_delay">
+                <span class="scenario-badge">Insights de Logística</span>
+                <span class="scenario-title">Risco de Atraso por Transportadora</span>
+              </button>
+            </div>
+
+            <!-- Agent Execution Terminal / Output Display -->
+            <div class="simulator-console">
+              <div class="console-topbar">
+                <div class="console-controls">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="console-title">MCP Multi-Agent Orchestrator • Execution Graph</span>
+                <span class="console-status" id="consoleStatus">Status: Ready</span>
+              </div>
+
+              <div class="console-body" id="consoleBody">
+                <!-- Dynamic steps will be injected here via app.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 4: Challenges & Metrics -->
+          <div class="tab-content" id="tab-challenges">
+            <div class="challenges-grid">
+              <div class="challenge-item">
+                <div class="challenge-header">
+                  <span class="challenge-tag">Segurança Crítica</span>
+                  <h4>Prevenção de SQL Destrutivo via Análise AST</h4>
+                </div>
+                <p>
+                  <strong>Problema:</strong> LLMs em sistemas Text-to-SQL podem alucinar ou ser induzidas por prompts maliciosos a executar comandos <code>DROP</code>, <code>DELETE</code> ou <code>ALTER</code>.
+                </p>
+                <p>
+                  <strong>Solução:</strong> Implementação de validador sintático baseado na biblioteca <code>sqlglot</code>. A query gerada pelo SQL Agent é convertida em Árvore Sintática Abstrata (AST) e rejeitada imediatamente se não for estritamente do tipo <code>SELECT</code>.
+                </p>
+              </div>
+
+              <div class="challenge-item">
+                <div class="challenge-header">
+                  <span class="challenge-tag">Engenharia de Dados</span>
+                  <h4>Modelagem Dimensional Star Schema com dbt</h4>
+                </div>
+                <p>
+                  <strong>Problema:</strong> O banco relacional Northwind é normalizado (3NF), ineficiente para consultas analíticas de alta performance e agregações em tempo real.
+                </p>
+                <p>
+                  <strong>Solução:</strong> Modelagem em dbt criando tabelas de dimensões (<code>dim_customers</code>, <code>dim_products</code>, <code>dim_employees</code>) e tabela fato (<code>fct_orders</code>) com surrogate keys e 16 testes de integridade referencial.
+                </p>
+              </div>
+
+              <div class="challenge-item">
+                <div class="challenge-header">
+                  <span class="challenge-tag">Integração dbt + Airflow</span>
+                  <h4>Execução Modular sem Travamento de Containers</h4>
+                </div>
+                <p>
+                  <strong>Problema:</strong> Bibliotecas de integração direta apresentavam inconsistências de versões de Python entre o container do Airflow e o dbt core.
+                </p>
+                <p>
+                  <strong>Solução:</strong> Implementação com <code>BashOperator</code> e <code>TaskGroups</code> modulares, isolando a execução das camadas Bronze, Silver e Gold em tarefas independentes com logs estruturados.
+                </p>
+              </div>
+
+              <div class="challenge-item">
+                <div class="challenge-header">
+                  <span class="challenge-tag">Model Context Protocol</span>
+                  <h4>Padronização de Ferramentas via Protocolo Oficial MCP</h4>
+                </div>
+                <p>
+                  <strong>Problema:</strong> Cada framework de agentes (LangChain, CrewAI, AutoGen) utiliza schemas proprietários para chamada de ferramentas (tools).
+                </p>
+                <p>
+                  <strong>Solução:</strong> Criação de um servidor MCP nativo expondo ferramentas universais (<code>inspect_schema</code>, <code>run_safe_query</code>, <code>get_kpis</code>, <code>recommend_chart</code>), compatível com qualquer cliente de IA do mercado.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Skills & Stack Section -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-badge">STACK TÉCNICA</span>
+          <h2 class="section-title">Habilidades &amp; Ferramentas Dominadas</h2>
+          <p class="section-subtitle">
+            Tecnologias utilizadas para construir arquiteturas escaláveis, pipelines confiáveis e ecossistemas inteligentes.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Skill Card 1 -->
+          <div class="skill-category-card">
+            <div class="cat-header">
+              <span class="cat-icon">⚙️</span>
+              <h3 class="cat-title">Engenharia de Dados</h3>
+            </div>
+            <ul class="skills-pill-list">
+              <li>dbt (Data Build Tool)</li>
+              <li>Apache Airflow</li>
+              <li>PostgreSQL</li>
+              <li>Google BigQuery</li>
+              <li>Python 3.11 (ETL)</li>
+              <li>Modelagem Dimensional (Star Schema)</li>
+              <li>Arquitetura Medallion</li>
+              <li>Qualidade de Dados &amp; Testes</li>
+            </ul>
+          </div>
+
+          <!-- Skill Card 2 -->
+          <div class="skill-category-card">
+            <div class="cat-header">
+              <span class="cat-icon">🧠</span>
+              <h3 class="cat-title">Inteligência Artificial &amp; MCP</h3>
+            </div>
+            <ul class="skills-pill-list">
+              <li>Model Context Protocol (MCP)</li>
+              <li>Sistemas Multi-Agente</li>
+              <li>Text-to-SQL Seguro (AST Parsing)</li>
+              <li>FastAPI Async</li>
+              <li>Engenharia de Prompts Estruturados</li>
+              <li>LLMs (Gemini, Claude, OpenAI)</li>
+              <li>Vetorização &amp; Embeddings</li>
+              <li>Guardrails de Segurança de Dados</li>
+            </ul>
+          </div>
+
+          <!-- Skill Card 3 -->
+          <div class="skill-category-card">
+            <div class="cat-header">
+              <span class="cat-icon">📈</span>
+              <h3 class="cat-title">Visualização &amp; Frontend</h3>
+            </div>
+            <ul class="skills-pill-list">
+              <li>React 18 &bull; Vite</li>
+              <li>TypeScript</li>
+              <li>TailwindCSS</li>
+              <li>Recharts &amp; ECharts</li>
+              <li>Design Systems Corporativos</li>
+              <li>Dashboards Estilo Power BI</li>
+              <li>Nginx API Gateway</li>
+              <li>REST APIs &amp; WebSockets</li>
+            </ul>
+          </div>
+
+          <!-- Skill Card 4 -->
+          <div class="skill-category-card">
+            <div class="cat-header">
+              <span class="cat-icon">🐳</span>
+              <h3 class="cat-title">DevOps, Nuvem &amp; Práticas</h3>
+            </div>
+            <ul class="skills-pill-list">
+              <li>Docker &amp; Docker Compose</li>
+              <li>GitHub Actions (CI/CD)</li>
+              <li>Prometheus &amp; Métricas</li>
+              <li>OpenTelemetry</li>
+              <li>Git &amp; GitFlow</li>
+              <li>Google Cloud Platform (GCP)</li>
+              <li>Infraestrutura como Código</li>
+              <li>Linux / Shell Scripting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="about-card">
+          <!-- Profile Header -->
+          <div class="about-profile-header">
+            <div class="avatar-monogram">GA</div>
+            <div class="profile-meta">
+              <h2 class="profile-name">Guilherme Antunes da Silva</h2>
+              <span class="profile-role">Especialista &amp; Líder Técnico em Engenharia &amp; Analytics de Dados</span>
+              <div class="profile-location">
+                <span class="location-tag">📍 Belo Horizonte - MG</span>
+                <span class="location-tag">🎓 Pós-graduando em IA Generativa</span>
+                <span class="location-tag">💼 Referência Técnica</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Bio -->
+          <div class="about-bio">
+            <p class="about-bio-text">
+              Especialista e Líder Técnico em <strong>Engenharia e Analytics de Dados</strong>, atualmente pós-graduando em <strong>Inteligência Artificial Generativa e Aplicações Avançadas</strong>. Possuo sólida bagagem em governança corporativa, arquitetura moderna de dados <strong>(Lakehouse / Medallion com Databricks, dbt e Airflow)</strong> e suporte à tomada de decisão estratégica do nível operacional ao <strong>C-level</strong>.
+            </p>
+            <p class="about-bio-text">
+              Experiência comprovada na condução técnica de squads multidisciplinares, mentoria e desenvolvimento de analistas, estruturação de processos ágeis de qualidade de dados (dbt, CI/CD), evangelização da cultura Data-Driven e liderança de iniciativas para a <strong>adoção ética, segura e eficiente de Inteligência Artificial</strong>.
+            </p>
+            <p class="about-bio-text">
+              Formação multidisciplinar unindo <strong>Ciência de Dados</strong> e <strong>Engenharia de Produção</strong>, combinando forte capacidade analítica, visão sistêmica de processos, alinhamento com objetivos de negócio e liderança focada em pessoas e resultados sustentáveis.
+            </p>
+          </div>
+
+          <!-- Core Competency Pillars -->
+          <div class="competency-pillars-grid">
+            <div class="competency-card">
+              <div class="comp-icon">👥</div>
+              <h3 class="comp-title">Liderança &amp; Gestão</h3>
+              <p class="comp-desc">
+                Liderança técnica de squads, mentoria e desenvolvimento de talentos, gestão de stakeholders, alinhamento estratégico, definição de OKRs/KPIs e disseminação da cultura Data-Driven.
+              </p>
+            </div>
+
+            <div class="competency-card">
+              <div class="comp-icon">🏗️</div>
+              <h3 class="comp-title">Engenharia &amp; Lakehouse</h3>
+              <p class="comp-desc">
+                Azure Databricks, Unity Catalog, Apache Airflow, dbt, Airbyte, Medallion Architecture (Bronze, Silver, Gold), Google BigQuery (GCP) e modelagem dimensional Star Schema.
+              </p>
+            </div>
+
+            <div class="competency-card">
+              <div class="comp-icon">🧠</div>
+              <h3 class="comp-title">IA Generativa &amp; Analytics</h3>
+              <p class="comp-desc">
+                Aplicações avançadas de IA, governança e guardrails de segurança, sistemas multi-agente, Model Context Protocol (MCP), Text-to-SQL AST, Power BI Enterprise (DAX, RLS/OLS) e Python.
+              </p>
+            </div>
+
+            <div class="competency-card">
+              <div class="comp-icon">⚙️</div>
+              <h3 class="comp-title">Governança &amp; Qualidade</h3>
+              <p class="comp-desc">
+                Esteiras de CI/CD (Azure DevOps / GitHub Actions), testes automatizados de dados com dbt, code review, catálogo unificado de metadados e garantia de SLAs de negócio.
+              </p>
+            </div>
+          </div>
+
+          <!-- Career Timeline -->
+          <h3 class="timeline-section-title">
+            <span>💼</span>
+            <span>Trajetória Profissional em Destaque</span>
+          </h3>
+
+          <div class="career-timeline">
+            <!-- Experience 1: MRV & CO -->
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-company">MRV &amp; CO</span>
+                  <span class="timeline-role">&bull; Analista de Dados Sênior (Referência Técnica)</span>
+                </div>
+                <span class="timeline-period">04/2026 – Presente</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Liderança e condução de projetos voltados para implementação, adoção estratégica e definição de boas práticas para o uso seguro, eficiente e ético de Inteligência Artificial nas rotinas analíticas da companhia.</li>
+                <li>Liderança técnica na padronização e boas práticas de modelagem analítica e dashboards em Power BI, capacitando o time na entrega de análises estratégicas de alta confiabilidade.</li>
+                <li>Estruturação e direcionamento dos processos de Governança e Qualidade de Dados utilizando dbt, atuando em code review e orientação técnica de pares.</li>
+                <li>Orquestração e sustentação de pipelines escaláveis com Apache Airflow e arquitetura em nuvem (GCP / BigQuery), garantindo SLAs críticos de disponibilidade para as áreas de negócio.</li>
+                <li>Desenvolvimento de automações avançadas em Python para eliminação de gargalos operacionais e fomento da produtividade contínua da equipe.</li>
+                <li>Alinhamento constante com stakeholders executivos para mapeamento de dores e priorização do roadmap corporativo de dados e IA.</li>
+              </ul>
+            </div>
+
+            <!-- Experience 2: FICTOR ALIMENTOS (Líder Técnico) -->
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-company">FICTOR ALIMENTOS</span>
+                  <span class="timeline-role">&bull; Especialista de Data Analytics (Líder Técnico)</span>
+                </div>
+                <span class="timeline-period">08/2025 – 03/2026</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Liderança técnica de ponta a ponta na estruturação do setor de dados e migração para arquitetura moderna (Lakehouse/Azure Databricks com arquitetura Medallion: Bronze, Silver e Gold).</li>
+                <li>Condução de programas de capacitação e mentoria técnica para analistas, promovendo a evolução profissional do time em SQL, dbt, Python e boas práticas de UX/UI para BI.</li>
+                <li>Implementação da governança corporativa de dados e catálogo unificado (Unity Catalog), além de gerenciamento da governança do ecossistema Power BI Enterprise (RLS/OLS, capacidades e gateways).</li>
+                <li>Disseminação ativa da cultura Data-Driven na organização através de consultoria interna, treinamentos de Self-Service BI e suporte estratégico a diretores e gerentes de negócios e subsidiárias.</li>
+                <li>Gestão e disponibilização de bases confiáveis e estruturadas para projetos de Machine Learning / IA voltados para transações comerciais e logísticas específicas.</li>
+              </ul>
+            </div>
+
+            <!-- Experience 3: FICTOR ALIMENTOS (Sênior) -->
+            <div class="timeline-item">
+              <span class="timeline-dot"></span>
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-company">FICTOR ALIMENTOS</span>
+                  <span class="timeline-role">&bull; Analista de Dados / BI Sênior</span>
+                </div>
+                <span class="timeline-period">02/2025 – 08/2025</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Condução da implementação de pipelines ELT (Airbyte e conectores customizados) e orquestração de rotinas analíticas com Apache Airflow.</li>
+                <li>Implementação de esteiras de CI/CD via Azure DevOps para versionamento e implantação contínua de modelos analíticos com dbt.</li>
+                <li>Liderança do projeto de implantação de Self-Service BI, aumentando a extensão analítica das áreas de negócio e subsidiárias do grupo.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Academic Education & Certifications -->
+          <h3 class="timeline-section-title">
+            <span>🎓</span>
+            <span>Formação Acadêmica</span>
+          </h3>
+
+          <div class="academic-grid">
+            <div class="academic-card">
+              <h4 class="academic-degree">Pós-Graduação em Inteligência Artificial Generativa e Aplicações Avançadas</h4>
+              <p class="academic-inst">Anhanguera</p>
+              <span class="academic-date">06/2026 – 11/2026</span>
+            </div>
+
+            <div class="academic-card">
+              <h4 class="academic-degree">Bacharelado em Engenharia de Produção</h4>
+              <p class="academic-inst">UniCesumar</p>
+              <span class="academic-date">Concluído: 05/2025</span>
+            </div>
+
+            <div class="academic-card">
+              <h4 class="academic-degree">Tecnólogo em Ciência de Dados</h4>
+              <p class="academic-inst">Uniube</p>
+              <span class="academic-date">Concluído: 03/2026</span>
+            </div>
+          </div>
+
+          <!-- Certifications Cloud -->
+          <h3 class="timeline-section-title">
+            <span>📜</span>
+            <span>Certificações Relevantes</span>
+          </h3>
+
+          <div class="certifications-cloud">
+            <span class="cert-pill">Fundamentos do Databricks (Databricks)</span>
+            <span class="cert-pill">Introdução à IA Generativa (Google)</span>
+            <span class="cert-pill">SQL Avançado e Google BigQuery (Udemy)</span>
+            <span class="cert-pill">Formação Engenharia de Dados, ETL e Automações com Python &amp; dbt</span>
+            <span class="cert-pill">Liderança e Gestão de Pessoas (Hashtag Treinamentos)</span>
+            <span class="cert-pill">Trilha Impressionadora - AI &amp; Análise de Dados (Hashtag)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <section class="section contact-section" id="contact">
+      <div class="container text-center">
+        <span class="section-badge">VAMOS CONVERSAR?</span>
+        <h2 class="section-title">Conecte-se com Guilherme Antunes da Silva</h2>
+        <p class="section-subtitle max-w-600">
+          Disponível para posições de Liderança Técnica, Engenharia de Dados, Arquitetura Lakehouse e Soluções com Inteligência Artificial Generativa.
+        </p>
+
+        <div class="contact-links-group">
+          <a href="https://linkedin.com/in/guilherme-antunes-206031235/" target="_blank" rel="noopener noreferrer" class="contact-btn">
+            <svg class="contact-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span>LinkedIn: guilherme-antunes</span>
+          </a>
+
+          <a href="https://github.com/Gads1208" target="_blank" rel="noopener noreferrer" class="contact-btn">
+            <svg class="contact-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub: Gads1208</span>
+          </a>
+
+          <a href="mailto:gads1208@gmail.com" class="contact-btn">
+            <svg class="contact-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>gads1208@gmail.com</span>
+          </a>
+
+          <a href="https://wa.me/5532999984457" target="_blank" rel="noopener noreferrer" class="contact-btn">
+            <svg class="contact-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>(32) 99998-4457</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <p class="footer-copy">
+        &copy; 2026 &bull; Desenvolvido por <strong>Guilherme Antunes da Silva</strong> &bull; Especialista em Engenharia de Dados &amp; IA.
+      </p>
+      <div class="footer-badge">
+        <span>100% Hosted on Free Cloud Tiers</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
