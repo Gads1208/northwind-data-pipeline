@@ -32,7 +32,8 @@
 
       <nav class="nav-menu" id="navMenu">
         <a href="#hero" class="nav-link active">Início</a>
-        <a href="#flagship" class="nav-link">Projeto Destaque</a>
+        <a href="#flagship" class="nav-link">Northwind (Flagship)</a>
+        <a href="#car-price-ai" class="nav-link">Car Price AI (ML)</a>
         <a href="#architecture" class="nav-link">Arquitetura</a>
         <a href="#simulator" class="nav-link">Simulador de Agentes</a>
         <a href="#skills" class="nav-link">Stack &amp; Habilidades</a>
@@ -40,10 +41,17 @@
       </nav>
 
       <div class="nav-actions">
-        <!-- Link Direto para o Render -->
-        <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="live-render-badge" title="Acessar painel em produção no Render">
+        <!-- Link Direto para o Render (Northwind) -->
+        <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="live-render-badge" title="Acessar painel Northwind em produção no Render">
           <span class="status-dot"></span>
-          <span class="live-render-text">Painel no Render</span>
+          <span class="live-render-text">Northwind BI</span>
+          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        </a>
+
+        <!-- Link Direto para o Render (Car Price AI) -->
+        <a href="https://car-price-predictor-cjac.onrender.com/" target="_blank" rel="noopener noreferrer" class="live-render-badge live-render-badge-car" title="Acessar Car Price AI (Redes Neurais) em produção no Render">
+          <span class="status-dot status-dot-car"></span>
+          <span class="live-render-text">Car Price AI</span>
           <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
         </a>
         <a href="#contact" class="btn btn-outline btn-sm">Contato</a>
@@ -78,14 +86,18 @@
 
           <div class="hero-cta-group">
             <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-glow">
-              <span>🚀 Acessar Painel no Render</span>
+              <span>🚀 Painel Northwind (BI + IA)</span>
+              <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://car-price-predictor-cjac.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-neural">
+              <span>🚗 Car Price AI (Redes Neurais)</span>
               <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
             </a>
             <a href="#flagship" class="btn btn-secondary">
-              <span>Explorar Arquitetura</span>
+              <span>Explorar Projetos</span>
               <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
             </a>
-            <a href="https://github.com/Gads1208/northwind-data-pipeline" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <a href="https://github.com/Gads1208" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
               <span>GitHub</span>
             </a>
@@ -436,6 +448,74 @@
                 <p>
                   <strong>Solução:</strong> Criação de um servidor MCP nativo expondo ferramentas universais (<code>inspect_schema</code>, <code>run_safe_query</code>, <code>get_kpis</code>, <code>recommend_chart</code>), compatível com qualquer cliente de IA do mercado.
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Car Price AI Project Section -->
+    <section class="section car-project-section" id="car-price-ai">
+      <div class="container">
+        <div class="car-project-card">
+          <div class="car-project-glow"></div>
+          <div class="car-project-grid">
+            <div class="car-project-info">
+              <div class="car-project-header">
+                <span class="car-project-badge">⚡ Deep Learning &amp; MLOps</span>
+                <span class="status-badge">
+                  <span class="status-dot status-dot-car"></span>
+                  <span>Produção no Render</span>
+                </span>
+              </div>
+
+              <h2 class="car-project-title">Car Price AI &bull; Previsão com Redes Neurais</h2>
+              
+              <p class="car-project-desc">
+                Solução de Machine Learning e Deep Learning para precificação inteligente de veículos usados.
+                Desenvolvida com pipeline livre de <strong>Data Leakage</strong> (via <code>ColumnTransformer</code>), engenharia de features de negócio, target logarítmica e um <strong>aplicativo web interativo em Streamlit</strong> com Docker em produção no Render.
+              </p>
+
+              <div class="car-tags-row">
+                <span class="car-tag">🧠 Redes Neurais (MLP)</span>
+                <span class="car-tag">⚙️ Scikit-Learn Pipeline</span>
+                <span class="car-tag">🛡️ Zero Data Leakage</span>
+                <span class="car-tag">🚀 Streamlit Web App</span>
+                <span class="car-tag">🐳 Docker</span>
+                <span class="car-tag">☁️ Render Cloud</span>
+              </div>
+
+              <div class="car-project-actions">
+                <a href="https://car-price-predictor-cjac.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-neural">
+                  <span>🚀 Acessar Simulador no Render</span>
+                  <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+                <a href="https://github.com/Gads1208/Redes_Neurais" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                  <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Código no GitHub</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="car-project-metrics">
+              <div class="car-metrics-box">
+                <div class="car-metric-item">
+                  <div class="car-metric-val">0.8359</div>
+                  <div class="car-metric-lbl">R² Score (Melhor Modelo)</div>
+                </div>
+                <div class="car-metric-item">
+                  <div class="car-metric-val">&euro; 1.481</div>
+                  <div class="car-metric-lbl">MAE (Erro Médio)</div>
+                </div>
+                <div class="car-metric-item">
+                  <div class="car-metric-val">370k+</div>
+                  <div class="car-metric-lbl">Veículos Analisados</div>
+                </div>
+                <div class="car-metric-item">
+                  <div class="car-metric-val">&lt; 1s</div>
+                  <div class="car-metric-lbl">Tempo de Inferência</div>
+                </div>
               </div>
             </div>
           </div>
