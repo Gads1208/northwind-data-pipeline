@@ -1671,3 +1671,180 @@ body {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* ==========================================================================
+   OpenClaw Telegram Bot Project Styles
+   ========================================================================== */
+.live-render-badge-telegram {
+  background: rgba(0, 136, 204, 0.14);
+  border: 1px solid rgba(0, 136, 204, 0.45);
+  color: #38bdf8;
+  box-shadow: 0 0 15px rgba(0, 136, 204, 0.18);
+}
+.live-render-badge-telegram:hover {
+  background: rgba(0, 136, 204, 0.28);
+  border-color: #38bdf8;
+  box-shadow: 0 0 20px rgba(0, 136, 204, 0.45);
+  color: #ffffff;
+}
+.status-dot-telegram {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #229ed9;
+  box-shadow: 0 0 10px #229ed9;
+  animation: pulse-dot-telegram 2s infinite;
+}
+@keyframes pulse-dot-telegram {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 158, 217, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(34, 158, 217, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 158, 217, 0); }
+}
+
+.btn-telegram {
+  background: linear-gradient(135deg, #0088cc 0%, #229ed9 50%, #00b4d8 100%);
+  color: #ffffff;
+  border: 1px solid rgba(34, 158, 217, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 136, 204, 0.35);
+}
+.btn-telegram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 136, 204, 0.55);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.telegram-project-section {
+  padding: 80px 0;
+  position: relative;
+}
+
+.telegram-project-card {
+  background: linear-gradient(135deg, rgba(8, 20, 38, 0.88) 0%, rgba(6, 14, 28, 0.96) 100%);
+  border: 1px solid rgba(0, 136, 204, 0.28);
+  border-radius: 24px;
+  padding: 44px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  transition: all var(--transition-normal);
+}
+.telegram-project-card:hover {
+  border-color: rgba(34, 158, 217, 0.55);
+  box-shadow: 0 25px 60px rgba(0, 136, 204, 0.2);
+  transform: translateY(-3px);
+}
+.telegram-project-glow {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 136, 204, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.telegram-project-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 960px) {
+  .telegram-project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.telegram-project-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.telegram-project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(0, 136, 204, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(0, 136, 204, 0.35);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.status-badge-telegram {
+  background: rgba(0, 136, 204, 0.12);
+  border: 1px solid rgba(0, 136, 204, 0.35);
+  color: #38bdf8;
+}
+.telegram-project-title {
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.telegram-project-desc {
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-size: 1.02rem;
+  margin-bottom: 24px;
+}
+.telegram-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.telegram-tag {
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  font-family: var(--font-mono);
+}
+.telegram-project-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.telegram-metrics-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 136, 204, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.telegram-metric-item {
+  text-align: center;
+}
+.telegram-metric-val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #38bdf8;
+  font-family: var(--font-mono);
+  line-height: 1.2;
+}
+.telegram-metric-lbl {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+.telegram-project-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
