@@ -1848,3 +1848,250 @@ body {
   flex-wrap: wrap;
 }
 
+/* ==============================================================================
+   NORTHWIND JEV IA E-COMMERCE STYLES
+   ============================================================================== */
+.live-render-badge-jev {
+  background: rgba(236, 72, 153, 0.12);
+  border-color: rgba(236, 72, 153, 0.35);
+  color: #f472b6;
+}
+.live-render-badge-jev:hover {
+  background: rgba(236, 72, 153, 0.22);
+  border-color: #ec4899;
+  box-shadow: 0 0 16px rgba(236, 72, 153, 0.3);
+  color: #fff;
+}
+.status-dot-jev {
+  background-color: #ec4899;
+  box-shadow: 0 0 8px #ec4899;
+}
+.btn-jev {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  color: #fff;
+  border: 1px solid rgba(236, 72, 153, 0.5);
+  box-shadow: 0 4px 18px rgba(236, 72, 153, 0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn-jev:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(236, 72, 153, 0.45);
+  filter: brightness(1.1);
+  color: #fff;
+}
+
+.jev-project-section {
+  position: relative;
+  z-index: 10;
+  padding: 40px 0;
+}
+.jev-project-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(24, 20, 42, 0.95), rgba(15, 12, 28, 0.9));
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 44px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(236, 72, 153, 0.15);
+  transition: all 0.3s ease;
+}
+.jev-project-card:hover {
+  border-color: rgba(236, 72, 153, 0.55);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(236, 72, 153, 0.25);
+  transform: translateY(-3px);
+}
+.jev-project-glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25), transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+.jev-project-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 992px) {
+  .jev-project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.jev-project-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.jev-project-badge {
+  background: rgba(236, 72, 153, 0.15);
+  border: 1px solid rgba(236, 72, 153, 0.4);
+  color: #f472b6;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.status-badge-jev {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.jev-project-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.jev-project-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.jev-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.jev-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+.jev-project-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.jev-project-metrics {
+  display: flex;
+  justify-content: center;
+}
+.jev-metrics-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.jev-metric-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 20px 16px;
+  text-align: center;
+}
+.jev-metric-val {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #f472b6;
+  font-family: var(--font-mono);
+  line-height: 1.2;
+}
+.jev-metric-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* Jev Technical Specifications Grid */
+.jev-specs-container {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 28px;
+}
+.jev-specs-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 18px;
+  letter-spacing: 0.3px;
+}
+.jev-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+@media (max-width: 768px) {
+  .jev-specs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.jev-spec-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  transition: all 0.2s ease;
+}
+.jev-spec-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(236, 72, 153, 0.3);
+}
+.jev-spec-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  padding-top: 2px;
+}
+.jev-spec-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.jev-spec-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #f472b6;
+}
+.jev-spec-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.jev-spec-desc code {
+  color: #fbbf24;
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+.jev-spec-desc em {
+  color: #38bdf8;
+  font-style: normal;
+  font-family: var(--font-mono);
+}
+
+
+
