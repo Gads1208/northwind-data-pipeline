@@ -43,33 +43,89 @@
       </nav>
 
       <div class="nav-actions">
-        <!-- Link Direto para o Render (Northwind) -->
-        <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="live-render-badge" title="Acessar painel Northwind em produção no Render">
-          <span class="status-dot"></span>
-          <span class="live-render-text">Northwind BI</span>
-          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-        </a>
+        <!-- Dropdown Projetos Ativos (Empilhados) -->
+        <div class="nav-dropdown" id="projectsDropdown">
+          <button class="nav-dropdown-trigger" id="projectsDropdownTrigger" aria-expanded="false" aria-haspopup="true" title="Ver aplicações ativas em produção">
+            <span class="status-dot"></span>
+            <span class="dropdown-trigger-text">Projetos Ativos</span>
+            <span class="dropdown-count-badge">4</span>
+            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
 
-        <!-- Link Direto para o Render (Car Price AI) -->
-        <a href="https://car-price-predictor-cjac.onrender.com/" target="_blank" rel="noopener noreferrer" class="live-render-badge live-render-badge-car" title="Acessar Car Price AI (Redes Neurais) em produção no Render">
-          <span class="status-dot status-dot-car"></span>
-          <span class="live-render-text">Car Price AI</span>
-          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-        </a>
+          <div class="nav-dropdown-menu" id="projectsDropdownMenu">
+            <div class="dropdown-header">
+              <span class="dropdown-header-title">Aplicações em Produção</span>
+              <span class="dropdown-header-subtitle">Acesso direto via Render &amp; Telegram</span>
+            </div>
 
-        <!-- Link Direto para o Telegram Bot -->
-        <a href="https://t.me/Guilherme_northwind_bot" target="_blank" rel="noopener noreferrer" class="live-render-badge live-render-badge-telegram" title="Conversar com o Bot Northwind no Telegram (@Guilherme_northwind_bot)">
-          <span class="status-dot status-dot-telegram"></span>
-          <span class="live-render-text">Bot Telegram</span>
-          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-        </a>
+            <div class="dropdown-items-stack">
+              <!-- 1. Northwind BI -->
+              <a href="https://northwind-data-pipeline.onrender.com" target="_blank" rel="noopener noreferrer" class="dropdown-item item-northwind" title="Acessar painel Northwind em produção no Render">
+                <div class="dropdown-item-icon">
+                  <span class="status-dot status-dot-emerald"></span>
+                  <span class="item-emoji">📊</span>
+                </div>
+                <div class="dropdown-item-content">
+                  <div class="dropdown-item-title-row">
+                    <span class="dropdown-item-name">Northwind BI</span>
+                    <span class="dropdown-env-tag env-render">Render</span>
+                  </div>
+                  <span class="dropdown-item-desc">Pipeline ETL, BigQuery &amp; Dashboard Executivo</span>
+                </div>
+                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
 
-        <!-- Link Direto para a Loja Northwind Jev IA (Render) -->
-        <a href="https://northwind-market-jev.onrender.com" target="_blank" rel="noopener noreferrer" class="live-render-badge live-render-badge-jev" title="Acessar E-commerce Northwind com motor de recomendação Jev IA (TypeSafe AI) em produção no Render">
-          <span class="status-dot status-dot-jev"></span>
-          <span class="live-render-text">Loja Jev IA</span>
-          <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-        </a>
+              <!-- 2. Car Price AI -->
+              <a href="https://car-price-predictor-cjac.onrender.com/" target="_blank" rel="noopener noreferrer" class="dropdown-item item-car" title="Acessar Car Price AI (Redes Neurais) em produção no Render">
+                <div class="dropdown-item-icon">
+                  <span class="status-dot status-dot-car"></span>
+                  <span class="item-emoji">🚗</span>
+                </div>
+                <div class="dropdown-item-content">
+                  <div class="dropdown-item-title-row">
+                    <span class="dropdown-item-name">Car Price AI</span>
+                    <span class="dropdown-env-tag env-render">Render</span>
+                  </div>
+                  <span class="dropdown-item-desc">Redes Neurais Artificiais &amp; Precificação</span>
+                </div>
+                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
+
+              <!-- 3. Bot Telegram -->
+              <a href="https://t.me/Guilherme_northwind_bot" target="_blank" rel="noopener noreferrer" class="dropdown-item item-telegram" title="Conversar com o Bot Northwind no Telegram (@Guilherme_northwind_bot)">
+                <div class="dropdown-item-icon">
+                  <span class="status-dot status-dot-telegram"></span>
+                  <span class="item-emoji">🤖</span>
+                </div>
+                <div class="dropdown-item-content">
+                  <div class="dropdown-item-title-row">
+                    <span class="dropdown-item-name">Bot Telegram</span>
+                    <span class="dropdown-env-tag env-telegram">Telegram</span>
+                  </div>
+                  <span class="dropdown-item-desc">Agente OpenClaw + Gemini com Northwind</span>
+                </div>
+                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
+
+              <!-- 4. Loja Jev IA -->
+              <a href="https://northwind-market-jev.onrender.com" target="_blank" rel="noopener noreferrer" class="dropdown-item item-jev" title="Acessar E-commerce Northwind com motor de recomendação Jev IA em produção no Render">
+                <div class="dropdown-item-icon">
+                  <span class="status-dot status-dot-jev"></span>
+                  <span class="item-emoji">🛍️</span>
+                </div>
+                <div class="dropdown-item-content">
+                  <div class="dropdown-item-title-row">
+                    <span class="dropdown-item-name">Loja Jev IA</span>
+                    <span class="dropdown-env-tag env-render">Render</span>
+                  </div>
+                  <span class="dropdown-item-desc">E-Commerce Gourmet &amp; Recomendador TypeSafe AI</span>
+                </div>
+                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a href="#contact" class="btn btn-outline btn-sm">Contato</a>
       </div>
 

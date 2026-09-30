@@ -190,6 +190,32 @@ function initNavigation() {
     });
   }
 
+  // Projects Dropdown Click & Outside Click
+  const projectsDropdown = document.getElementById('projectsDropdown');
+  const projectsDropdownTrigger = document.getElementById('projectsDropdownTrigger');
+
+  if (projectsDropdown && projectsDropdownTrigger) {
+    projectsDropdownTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isActive = projectsDropdown.classList.toggle('active');
+      projectsDropdownTrigger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!projectsDropdown.contains(e.target)) {
+        projectsDropdown.classList.remove('active');
+        projectsDropdownTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        projectsDropdown.classList.remove('active');
+        projectsDropdownTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   // Active Link on Scroll
   window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section');
