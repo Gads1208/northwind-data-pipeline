@@ -100,6 +100,20 @@ docker compose up -d
 
 ---
 
+## 🌐 Ecossistema de Aplicações em Produção (Live Demos)
+
+Acesse os projetos ativos no ar através dos links diretos:
+
+| Aplicação | Stack & Descrição | Acesso Direto |
+| :--- | :--- | :---: |
+| **🚀 Northwind BI Dashboard** | React 18 + FastAPI + PostgreSQL + MCP + Multi-Agente | [Acessar no Render](https://northwind-data-pipeline.onrender.com) |
+| **📄 GitDigest** | Análise de Branches, IA Generativa & Relatórios PDF | [Acessar no Render](https://repo-change-summary.onrender.com) |
+| **🛍️ Loja Northwind (Jev IA)** | E-commerce Gourmet + Motor TypeSafe AI System One | [Acessar no Render](https://northwind-market-jev.onrender.com) |
+| **🚗 Car Price AI** | Redes Neurais Artificiais (MLP) & Precificação MLOps | [Acessar no Render](https://car-price-predictor-cjac.onrender.com/) |
+| **🤖 Chatbot Telegram** | Agente Autônomo OpenClaw + Gemini com Northwind | [Conversar no Telegram](https://t.me/Guilherme_northwind_bot) |
+
+---
+
 ## 📚 Documentação Técnica Detalhada
 
 - 📐 [Documentação de Arquitetura](docs/ARCHITECTURE.md)
