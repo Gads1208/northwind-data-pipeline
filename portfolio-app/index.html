@@ -35,6 +35,7 @@
         <a href="#flagship" class="nav-link">Northwind BI</a>
         <a href="#telegram-bot" class="nav-link">Bot Telegram</a>
         <a href="#northwind-jev-store" class="nav-link">Loja Jev IA</a>
+        <a href="#gitdigest" class="nav-link">GitDigest</a>
         <a href="#car-price-ai" class="nav-link">Car Price AI</a>
         <a href="#architecture" class="nav-link">Arquitetura</a>
         <a href="#simulator" class="nav-link">Simulador IA</a>
@@ -48,7 +49,7 @@
           <button class="nav-dropdown-trigger" id="projectsDropdownTrigger" aria-expanded="false" aria-haspopup="true" title="Ver aplicações ativas em produção">
             <span class="status-dot"></span>
             <span class="dropdown-trigger-text">Projetos Ativos</span>
-            <span class="dropdown-count-badge">4</span>
+            <span class="dropdown-count-badge">5</span>
             <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
 
@@ -122,6 +123,22 @@
                 </div>
                 <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
               </a>
+
+              <!-- 5. GitDigest -->
+              <a href="https://gitdigest-summary.onrender.com" target="_blank" rel="noopener noreferrer" class="dropdown-item item-gitdigest" title="Acessar GitDigest - Auditoria Git e Resumo Executivo em PDF">
+                <div class="dropdown-item-icon">
+                  <span class="status-dot status-dot-gitdigest"></span>
+                  <span class="item-emoji">📄</span>
+                </div>
+                <div class="dropdown-item-content">
+                  <div class="dropdown-item-title-row">
+                    <span class="dropdown-item-name">GitDigest</span>
+                    <span class="dropdown-env-tag env-render">Render</span>
+                  </div>
+                  <span class="dropdown-item-desc">Auditoria de Branches, IA &amp; Relatórios em PDF</span>
+                </div>
+                <svg class="external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+              </a>
             </div>
           </div>
         </div>
@@ -171,6 +188,10 @@
             </a>
             <a href="https://northwind-market-jev.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-jev">
               <span>🛍️ Loja Northwind (Jev IA)</span>
+              <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+            </a>
+            <a href="https://gitdigest-summary.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-gitdigest">
+              <span>📄 GitDigest (PDF + IA)</span>
               <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
             </a>
             <a href="#telegram-bot" class="btn btn-secondary">
@@ -805,6 +826,102 @@
                 <div class="jev-metric-item">
                   <div class="jev-metric-val">Docker</div>
                   <div class="jev-metric-lbl">Deploy no Render (render.yaml)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitDigest Showcase Section -->
+    <section class="section gitdigest-project-section" id="gitdigest">
+      <div class="container">
+        <div class="gitdigest-project-card">
+          <div class="gitdigest-card-decoration"></div>
+          
+          <div class="gitdigest-project-grid">
+            <div class="gitdigest-project-info">
+              <div class="gitdigest-badge-group">
+                <span class="badge-tech badge-gitdigest">NOVO PROJETO • AUDITORIA GIT &amp; IA</span>
+                <span class="badge-env badge-render">Online no Render</span>
+              </div>
+
+              <h2 class="gitdigest-project-title">
+                GitDigest &bull; Resumo Inteligente &amp; Relatórios Executivos em PDF
+              </h2>
+
+              <p class="gitdigest-project-desc">
+                Solução web corporativa de alta performance projetada para resolver a falta de visibilidade gerencial em ciclos de desenvolvimento. Conecta-se diretamente à <strong>API REST do GitHub v3</strong>, analisa o histórico completo de branches, realiza comparações de diffs e sintetiza as alterações com <strong>IA Generativa (Google Gemini)</strong> ou motor heurístico determinístico, exportando relatórios formais em PDF com formatação editorial para tomadores de decisão e auditoria de código.
+              </p>
+
+              <div class="gitdigest-features-container">
+                <div class="gitdigest-feature-item">
+                  <span class="gitdigest-feature-icon">🌿</span>
+                  <div>
+                    <strong>Rastreabilidade &amp; Comparação de Branches</strong>
+                    <p>Inspeção granular de modificações entre branches (ex: feature vs main) com detecção de adições, remoções e arquivos tocados.</p>
+                  </div>
+                </div>
+
+                <div class="gitdigest-feature-item">
+                  <span class="gitdigest-feature-icon">🤖</span>
+                  <div>
+                    <strong>Síntese Executiva com Gemini 1.5 Flash</strong>
+                    <p>Categorização semântica automática (Features, Fixes, Refactoring, Perf, Docs) com resumo executivo em linguagem natural em Português.</p>
+                  </div>
+                </div>
+
+                <div class="gitdigest-feature-item">
+                  <span class="gitdigest-feature-icon">📑</span>
+                  <div>
+                    <strong>Exportação Editorial em PDF (A4)</strong>
+                    <p>Geração client-side de PDFs de alta fidelidade visual com KPIs de impacto, matriz de categorias e registro cronológico de commits.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gitdigest-project-actions">
+                <a href="https://gitdigest-summary.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-gitdigest">
+                  <span>🚀 Acessar GitDigest no Render</span>
+                  <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+                <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                  <span>💻 Servidor Local (Porta 8080)</span>
+                  <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+                <a href="https://github.com/Gads1208/repo-change-summary" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                  <svg class="btn-icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Código no GitHub</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="gitdigest-project-metrics">
+              <div class="gitdigest-metrics-box">
+                <div class="gitdigest-metric-item">
+                  <div class="gitdigest-metric-val">100% Client-Side</div>
+                  <div class="gitdigest-metric-lbl">Privacidade de Token (Local Storage)</div>
+                </div>
+                <div class="gitdigest-metric-item">
+                  <div class="gitdigest-metric-val">6 Categorias</div>
+                  <div class="gitdigest-metric-lbl">Classificação Automática de Commits</div>
+                </div>
+                <div class="gitdigest-metric-item">
+                  <div class="gitdigest-metric-val">Gemini AI</div>
+                  <div class="gitdigest-metric-lbl">Síntese com IA Generativa &amp; Heurística</div>
+                </div>
+                <div class="gitdigest-metric-item">
+                  <div class="gitdigest-metric-val">PDF A4</div>
+                  <div class="gitdigest-metric-lbl">Relatório Técnico com Rastreabilidade</div>
+                </div>
+                <div class="gitdigest-metric-item">
+                  <div class="gitdigest-metric-val">5.000 req/h</div>
+                  <div class="gitdigest-metric-lbl">Autenticação com GitHub PAT</div>
+                </div>
+                <div class="gitdigest-metric-item">
+                  <div class="gitdigest-metric-val">Render Static</div>
+                  <div class="gitdigest-metric-lbl">Deploy sem Cold Start (render.yaml)</div>
                 </div>
               </div>
             </div>
