@@ -8,8 +8,10 @@ import { GenericAnalyticsPage } from './pages/GenericAnalyticsPage';
 export function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [pendingPrompt, setPendingPrompt] = useState<string | null>(null);
 
   const handleTriggerChat = (prompt: string) => {
+    setPendingPrompt(prompt);
     setIsChatOpen(true);
   };
 
@@ -46,6 +48,8 @@ export function App() {
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
         activeTab={activeTab}
+        triggeredPrompt={pendingPrompt}
+        onConsumePrompt={() => setPendingPrompt(null)}
       />
     </div>
   );

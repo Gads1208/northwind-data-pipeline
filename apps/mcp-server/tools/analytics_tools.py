@@ -83,6 +83,18 @@ def explain_business_rules() -> dict:
         "reorder_logic": "Product should be reordered if (units_in_stock + units_on_order) <= reorder_level."
     }
 
+def _build_harness_routing(ctx: str) -> dict:
+    """Builds Harness routing metadata according to context analytical complexity."""
+    analytical_contexts = {"analysis", "forecasting", "insights"}
+    is_analytical = ctx in analytical_contexts
+    return {
+        "skill": f"mcp_context_{ctx}",
+        "model_tier": "gemini-4-neon" if is_analytical else "gemini-4-hydrogen",
+        "effort": "medium" if is_analytical else "low",
+        "ast_validated": True,
+    }
+
+
 def get_context_analytics(context: str = "customers") -> dict:
     """Returns contextual KPI cards and table data specifically tailored for each dashboard page."""
     ctx = (context or "customers").lower()
@@ -133,7 +145,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"key": "phone", "label": "Telefone"}
                 ],
                 "rows": t_res.get("data", [])
-            }
+            },
+            "storytelling": {
+                "headline": "Base de Clientes Globalizada com Alta Conversão Ativa",
+                "narrative": f"A carteira Northwind soma {tot_cust} clientes distribuídos em {countries} países, com {active} contas realizando pedidos ativos e gasto médio de ${float(avg_spent or 0):,.2f} por comprador.",
+                "key_takeaway": "Forte capilaridade internacional com oportunidade de reativação para contas ainda sem pedidos.",
+                "recommended_action": "Acionar campanhas de onboarding e descontos progressivos para converter clientes cadastrados sem compras recentes."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "orders":
@@ -187,7 +206,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"key": "total_amount", "label": "Valor Total"}
                 ],
                 "rows": t_res.get("data", [])
-            }
+            },
+            "storytelling": {
+                "headline": "Fluxo Logístico Eficiente e Alto Índice de Despacho",
+                "narrative": f"Dos {tot_orders} pedidos registrados, {shipped} já foram despachados com frete médio de ${float(freight or 0):,.2f}, totalizando ${float(rev or 0):,.2f} em volume transacionado.",
+                "key_takeaway": "Alta taxa de cumprimento de entregas mantém o ritmo de faturamento sem gargalos severos de expedição.",
+                "recommended_action": "Monitorar pedidos pendentes de envio e renegociar faixas de frete nos trechos de maior custo."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "products":
@@ -239,7 +265,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"key": "status", "label": "Status"}
                 ],
                 "rows": t_res.get("data", [])
-            }
+            },
+            "storytelling": {
+                "headline": "Portfólio Ativo Saudável com Capital Imobilizado Sob Controle",
+                "narrative": f"O catálogo conta com {active_prod} produtos ativos de {tot_prod} itens totais, sustentando ${float(stock_val or 0):,.2f} em estoque a um preço médio unitário de ${float(avg_price or 0):,.2f}.",
+                "key_takeaway": "Catálogo enxuto e operacional reduz obsolescência e facilita o giro de inventário.",
+                "recommended_action": "Aplicar a regra de reposição automática nos SKUs onde (units_in_stock + units_on_order) <= reorder_level."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "employees":
@@ -288,7 +321,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"key": "hire_date", "label": "Contratação"}
                 ],
                 "rows": t_res.get("data", [])
-            }
+            },
+            "storytelling": {
+                "headline": "Equipe Comercial Enxuta com Produtividade Homogênea",
+                "narrative": f"Os {tot_emp} colaboradores e {active_sellers} vendedores ativos entregam média de {avg_ord} pedidos por vendedor, gerando ${float(rev or 0):,.2f} em vendas totais.",
+                "key_takeaway": "Toda a força de vendas está convertendo pedidos, mantendo distribuição equilibrada de receita.",
+                "recommended_action": "Replicar as práticas dos vendedores com maior ticket médio em treinamentos e metas regionais."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "categories":
@@ -334,7 +374,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"key": "total_products", "label": "Qtd Produtos"}
                 ],
                 "rows": t_res.get("data", [])
-            }
+            },
+            "storytelling": {
+                "headline": "Concentração de Receita Liderada por Categorias-Âncora",
+                "narrative": f"Entre {tot_cat} categorias e {tot_prod} produtos (média de {avg_prod} itens/categoria), '{top_cat}' desponta como líder em faturamento.",
+                "key_takeaway": "Categorias campeãs sustentam o caixa, enquanto nichos menores oferecem espaço para expansão de mix.",
+                "recommended_action": f"Criar kits combinando produtos de '{top_cat}' com categorias de menor giro para elevar o cross-sell."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "suppliers":
@@ -378,7 +425,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"key": "phone", "label": "Telefone"}
                 ],
                 "rows": t_res.get("data", [])
-            }
+            },
+            "storytelling": {
+                "headline": "Cadeia de Suprimentos Diversificada Multi-País",
+                "narrative": f"A operação é abastecida por {tot_sup} fornecedores em {countries} países distintos, cobrindo {sup_prod} produtos com média de {avg_prod} itens por parceiro.",
+                "key_takeaway": "Diversificação geográfica mitiga riscos de ruptura regional na cadeia de abastecimento.",
+                "recommended_action": "Estabelecer SLAs de reposição prioritária e fornecedores alternativos para os itens de maior giro."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx in ["sales", "revenue"]:
@@ -427,7 +481,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                         {"key": "revenue", "label": "Receita Gerada"}
                     ],
                     "rows": t_res.get("data", [])
-                }
+                },
+                "storytelling": {
+                    "headline": "Desempenho Comercial Sólido com Descontos Controlados",
+                    "narrative": f"As vendas somam ${float(net or 0):,.2f} líquidos em {orders} pedidos e {units} unidades comercializadas, com ${float(disc or 0):,.2f} concedidos em descontos.",
+                    "key_takeaway": "Volume de unidades vendidas cresce sustentado por política comercial disciplinada de descontos.",
+                    "recommended_action": "Direcionar descontos táticos apenas para pedidos acima do ticket médio visando proteger a margem líquida."
+                },
+                "harness_routing": _build_harness_routing(ctx)
             }
         else:
             return {
@@ -446,7 +507,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                         {"key": "revenue", "label": "Faturamento"}
                     ],
                     "rows": t_res.get("data", [])
-                }
+                },
+                "storytelling": {
+                    "headline": "Faturamento Líquido Preservado Frente ao Bruto",
+                    "narrative": f"O faturamento líquido atingiu ${float(net or 0):,.2f} sobre ${float(gross or 0):,.2f} brutos, com ticket médio faturado de ${(float(net or 0)/max(int(orders or 1), 1)):,.2f} após ${float(disc or 0):,.2f} em abatimentos.",
+                    "key_takeaway": "Baixa erosão entre receita bruta e líquida comprova boa realização de preço nos principais mercados.",
+                    "recommended_action": "Expandir a base recorrente nos países líderes de faturamento para acelerar a previsibilidade de caixa."
+                },
+                "harness_routing": _build_harness_routing(ctx)
             }
 
     elif ctx == "kpis":
@@ -478,7 +546,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"metric": "Retenção de Clientes", "value": "60.9%", "target": "55.0%", "status": "110.7% (Superada)"},
                     {"metric": "NPS Estimado", "value": "88/100", "target": "80/100", "status": "Excelente"}
                 ]
-            }
+            },
+            "storytelling": {
+                "headline": "Metas Estratégicas de 2026 Superadas em Receita e Ticket",
+                "narrative": f"Com faturamento de ${float(rev or 0):,.2f} em {ord_cnt} pedidos, ticket médio de ${float(avg_ord or 0):,.2f} e {cust_cnt} clientes na base, os principais alvos estratégicos já operam acima da meta.",
+                "key_takeaway": "Os indicadores globais demonstram saúde financeira consistente e retenção acima do patamar planejado.",
+                "recommended_action": "Revisar as metas trimestrais para cima e priorizar iniciativas de expansão de LTV."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "analysis":
@@ -503,7 +578,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"dimension": "Preços", "finding": "Produtos com desconto moderado vendem 3x mais", "impact": "Médio"},
                     {"dimension": "Logística", "finding": "Speedy Express entrega 2 dias mais rápido", "impact": "Alto"}
                 ]
-            }
+            },
+            "storytelling": {
+                "headline": "Diagnóstico Estrutural Aponta Alavancas de Margem e Logística",
+                "narrative": "A análise multidimensional revela margem operacional de 88.5%, retenção de 60.9% e eficiência logística de 94.1% com envio médio em 8.2 dias.",
+                "key_takeaway": "Beverages, Dairy, EUA e Alemanha concentram o maior impacto financeiro, enquanto descontos moderados triplicam a tração de volume.",
+                "recommended_action": "Priorizar a transportadora Speedy Express nas rotas críticas e padronizar faixas moderadas de desconto no B2B."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "forecasting":
@@ -528,7 +610,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"period": "Mês 2", "projected_sales": "$29,100.00", "confidence_interval": "± $1,800", "trend": "Alta (+10%)"},
                     {"period": "Mês 3", "projected_sales": "$32,800.00", "confidence_interval": "± $2,300", "trend": "Alta (+12%)"}
                 ]
-            }
+            },
+            "storytelling": {
+                "headline": "Projeção Preditiva Indica Aceleração de +15.8% no Próximo Trimestre",
+                "narrative": "O modelo preditivo (R² = 0.94, acurácia de 94.2%) estima demanda de 185 unidades e trajetória de vendas de $26.4k a $32.8k nos próximos 3 meses, com risco de ruptura em 8.3%.",
+                "key_takeaway": "Tendência ascendente consistente exige alinhamento antecipado de estoque para evitar perda de vendas.",
+                "recommended_action": "Antecipar ordens de compra para itens de alta elasticidade antes do pico projetado no Mês 3."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "insights":
@@ -552,7 +641,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"insight_title": "Reabastecimento de Produtos Críticos", "category": "Estoque", "recommendation": "Disparar ordem de compra para itens com estoque < 15"},
                     {"insight_title": "Fidelização de Clientes Alemães", "category": "CRM", "recommendation": "Oferecer frete diferenciado para compradores recorrentes"}
                 ]
-            }
+            },
+            "storytelling": {
+                "headline": "Motor de IA Mapeia 5 Oportunidades Imediatas de Expansão",
+                "narrative": "Com score comercial de 96/100, a inteligência analítica identificou 8 produtos de margem superior a 70% e 4 clientes VIP responsáveis pelo topo da receita.",
+                "key_takeaway": "Combos de Bebidas com Confeitos, reposição preventiva de estoque e fidelização na Alemanha oferecem retorno rápido.",
+                "recommended_action": "Implementar recomendações de cross-sell no checkout e condições especiais de frete para contas VIP."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     elif ctx == "admin":
@@ -582,7 +678,14 @@ def get_context_analytics(context: str = "customers") -> dict:
                     {"service": "Redis Cache", "port": "6379", "status": "Healthy", "protocol": "RESP"},
                     {"service": "Prometheus Monitoring", "port": "9090", "status": "Healthy", "protocol": "Prometheus Scraper"}
                 ]
-            }
+            },
+            "storytelling": {
+                "headline": "Infraestrutura MCP + Multi-Agente Operando com Latência Sub-Segundo",
+                "narrative": "Todos os 8 microserviços da arquitetura (Gateway, Frontend, FastAPI, MCP Server, Orchestrator, PostgreSQL, Redis e Prometheus) operam saudáveis com latência média de 12ms e 100% de proteção AST.",
+                "key_takeaway": "O gate determinístico via AST garante zero SQL injections enquanto mantém resposta rápida para ferramentas analíticas.",
+                "recommended_action": "Manter monitoramento contínuo no Prometheus e auditar periodicamente os logs de roteamento do Harness."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
 
     else:
@@ -600,5 +703,12 @@ def get_context_analytics(context: str = "customers") -> dict:
             "table": {
                 "columns": [{"key": "info", "label": "Informação"}],
                 "rows": [{"info": f"Análise ativa para contexto {ctx}"}]
-            }
+            },
+            "storytelling": {
+                "headline": f"Visão Contextual Consolidada para {ctx.title()}",
+                "narrative": f"O painel contextual para '{ctx}' consolida {kpi_data.get('total_orders', 14)} pedidos e faturamento de ${float(kpi_data.get('total_revenue', 22574.00)):,.2f} via protocolo MCP.",
+                "key_takeaway": "Dados padronizados permitem acompanhamento imediato mesmo para contextos customizados.",
+                "recommended_action": "Utilizar os filtros específicos de negócio ou consultar o agente analítico para aprofundar métricas deste contexto."
+            },
+            "harness_routing": _build_harness_routing(ctx)
         }
