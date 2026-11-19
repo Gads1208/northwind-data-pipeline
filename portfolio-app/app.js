@@ -307,13 +307,13 @@ const architectureData = {
     ]
   },
   agents: {
-    title: '🤖 Orquestrador Multi-Agente & AST Security',
-    badge: '5 Agentes Autônomos',
-    desc: 'Grafo de agentes coordenados: SQL Agent (gera query), AST Sanitizer (validação estrita contra SQL Injection), Data Analyst Agent (análise estatística), Visualization Agent (recomenda tipo de gráfico) e Business Insight Agent (síntese executiva).',
+    title: '🤖 Harness Multi-Agente, Roteador Gemini 4 & AST Security',
+    badge: 'Hydrogen • Neon • Argon',
+    desc: 'Harness estruturado com Matriz de Decisão Gemini 4 (Downgrade by Default), Gate Determinístico AST (sqlglot), Circuit Breaker com auto-escalonamento em falha, Memória de Trabalho isolada por chat_id e Hints Pós-Tool.',
     specs: [
-      { label: 'Segurança:', val: 'sqlglot AST Validator (Reject Non-SELECT)' },
-      { label: 'Agentes Ativos:', val: '5 Agentes Especializados' },
-      { label: 'Framework:', val: 'Custom Graph Orchestrator (FastAPI Async)' }
+      { label: 'Roteador FinOps:', val: 'Nível 0 (Zero-LLM) | gemini-4-hydrogen | neon | argon' },
+      { label: 'Segurança & Gate:', val: 'sqlglot AST Validator + Circuit Breaker Escalation' },
+      { label: 'Arquitetura:', val: 'Clean Architecture (Domain / Ports / Adapters) + MCP' }
     ]
   },
   bi: {
@@ -367,9 +367,25 @@ function initArchitectureInspector() {
 const simulationScenarios = {
   top_customers: [
     {
-      agent: '🤖 SQL Agent',
+      agent: '🧭 Agente Orquestrador (Harness Router)',
       type: 'info',
-      title: 'Tradução de Linguagem Natural para SQL',
+      title: 'Triagem, Downgrade by Default & Plano de Roteamento FinOps',
+      content: 'Classificando subtarefas: Raciocínio SQL multi-tabela alocado ao `gemini-4-neon` (effort: medium) e formatação visual delegada ao `gemini-4-hydrogen` (effort: low). Economia estimada: 68% de tokens.',
+      code: `{
+  "correlation_id": "corr_8f4a2c91",
+  "analise_complexidade": "Agregação financeira com JOIN em 3 tabelas (Star Schema)",
+  "economia_estimada_pct": 68,
+  "plano_execucao": [
+    { "etapa": 1, "skill": "sql_agent", "modelo_selecionado": "gemini-4-neon", "effort": "medium" },
+    { "etapa": 2, "skill": "ast_security_gate", "modelo_selecionado": "deterministic-template", "effort": "low" },
+    { "etapa": 3, "skill": "data_analyst_vis", "modelo_selecionado": "gemini-4-hydrogen", "effort": "low" }
+  ]
+}`
+    },
+    {
+      agent: '🤖 SQL Agent [gemini-4-neon]',
+      type: 'info',
+      title: 'Tradução de Linguagem Natural para SQL (Contexto Mínimo)',
       content: 'Interpretando: "Quais os top 5 clientes por faturamento em 1997?"',
       code: `SELECT c.company_name, 
        ROUND(SUM(od.unit_price * od.quantity * (1 - od.discount))::numeric, 2) AS total_revenue
@@ -382,29 +398,65 @@ ORDER BY total_revenue DESC
 LIMIT 5;`
     },
     {
-      agent: '🛡️ AST Security Validator',
+      agent: '🛡️ AST Security Validator [Nível 0 — Zero-LLM]',
       type: 'success',
-      title: 'Validação Sintática Abstrata',
-      content: 'Árvore Sintática (AST) analisada via sqlglot: [NodeType=Select]. Nenhuma mutação (DROP, ALTER, DELETE, INSERT) detectada.',
+      title: 'Gate Determinístico de Aceite (sqlglot)',
+      content: 'Árvore Sintática (AST) validada em < 1ms: [Single Statement • NodeType=Select]. Nenhuma mutação (DROP, ALTER, DELETE, INSERT) detectada.',
       badge: 'SAFE_APPROVED'
     },
     {
-      agent: '🔌 MCP Server Tool Call',
+      agent: '🔌 MCP Server Tool Call + Post-Tool Hint',
       type: 'info',
-      title: 'Execução via Model Context Protocol',
-      content: 'Tool acionada: `run_safe_query`. Conexão com PostgreSQL estabelecida. Latência de execução: 12ms.'
+      title: 'Execução via Model Context Protocol (Header chat-id isolado)',
+      content: 'Tool `execute_safe_sql` executada em 12ms. Hint Pós-Tool injetado por 1 turno: "Formate valores em USD ($) e destaque a concentração do Top 3".'
     },
     {
-      agent: '📊 Data Analyst Agent',
-      type: 'info',
-      title: 'Cálculo Estatístico & Métricas',
-      content: '1. Quick-Stop ($110,277.30) | 2. Save-a-lot Markets ($104,361.95) | 3. Ernst Handel ($101,234.10). Os top 5 clientes concentraram 28.4% do faturamento total em 1997.'
-    },
-    {
-      agent: '💡 Business Insight Agent',
+      agent: '💡 Business Insight Agent [gemini-4-hydrogen]',
       type: 'success',
-      title: 'Conclusão Executiva para Decisão',
-      content: 'Recomendação: Os 3 maiores compradores apresentam crescimento trimestral contínuo. Sugere-se criação de programa VIP de retenção para blindagem contra concorrentes.'
+      title: 'Síntese Executiva Concluída',
+      content: '1. Quick-Stop ($110,277.30) | 2. Save-a-lot Markets ($104,361.95) | 3. Ernst Handel ($101,234.10). Os top 5 clientes concentraram 28.4% do faturamento total em 1997.'
+    }
+  ],
+
+  circuit_breaker: [
+    {
+      agent: '🧭 Agente Orquestrador (Downgrade by Default)',
+      type: 'info',
+      title: 'Alocação Econômica Inicial no Tier Baixo',
+      content: 'Tentativa inicial alocada ao `gemini-4-hydrogen` (effort: low) para minimizar custo. Gate de aceite configurado: `sqlglot AST + SQLite/Postgres Schema Validation`.'
+    },
+    {
+      agent: '⚡ SQL Agent [gemini-4-hydrogen • Tentativa 1]',
+      type: 'alert',
+      title: 'Falha Detectada pelo Gate Determinístico',
+      content: 'O modelo leve não escapou o identificador com espaço `Order Details` e omitiu o fator `(1 - discount)`. Gate reprovou a saída em 2ms.',
+      code: `-- Reprovado pelo Gate AST / Schema:
+SELECT ProductID, SUM(UnitPrice * Quantity) FROM Order Details GROUP BY ProductID;`
+    },
+    {
+      agent: '🔄 Circuit Breaker (Escalonamento Automático)',
+      type: 'info',
+      title: 'Promoção Imediata de Tier: Hydrogen ➔ Neon',
+      content: 'Regra do Harness: NUNCA repetir no mesmo modelo após erro de capacidade. Subtarefa escalonada para `gemini-4-neon` (effort: medium) em subagent com contexto zerado + erro anterior anexado.',
+      code: `{
+  "circuit_breaker": "TRIGGERED",
+  "from_model": "gemini-4-hydrogen",
+  "to_model": "gemini-4-neon",
+  "attached_error": "AST_SYNTAX_ERROR: Table 'Order Details' requires quotes and discount formula"
+}`
+    },
+    {
+      agent: '🧠 SQL Agent [gemini-4-neon • Auto-Corrigido]',
+      type: 'success',
+      title: 'Query Corrigida & Aprovada no Gate AST',
+      content: 'Consulta regenerada com precisão pelo Tier Médio, aprovada pelo validador AST e executada via MCP com sucesso.',
+      code: `SELECT p.product_name,
+       ROUND(SUM(od.unit_price * od.quantity * (1.0 - od.discount))::numeric, 2) AS net_revenue
+FROM "Order Details" od
+JOIN products p ON od.product_id = p.product_id
+GROUP BY p.product_name
+ORDER BY net_revenue DESC
+LIMIT 5;`
     }
   ],
 

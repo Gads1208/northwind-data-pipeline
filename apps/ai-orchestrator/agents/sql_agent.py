@@ -10,9 +10,19 @@ class SQLAgent:
     def __init__(self, mcp_url: str = MCP_SERVER_URL):
         self.mcp_url = mcp_url
 
-    async def generate_sql(self, query_text: str, page_context: str = "general") -> str:
+    async def generate_sql(
+        self,
+        query_text: str,
+        page_context: str = "general",
+        target_model: str = "gemini-4-hydrogen",
+        previous_error: str | None = None,
+    ) -> str:
         q = query_text.lower()
-        
+
+        # Pass through raw SQL if user explicitly attempts a destructive command so AST Gate blocks and audits it
+        if any(kw in q for kw in ("drop table", "delete from", "truncate table", "alter table")):
+            return query_text.strip()
+
         # Rule-based natural language to SQL translation for Northwind database
         if "cliente" in q and ("comprou mais" in q or "maior" in q or "top" in q):
             year_match = re.search(r'\b(199[6-8]|202[0-6])\b', q)
@@ -114,11 +124,12 @@ class SQLAgent:
             else:
                 return "SELECT category_name, COUNT(*) AS count FROM categories GROUP BY category_name;"
 
-    async def execute_query(self, sql_query: str) -> dict:
-        """Calls the MCP tool to safely execute the generated SQL."""
+    async def execute_query(self, sql_query: str, session_id: str = "default") -> dict:
+        """Calls the MCP tool to safely execute the generated SQL with chat-id header."""
         async with httpx.AsyncClient(timeout=10.0) as client:
             resp = await client.post(
                 f"{self.mcp_url}/mcp/call",
+                headers={"chat-id": session_id},
                 json={"tool": "execute_safe_sql", "arguments": {"sql_query": sql_query}}
             )
             return resp.json()

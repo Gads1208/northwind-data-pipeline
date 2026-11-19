@@ -57,31 +57,45 @@ def get_database_schema() -> dict:
         conn.close()
 
 def validate_safe_sql(sql_query: str) -> tuple[bool, str]:
-    """Validates that SQL is strictly a read-only SELECT statement."""
-    cleaned = sql_query.strip().strip(";").lower()
-    
-    # AST checking using sqlglot if available
-    if sqlglot:
-        try:
-            parsed = sqlglot.parse_one(sql_query)
-            if not isinstance(parsed, (sqlglot.exp.Select, sqlglot.exp.Union)):
-                return False, "Query must be a SELECT or UNION statement."
-        except Exception:
-            pass
+    """
+    Validates that SQL is strictly a single, read-only SELECT statement.
+    Serves as the Deterministic Gate for the Orchestrator Circuit Breaker.
+    """
+    if not sql_query or not sql_query.strip():
+        return False, "AST_SYNTAX_ERROR: Empty SQL query."
+
+    raw_trimmed = sql_query.strip().rstrip(";").strip()
+    # Block multiple statements separated by semicolons
+    if ";" in raw_trimmed:
+        return False, "AST_SECURITY_VIOLATION: Multiple SQL statements (;) are strictly forbidden."
+
+    cleaned = raw_trimmed.lower()
 
     forbidden_keywords = [
-        "insert", "update", "delete", "drop", "alter", "truncate", "create", 
+        "insert", "update", "delete", "drop", "alter", "truncate", "create",
         "grant", "revoke", "exec", "execute", "copy", "pg_sleep"
     ]
-    
+
     tokens = re.findall(r'\b\w+\b', cleaned)
     for kw in forbidden_keywords:
         if kw in tokens:
-            return False, f"Forbidden SQL operation detected: {kw.upper()}"
-                
+            return False, f"AST_SECURITY_VIOLATION: Forbidden SQL operation detected: {kw.upper()}"
+
     if not cleaned.startswith("select") and not cleaned.startswith("with"):
-        return False, "SQL query must begin with SELECT or WITH."
-        
+        return False, "AST_SECURITY_VIOLATION: SQL query must begin with SELECT or WITH."
+
+    # Strict AST checking using sqlglot (never swallow parse errors)
+    if sqlglot:
+        try:
+            statements = [s for s in sqlglot.parse(raw_trimmed) if s is not None]
+            if len(statements) != 1:
+                return False, "AST_SECURITY_VIOLATION: Query must contain exactly one SQL statement."
+            parsed = statements[0]
+            if not isinstance(parsed, (sqlglot.exp.Select, sqlglot.exp.Union)):
+                return False, f"AST_SECURITY_VIOLATION: Root AST node must be SELECT or UNION (got {type(parsed).__name__})."
+        except Exception as parse_err:
+            return False, f"AST_SYNTAX_ERROR: Invalid SQL syntax detected by AST parser ({parse_err})."
+
     return True, "Valid SELECT query."
 
 from decimal import Decimal
