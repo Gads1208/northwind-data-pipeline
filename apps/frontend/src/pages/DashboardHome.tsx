@@ -29,14 +29,15 @@ const MONTHLY_TREND = [
 
 export const DashboardHome: React.FC<DashboardHomeProps> = ({ onTriggerChat }) => {
   const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    axios.get('/api/v1/dashboard/summary', { timeout: 3500 })
-      .then((res) => setData(res.data))
-      .catch(() => setData(null))
-      .finally(() => setLoading(false));
+    axios.get('/api/v1/dashboard/summary', { timeout: 2500 })
+      .then((res) => {
+        if (res.data && res.data.kpis) {
+          setData(res.data);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const kpis = data?.kpis || {};
@@ -117,50 +118,40 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onTriggerChat }) =
       </div>
 
       {/* KPI Cards Grid */}
-      {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="glass-card p-5 rounded-2xl h-32 flex items-center justify-center animate-pulse">
-              <Loader2 className="w-6 h-6 text-brand-500 animate-spin" />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <KPICard
-            title="Faturamento Líquido"
-            value={`$${kpis.total_revenue ? Number(kpis.total_revenue).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '1,265,793.04'}`}
-            change="+18.4% YoY"
-            isPositive={true}
-            icon={DollarSign}
-            color="brand"
-          />
-          <KPICard
-            title="Total de Pedidos"
-            value={kpis.total_orders ?? '830'}
-            change="+12.1% YoY"
-            isPositive={true}
-            icon={ShoppingBag}
-            color="purple"
-          />
-          <KPICard
-            title="Ticket Médio"
-            value={`$${kpis.avg_order_value ? Number(kpis.avg_order_value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '1,525.05'}`}
-            change="+5.2% vs Meta"
-            isPositive={true}
-            icon={Award}
-            color="emerald"
-          />
-          <KPICard
-            title="Clientes Ativos"
-            value={kpis.total_customers ?? '89'}
-            change="21 Países"
-            isPositive={true}
-            icon={Users}
-            color="amber"
-          />
-        </div>
-      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <KPICard
+          title="Faturamento Líquido"
+          value={`$${kpis.total_revenue ? Number(kpis.total_revenue).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '1,265,793.04'}`}
+          change="+18.4% YoY"
+          isPositive={true}
+          icon={DollarSign}
+          color="brand"
+        />
+        <KPICard
+          title="Total de Pedidos"
+          value={kpis.total_orders ?? '830'}
+          change="+12.1% YoY"
+          isPositive={true}
+          icon={ShoppingBag}
+          color="purple"
+        />
+        <KPICard
+          title="Ticket Médio"
+          value={`$${kpis.avg_order_value ? Number(kpis.avg_order_value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '1,525.05'}`}
+          change="+5.2% vs Meta"
+          isPositive={true}
+          icon={Award}
+          color="emerald"
+        />
+        <KPICard
+          title="Clientes Ativos"
+          value={kpis.total_customers ?? '89'}
+          change="21 Países"
+          isPositive={true}
+          icon={Users}
+          color="amber"
+        />
+      </div>
 
       {/* Executive Storytelling Synthesis */}
       <div className="glass-panel p-5 rounded-2xl border border-brand-500/20 bg-gradient-to-br from-brand-600/10 via-surface/80 to-transparent space-y-3">

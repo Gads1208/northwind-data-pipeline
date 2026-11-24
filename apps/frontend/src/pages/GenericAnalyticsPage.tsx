@@ -67,7 +67,6 @@ const TIER_BADGE_STYLES: Record<string, { bg: string; text: string; border: stri
 
 export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ pageId, title, onTriggerChat }) => {
   const [apiData, setApiData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [segmentFilter, setSegmentFilter] = useState<'all' | 'top' | 'focus'>('all');
   const [primaryChartType, setPrimaryChartType] = useState<'default' | 'bar' | 'area' | 'composed' | 'line'>('default');
@@ -78,26 +77,20 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
   }, [pageId]);
 
   useEffect(() => {
-    setLoading(true);
+    setApiData(null);
     setSearchTerm('');
     setSegmentFilter('all');
     setPrimaryChartType('default');
     setSecondaryChartType('default');
 
-    axios.get(`/api/v1/dashboard/context/${pageId}`, { timeout: 3500 })
+    axios.get(`/api/v1/dashboard/context/${pageId}`, { timeout: 2500 })
       .then((res) => {
-        if (res.data && res.data.success) {
+        if (res.data && res.data.success && Array.isArray(res.data.kpis) && res.data.kpis.length > 0) {
           setApiData(res.data);
-        } else {
-          setApiData(null);
         }
       })
       .catch(() => {
-        // Fallback silencioso para o catálogo analítico completo (Render Static/Docker)
-        setApiData(null);
-      })
-      .finally(() => {
-        setLoading(false);
+        // Usa instantaneamente o catálogo analítico embutido quando sem container backend no Render
       });
   }, [pageId]);
 
@@ -186,7 +179,7 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
               innerRadius={52}
               outerRadius={92}
               paddingAngle={3}
-              label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+              label={({ name, percent }: any) => `${name || ''} (${((percent || 0) * 100).toFixed(0)}%)`}
             >
               {dataset.map((_, idx) => (
                 <Cell key={`cell-${idx}`} fill={CHART_COLORS[idx % CHART_COLORS.length]} />
@@ -478,32 +471,22 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
       </div>
 
       {/* KPI Cards Grid */}
-      {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="glass-card p-5 rounded-2xl h-32 flex items-center justify-center animate-pulse">
-              <Loader2 className="w-6 h-6 text-brand-500 animate-spin" />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {kpis.map((kpi: any, idx: number) => {
-            const IconComponent = ICON_MAP[kpi.icon] || Award;
-            return (
-              <KPICard
-                key={idx}
-                title={kpi.title}
-                value={kpi.value}
-                change={kpi.change}
-                isPositive={kpi.isPositive}
-                icon={IconComponent}
-                color={kpi.color || 'brand'}
-              />
-            );
-          })}
-        </div>
-      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {kpis.map((kpi: any, idx: number) => {
+          const IconComponent = ICON_MAP[kpi.icon] || Award;
+          return (
+            <KPICard
+              key={idx}
+              title={kpi.title}
+              value={kpi.value}
+              change={kpi.change}
+              isPositive={kpi.isPositive}
+              icon={IconComponent}
+              color={kpi.color || 'brand'}
+            />
+          );
+        })}
+      </div>
 
       {/* Executive Data Storytelling Narrative Banner */}
       <div className="glass-panel p-6 rounded-2xl border border-brand-500/25 bg-gradient-to-br from-brand-600/10 via-surface/80 to-purple-900/10 space-y-4">
