@@ -184,8 +184,19 @@ function initNavigation() {
     });
 
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
         navMenu.classList.remove('open');
+        const href = link.getAttribute('href');
+        if (href === '#architecture' || href === '#simulator') {
+          e.preventDefault();
+          const targetTab = href === '#architecture' ? 'tab-architecture' : 'tab-simulator';
+          const tabBtn = document.querySelector(`.showcase-tab-btn[data-tab="${targetTab}"]`);
+          if (tabBtn) tabBtn.click();
+          const showcaseCard = document.querySelector('#flagship .showcase-card') || document.getElementById('flagship');
+          if (showcaseCard) {
+            showcaseCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       });
     });
   }

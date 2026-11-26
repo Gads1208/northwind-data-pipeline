@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Sparkles, Bot, Download, ArrowUpRight, Loader2,
+  Sparkles, Bot, Download, ArrowUpRight,
   Users, ShoppingBag, DollarSign, Award, ShoppingCart, Package,
   UserCheck, Layers, Truck, TrendingUp, Globe, Settings, LucideIcon,
   Search, BookOpen, Lightbulb, Target, Cpu, CheckCircle2, AlertTriangle, Info
@@ -83,9 +83,16 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
     setPrimaryChartType('default');
     setSecondaryChartType('default');
 
-    axios.get(`/api/v1/dashboard/context/${pageId}`, { timeout: 2500 })
+    axios.get(`/api/v1/dashboard/context/${pageId}`, { timeout: 1500 })
       .then((res) => {
-        if (res.data && res.data.success && Array.isArray(res.data.kpis) && res.data.kpis.length > 0) {
+        if (
+          res.data &&
+          !res.data.standalone_mode &&
+          res.data.success &&
+          Array.isArray(res.data.kpis) &&
+          res.data.kpis.length > 0 &&
+          res.data.table?.rows?.length > 0
+        ) {
           setApiData(res.data);
         }
       })
@@ -165,23 +172,36 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
     const activeType = overrideType === 'default' ? cfg.defaultType : overrideType;
     const prefix = cfg.unitPrefix || '';
     const suffix = cfg.unitSuffix || '';
+    const pMax = Math.max(...dataset.map((d) => Number(d[cfg.primaryKey]) || 0), 1);
+    const sMax = cfg.secondaryKey ? Math.max(...dataset.map((d) => Number(d[cfg.secondaryKey!]) || 0), 1) : 1;
+    const needsDualAxis = Boolean(cfg.secondaryKey && (pMax / sMax > 4 || sMax / pMax > 4));
+    const secondaryAxisId = needsDualAxis ? 'right' : 'left';
+
+    const formatTooltipVal = (val: any, name: any) => {
+      if (name === cfg.primaryLabel || (!needsDualAxis && name === (cfg.secondaryLabel || cfg.secondaryKey))) {
+        return [formatMetricValue(val, prefix, suffix), name];
+      }
+      return [Number(val).toLocaleString('pt-BR', { maximumFractionDigits: 2 }), name];
+    };
 
     if (activeType === 'pie') {
+      const pieDataset = dataset.filter((d) => Number(d[cfg.primaryKey]) > 0);
+      const safePieData = pieDataset.length > 0 ? pieDataset : dataset;
       return (
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
-              data={dataset}
+              data={safePieData}
               dataKey={cfg.primaryKey}
               nameKey={cfg.xKey}
               cx="50%"
-              cy="50%"
-              innerRadius={52}
-              outerRadius={92}
+              cy="46%"
+              innerRadius={44}
+              outerRadius={76}
               paddingAngle={3}
-              label={({ name, percent }: any) => `${name || ''} (${((percent || 0) * 100).toFixed(0)}%)`}
+              label={({ percent }: any) => ((percent || 0) >= 0.06 ? `${((percent || 0) * 100).toFixed(0)}%` : '')}
             >
-              {dataset.map((_, idx) => (
+              {safePieData.map((_, idx) => (
                 <Cell key={`cell-${idx}`} fill={CHART_COLORS[idx % CHART_COLORS.length]} />
               ))}
             </Pie>
@@ -233,12 +253,12 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={dataset} margin={{ top: 12, right: 16, left: 4, bottom: 20 }}>
             <defs>
-              <linearGradient id={`gradPrimary_${pageId}`} x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id={`gradPrimary_${pageId}_${cfg.primaryKey}`} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor={cfg.primaryColor} stopOpacity={0.45} />
                 <stop offset="95%" stopColor={cfg.primaryColor} stopOpacity={0.02} />
               </linearGradient>
               {cfg.secondaryKey && (
-                <linearGradient id={`gradSecondary_${pageId}`} x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id={`gradSecondary_${pageId}_${cfg.secondaryKey}`} x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor={cfg.secondaryColor || '#10b981'} stopOpacity={0.35} />
                   <stop offset="95%" stopColor={cfg.secondaryColor || '#10b981'} stopOpacity={0.02} />
                 </linearGradient>
@@ -247,21 +267,29 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
             <XAxis dataKey={cfg.xKey} stroke="#94a3b8" fontSize={11} angle={-12} textAnchor="end" />
             <YAxis
+              yAxisId="left"
               stroke="#94a3b8"
               fontSize={11}
               tickFormatter={(v) => formatAxisTick(v, prefix, suffix)}
             />
+            {needsDualAxis && (
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                stroke={cfg.secondaryColor || '#10b981'}
+                fontSize={11}
+                tickFormatter={(v) => formatAxisTick(v, '', '')}
+              />
+            )}
             <Tooltip
-              formatter={(val: any, name: any) => [
-                name === cfg.primaryLabel ? formatMetricValue(val, prefix, suffix) : Number(val).toLocaleString('pt-BR'),
-                name
-              ]}
+              formatter={formatTooltipVal}
               labelStyle={{ color: '#fff', fontWeight: 600 }}
               contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '0.75rem' }}
             />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
             {cfg.referenceTarget && (
               <ReferenceLine
+                yAxisId="left"
                 y={cfg.referenceTarget.value}
                 stroke={cfg.referenceTarget.color}
                 strokeDasharray="4 4"
@@ -269,21 +297,23 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
               />
             )}
             <Area
+              yAxisId="left"
               type="monotone"
               dataKey={cfg.primaryKey}
               name={cfg.primaryLabel}
               stroke={cfg.primaryColor}
               strokeWidth={2.5}
-              fill={`url(#gradPrimary_${pageId})`}
+              fill={`url(#gradPrimary_${pageId}_${cfg.primaryKey})`}
             />
             {cfg.secondaryKey && (
               <Area
+                yAxisId={secondaryAxisId}
                 type="monotone"
                 dataKey={cfg.secondaryKey}
                 name={cfg.secondaryLabel || cfg.secondaryKey}
                 stroke={cfg.secondaryColor || '#10b981'}
                 strokeWidth={2}
-                fill={`url(#gradSecondary_${pageId})`}
+                fill={`url(#gradSecondary_${pageId}_${cfg.secondaryKey})`}
               />
             )}
           </AreaChart>
@@ -297,18 +327,30 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
           <LineChart data={dataset} margin={{ top: 12, right: 16, left: 4, bottom: 20 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
             <XAxis dataKey={cfg.xKey} stroke="#94a3b8" fontSize={11} angle={-12} textAnchor="end" />
-            <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => formatAxisTick(v, prefix, suffix)} />
+            <YAxis
+              yAxisId="left"
+              stroke="#94a3b8"
+              fontSize={11}
+              tickFormatter={(v) => formatAxisTick(v, prefix, suffix)}
+            />
+            {needsDualAxis && (
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                stroke={cfg.secondaryColor || '#10b981'}
+                fontSize={11}
+                tickFormatter={(v) => formatAxisTick(v, '', '')}
+              />
+            )}
             <Tooltip
-              formatter={(val: any, name: any) => [
-                name === cfg.primaryLabel ? formatMetricValue(val, prefix, suffix) : Number(val).toLocaleString('pt-BR'),
-                name
-              ]}
+              formatter={formatTooltipVal}
               labelStyle={{ color: '#fff', fontWeight: 600 }}
               contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '0.75rem' }}
             />
             <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }} />
             {cfg.referenceTarget && (
               <ReferenceLine
+                yAxisId="left"
                 y={cfg.referenceTarget.value}
                 stroke={cfg.referenceTarget.color}
                 strokeDasharray="4 4"
@@ -316,6 +358,7 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
               />
             )}
             <Line
+              yAxisId="left"
               type="monotone"
               dataKey={cfg.primaryKey}
               name={cfg.primaryLabel}
@@ -325,6 +368,7 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
             />
             {cfg.secondaryKey && (
               <Line
+                yAxisId={secondaryAxisId}
                 type="monotone"
                 dataKey={cfg.secondaryKey}
                 name={cfg.secondaryLabel || cfg.secondaryKey}
@@ -350,18 +394,17 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
               fontSize={11}
               tickFormatter={(v) => formatAxisTick(v, prefix, suffix)}
             />
-            <YAxis
-              yAxisId="right"
-              orientation="right"
-              stroke={cfg.secondaryColor || '#10b981'}
-              fontSize={11}
-              tickFormatter={(v) => formatAxisTick(v, '', '')}
-            />
+            {needsDualAxis && (
+              <YAxis
+                yAxisId="right"
+                orientation="right"
+                stroke={cfg.secondaryColor || '#10b981'}
+                fontSize={11}
+                tickFormatter={(v) => formatAxisTick(v, '', '')}
+              />
+            )}
             <Tooltip
-              formatter={(val: any, name: any) => [
-                name === cfg.primaryLabel ? formatMetricValue(val, prefix, suffix) : Number(val).toLocaleString('pt-BR'),
-                name
-              ]}
+              formatter={formatTooltipVal}
               labelStyle={{ color: '#fff', fontWeight: 600 }}
               contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '0.75rem' }}
             />
@@ -384,7 +427,7 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
               barSize={28}
             />
             <Line
-              yAxisId="right"
+              yAxisId={secondaryAxisId}
               type="monotone"
               dataKey={cfg.secondaryKey}
               name={cfg.secondaryLabel || cfg.secondaryKey}
@@ -403,27 +446,40 @@ export const GenericAnalyticsPage: React.FC<GenericAnalyticsPageProps> = ({ page
         <BarChart data={dataset} margin={{ top: 12, right: 16, left: 4, bottom: 22 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
           <XAxis dataKey={cfg.xKey} stroke="#94a3b8" fontSize={11} angle={-14} textAnchor="end" interval={0} />
-          <YAxis stroke="#94a3b8" fontSize={11} tickFormatter={(v) => formatAxisTick(v, prefix, suffix)} />
+          <YAxis
+            yAxisId="left"
+            stroke="#94a3b8"
+            fontSize={11}
+            tickFormatter={(v) => formatAxisTick(v, prefix, suffix)}
+          />
+          {needsDualAxis && (
+            <YAxis
+              yAxisId="right"
+              orientation="right"
+              stroke={cfg.secondaryColor || '#10b981'}
+              fontSize={11}
+              tickFormatter={(v) => formatAxisTick(v, '', '')}
+            />
+          )}
           <Tooltip
-            formatter={(val: any, name: any) => [
-              name === cfg.primaryLabel ? formatMetricValue(val, prefix, suffix) : Number(val).toLocaleString('pt-BR'),
-              name
-            ]}
+            formatter={formatTooltipVal}
             labelStyle={{ color: '#fff', fontWeight: 600 }}
             contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '0.75rem' }}
           />
           <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
           {cfg.referenceTarget && (
             <ReferenceLine
+              yAxisId="left"
               y={cfg.referenceTarget.value}
               stroke={cfg.referenceTarget.color}
               strokeDasharray="4 4"
               label={{ value: cfg.referenceTarget.label, fill: cfg.referenceTarget.color, fontSize: 10, position: 'insideTopRight' }}
             />
           )}
-          <Bar dataKey={cfg.primaryKey} name={cfg.primaryLabel} fill={cfg.primaryColor} radius={[6, 6, 0, 0]} />
+          <Bar yAxisId="left" dataKey={cfg.primaryKey} name={cfg.primaryLabel} fill={cfg.primaryColor} radius={[6, 6, 0, 0]} />
           {cfg.secondaryKey && activeType === 'bar' && (
             <Bar
+              yAxisId={secondaryAxisId}
               dataKey={cfg.secondaryKey}
               name={cfg.secondaryLabel || cfg.secondaryKey}
               fill={cfg.secondaryColor || '#10b981'}

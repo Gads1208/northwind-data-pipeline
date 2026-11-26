@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   DollarSign, ShoppingBag, Users, Award, ArrowRight, Sparkles,
-  Loader2, BookOpen, Cpu, Target, Lightbulb, Info
+  BookOpen, Cpu, Target, Lightbulb, Info
 } from 'lucide-react';
 import {
   ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip,
@@ -31,9 +31,9 @@ export const DashboardHome: React.FC<DashboardHomeProps> = ({ onTriggerChat }) =
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    axios.get('/api/v1/dashboard/summary', { timeout: 2500 })
+    axios.get('/api/v1/dashboard/summary', { timeout: 1500 })
       .then((res) => {
-        if (res.data && res.data.kpis) {
+        if (res.data && !res.data.standalone_mode && res.data.kpis && Number(res.data.kpis.total_orders) > 50) {
           setData(res.data);
         }
       })

@@ -348,7 +348,7 @@ export const NORTHWIND_TAB_BLUEPRINTS: Record<string, TabAnalyticsBlueprint> = {
         { product_name: 'Côte de Blaye', category_name: 'Beverages', unit_price: '$263.50', units_in_stock: 17, reorder_level: 15, units_on_order: 0, status: 'Curva A • Saudável' },
         { product_name: 'Raclette Courdavault', category_name: 'Dairy Products', unit_price: '$55.00', units_in_stock: 79, reorder_level: 0, units_on_order: 0, status: 'Curva A • Saudável' },
         { product_name: 'Camembert Pierrot', category_name: 'Dairy Products', unit_price: '$34.00', units_in_stock: 19, reorder_level: 0, units_on_order: 0, status: 'Alto Giro' },
-        { product_name: 'Chang', category_name: 'Beverages', unit_price: '$19.00', units_in_stock: 17, reorderLevel: 25, reorder_level: 25, units_on_order: 40, status: 'Reposição em Trânsito' },
+        { product_name: 'Chang', category_name: 'Beverages', unit_price: '$19.00', units_in_stock: 17, reorder_level: 25, units_on_order: 40, status: 'Reposição em Trânsito' },
         { product_name: 'Gorgonzola Telino', category_name: 'Dairy Products', unit_price: '$12.50', units_in_stock: 0, reorder_level: 20, units_on_order: 70, status: 'Ruptura Crítica' },
         { product_name: 'Louisiana Hot Spiced Okra', category_name: 'Condiments', unit_price: '$17.00', units_in_stock: 4, reorder_level: 20, units_on_order: 100, status: 'Ruptura Crítica' }
       ]
@@ -373,7 +373,7 @@ export const NORTHWIND_TAB_BLUEPRINTS: Record<string, TabAnalyticsBlueprint> = {
       headline: 'Top 3 executivas geram 51% das vendas; escritório de Londres tem maior ticket médio, mas menor volume',
       storyContext: 'A equipe comercial da Northwind é dividida entre o hub de Seattle/Redmond (EUA, 5 executivos) e o hub de Londres (Reino Unido, 4 executivos).',
       keyFinding: 'Margaret Peacock ($232.9k, 156 pedidos), Janet Leverling ($202.8k, 127 pedidos) e Nancy Davolio ($192.1k, 123 pedidos) superaram a cota anual de $150k com folga.',
-      businessImpact: 'Os representantes do hub UK (Michael Suyama,uyama, Anne Dodsworth e Steven Buchanan) fecham pedidos com ticket alto, mas têm 55% menos frequência de visitas que o hub EUA.',
+      businessImpact: 'Os representantes do hub UK (Michael Suyama, Anne Dodsworth e Steven Buchanan) fecham pedidos com ticket alto, mas têm 55% menos frequência de visitas que o hub EUA.',
       recommendedAction: 'Replicar o playbook de cadência comercial de Margaret Peacock no escritório de Londres para elevar a conversão trimestral em +20%.',
       harnessSkill: 'sales_force_quota_analyzer',
       harnessModel: 'gemini-4-neon',
@@ -580,7 +580,7 @@ export const NORTHWIND_TAB_BLUEPRINTS: Record<string, TabAnalyticsBlueprint> = {
       title: 'Top Fornecedores por Receita Gerada no Catálogo Northwind ($)',
       subtitle: 'Volume financeiro movimentado pelos produtos de cada parceiro fornecedor',
       badge: 'Vendor Revenue Impact',
-      defaultType: 'bar',
+      defaultType: 'composed',
       xKey: 'supplier',
       primaryKey: 'revenue',
       primaryLabel: 'Receita Vinculada ($)',
@@ -697,7 +697,7 @@ export const NORTHWIND_TAB_BLUEPRINTS: Record<string, TabAnalyticsBlueprint> = {
       title: 'Vendas por País de Destino (Top 7 Mercados Globais)',
       subtitle: 'Comparativo de receita acumulada e número de pedidos por país',
       badge: 'Mercados Internacionais',
-      defaultType: 'bar',
+      defaultType: 'composed',
       xKey: 'country',
       primaryKey: 'revenue',
       primaryLabel: 'Receita ($)',
@@ -713,7 +713,7 @@ export const NORTHWIND_TAB_BLUEPRINTS: Record<string, TabAnalyticsBlueprint> = {
         { country: 'Brazil', revenue: 106926, orders: 83 },
         { country: 'France', revenue: 81358, orders: 77 },
         { country: 'UK', revenue: 58971, orders: 56 },
-        { country: ' Venezuela', revenue: 56810, orders: 46 }
+        { country: 'Venezuela', revenue: 56810, orders: 46 }
       ]
     },
     highlights: [
@@ -770,7 +770,7 @@ export const NORTHWIND_TAB_BLUEPRINTS: Record<string, TabAnalyticsBlueprint> = {
       title: 'Faturamento Bruto vs. Faturamento Líquido & Erosão por Desconto ($)',
       subtitle: 'Decomposição financeira por categoria: quanto do valor bruto é retido como receita líquida',
       badge: 'Gross-to-Net Revenue',
-      defaultType: 'composed',
+      defaultType: 'bar',
       xKey: 'category',
       primaryKey: 'grossRevenue',
       primaryLabel: 'Receita Bruta ($)',

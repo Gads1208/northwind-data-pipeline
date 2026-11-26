@@ -16,6 +16,8 @@ services:
   - type: web
     name: guilherme-portfolio
     runtime: static
+    branch: master
+    buildCommand: ""
     staticPublishPath: ./portfolio-app
     routes:
       - type: rewrite

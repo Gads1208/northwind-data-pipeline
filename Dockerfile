@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Copy dependency definitions
 COPY apps/frontend/package*.json ./
-RUN npm install
+RUN npm install --no-audit --no-fund
 
 # Copy source code and build production bundle
 COPY apps/frontend/ ./

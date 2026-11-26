@@ -17,8 +17,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, isChatOpen, setIsChat
         <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
           {currentItem.label}
         </h2>
-        <span className="text-xs px-2.5 py-0.5 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-medium">
-          Contexto Activo: {currentItem.id.toUpperCase()}
+        <span className="text-xs px-2.5 py-0.5 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20 font-medium">
+          Contexto Ativo: {currentItem.id.toUpperCase()}
         </span>
       </div>
 

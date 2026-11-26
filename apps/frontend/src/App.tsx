@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sidebar, navItems } from './components/layout/Sidebar';
 import { Navbar } from './components/layout/Navbar';
 import { ContextualChatDrawer } from './components/chat/ContextualChatDrawer';
@@ -9,6 +9,10 @@ export function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [pendingPrompt, setPendingPrompt] = useState<string | null>(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeTab]);
 
   const handleTriggerChat = (prompt: string) => {
     setPendingPrompt(prompt);
